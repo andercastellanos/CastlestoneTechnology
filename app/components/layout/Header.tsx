@@ -7,6 +7,7 @@ import { useState } from "react"
 const services = [
   { name: "Virtual Front Desk", href: "/services/virtual-front-desk" },
   { name: "Virtual Assistants", href: "/services/virtual-assistant" },
+  { name: "Technology Solutions", href: "/services/technology-solutions" },
 ]
 
 export default function Header() {
@@ -98,7 +99,7 @@ export default function Header() {
             href="/book-demo"
             className="inline-flex h-10 items-center justify-center rounded-sm bg-[#c8a97e] px-4 text-sm font-medium text-white transition-colors hover:bg-[#b69468]"
           >
-            Book Demo
+            Book a Free Consultation
           </Link>
         </div>
 
@@ -200,7 +201,7 @@ export default function Header() {
                 onClick={closeMobileMenu}
                 className="inline-flex h-10 items-center justify-center rounded-sm bg-[#c8a97e] px-3 text-sm font-medium text-white transition-colors hover:bg-[#b69468]"
               >
-                Book Demo
+                Book a Free Consultation
               </Link>
             </div>
           </nav>

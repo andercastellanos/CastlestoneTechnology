@@ -43,24 +43,6 @@ const values = [
   },
 ]
 
-const leadership = [
-  {
-    name: "Maria Santos",
-    title: "CEO & Co-Founder",
-    bio: "Maria spent 10 years scaling Latin American talent operations before co-founding Castlestone.",
-  },
-  {
-    name: "James Whitfield",
-    title: "CTO & Co-Founder",
-    bio: "James built enterprise SaaS products for 8 years and leads all platform and technology decisions.",
-  },
-  {
-    name: "Ana Morales",
-    title: "Head of VA Operations",
-    bio: "A former bilingual executive assistant, Ana oversees VA placement, training, and client satisfaction.",
-  },
-]
-
 const latinAmericaStats = [
   { value: "95%", label: "English Proficiency" },
   { value: "GMT-5", label: "Time Zone Alignment" },
@@ -152,27 +134,6 @@ export default function AboutPage() {
           </Container>
         </section>
 
-        <section className="py-20">
-          <Container>
-            <h2 className="text-center font-heading text-3xl font-bold text-foreground">
-              Leadership Team
-            </h2>
-            <div className="mt-12 grid gap-8 md:grid-cols-3">
-              {leadership.map((member) => (
-                <article
-                  key={member.name}
-                  className="rounded-xl border border-border bg-background p-8 text-center"
-                >
-                  <div className="mx-auto mb-4 h-24 w-24 rounded-full bg-muted" />
-                  <h3 className="text-lg font-semibold text-foreground">{member.name}</h3>
-                  <p className="mb-2 text-sm text-primary">{member.title}</p>
-                  <p className="text-sm text-muted-foreground">{member.bio}</p>
-                </article>
-              ))}
-            </div>
-          </Container>
-        </section>
-
         <section className="bg-muted/50 py-20">
           <Container className="text-center">
             <h2 className="font-heading text-3xl font-bold text-foreground">
@@ -205,9 +166,9 @@ export default function AboutPage() {
               Book a free consultation. No commitment required.
             </p>
             <div className="mt-8">
-              <Link href="/demo">
+              <Link href="/book-demo">
                 <Button variant="secondary" size="lg">
-                  Book a Demo
+                  Book a Free Consultation
                 </Button>
               </Link>
             </div>

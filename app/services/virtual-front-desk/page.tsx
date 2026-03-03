@@ -79,10 +79,10 @@ export default function VirtualFrontDeskPage() {
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="/demo"
+              href="/book-demo"
               className="inline-flex h-11 items-center justify-center rounded-sm bg-[#c8a97e] px-6 text-sm font-medium text-white transition-colors hover:bg-[#b69468]"
             >
-              Book a Demo
+              Book a Free Consultation
             </Link>
             <Link
               href="/pricing"
@@ -145,7 +145,7 @@ export default function VirtualFrontDeskPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/demo"
+                  href="/book-demo"
                   className="mt-8 inline-flex h-10 items-center justify-center rounded-sm border border-[#c8a97e] px-5 text-sm font-medium text-[#c8a97e] transition-colors hover:bg-[#c8a97e] hover:text-white"
                 >
                   Get Started
@@ -165,10 +165,10 @@ export default function VirtualFrontDeskPage() {
               first impression from day one.
             </p>
             <Link
-              href="/demo"
+              href="/book-demo"
               className="mt-8 inline-flex h-11 items-center justify-center rounded-sm border border-white px-6 text-sm font-medium text-white transition-colors hover:bg-white hover:text-[#c8a97e]"
             >
-              Schedule Demo
+              Book a Free Consultation
             </Link>
           </div>
         </section>

@@ -7,6 +7,7 @@ const footerColumns = [
     links: [
       { label: "Virtual Front Desk", href: "/services/virtual-front-desk" },
       { label: "Virtual Assistants", href: "/services/virtual-assistant" },
+      { label: "Technology Solutions", href: "/services/technology-solutions" },
     ],
   },
   {
@@ -21,14 +22,6 @@ const footerColumns = [
     title: "Resources",
     links: [
       { label: "Blog", href: "/blog" },
-      { label: "Case Studies", href: "/case-studies" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", href: "/privacy-policy" },
-      { label: "Terms of Service", href: "/terms-of-service" },
     ],
   },
 ]
@@ -51,7 +44,7 @@ export default function Footer() {
           Castlestone Technology
         </Link>
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {footerColumns.map((column) => (
             <div key={column.title}>
               <h3 className="text-xs uppercase tracking-[0.14em] text-[#555555]">

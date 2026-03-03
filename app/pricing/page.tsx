@@ -105,7 +105,7 @@ function PricingCard({ plan }: { plan: PricingPlan }) {
       </ul>
 
       <Link
-        href="/demo"
+        href="/book-demo"
         className="mt-8 inline-flex h-10 items-center justify-center rounded-sm border border-[#c8a97e] px-5 text-sm font-medium text-[#c8a97e] transition-colors hover:bg-[#c8a97e] hover:text-white"
       >
         Get Started
