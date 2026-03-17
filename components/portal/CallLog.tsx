@@ -34,15 +34,17 @@ function formatDateTime(dateStr: string): string {
 // ─── Badge configs ────────────────────────────────────────────────────────────
 
 const STATUS_STYLES: Record<CallStatus, string> = {
-  answered: "bg-green-50 text-green-700 border border-green-200",
-  missed: "bg-red-50 text-red-600 border border-red-200",
-  voicemail: "bg-amber-50 text-amber-600 border border-amber-200",
+  answered:    "bg-green-50 text-green-700 border border-green-200",
+  missed:      "bg-red-50 text-red-600 border border-red-200",
+  voicemail:   "bg-amber-50 text-amber-600 border border-amber-200",
+  in_progress: "bg-blue-50 text-blue-700 border border-blue-200",
 }
 
 const STATUS_LABELS: Record<CallStatus, string> = {
-  answered: "Answered",
-  missed: "Missed",
-  voicemail: "Voicemail",
+  answered:    "Answered",
+  missed:      "Missed",
+  voicemail:   "Voicemail",
+  in_progress: "In Progress",
 }
 
 type FilterTab = "all" | CallStatus
@@ -131,10 +133,11 @@ export default function CallLog() {
   const filtered = calls.filter((c) => activeTab === "all" || c.status === activeTab)
 
   const counts = {
-    all: calls.length,
-    answered: calls.filter((c) => c.status === "answered").length,
-    missed: calls.filter((c) => c.status === "missed").length,
-    voicemail: calls.filter((c) => c.status === "voicemail").length,
+    all:         calls.length,
+    answered:    calls.filter((c) => c.status === "answered").length,
+    missed:      calls.filter((c) => c.status === "missed").length,
+    voicemail:   calls.filter((c) => c.status === "voicemail").length,
+    in_progress: calls.filter((c) => c.status === "in_progress").length,
   }
 
   // ── Render ───────────────────────────────────────────────────────────────

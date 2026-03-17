@@ -1,16 +1,17 @@
 import { auth } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
+import { twilioClient, getUserByClerkId } from "@/lib/twilio"
+import type { SendReplyPayload } from "@/lib/types"
 
-interface ReplyPayload {
-  body: string
-}
+// POST /api/conversations/[id]/reply
+// Sends an outbound SMS via Twilio and records it as a Message row.
 
 export async function POST(
   request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
-  // Auth guard
+  // ── Auth ────────────────────────────────────────────────────────────────────
   const { userId } = await auth()
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
@@ -18,48 +19,85 @@ export async function POST(
 
   const { id: conversationId } = await context.params
 
-  // Validate payload
-  const payload = (await request.json()) as ReplyPayload
-  const body = payload.body?.trim()
+  // ── Parse body ──────────────────────────────────────────────────────────────
+  const payload = (await request.json()) as SendReplyPayload
+  const body    = payload.body?.trim()
   if (!body) {
-    return NextResponse.json(
-      { error: "Message body is required" },
-      { status: 400 },
-    )
+    return NextResponse.json({ error: "Message body is required" }, { status: 400 })
   }
 
   const supabase = createServerSupabaseClient()
 
-  // Verify this conversation belongs to a business the user has access to
-  const { data: profile } = await supabase
-    .from("users")
-    .select("business_id")
-    .eq("clerk_user_id", userId)
-    .single()
-
-  if (!profile) {
+  // ── Load sender profile ─────────────────────────────────────────────────────
+  const user = await getUserByClerkId(userId)
+  if (!user) {
     return NextResponse.json({ error: "User profile not found" }, { status: 403 })
   }
 
+  // ── Verify conversation belongs to this business ────────────────────────────
   const { data: conversation } = await supabase
     .from("conversations")
-    .select("id")
+    .select("id, contact_id, business_id")
     .eq("id", conversationId)
-    .eq("business_id", profile.business_id)
+    .eq("business_id", user.business_id)
     .single()
 
   if (!conversation) {
     return NextResponse.json({ error: "Conversation not found" }, { status: 404 })
   }
 
-  // Insert the outbound message
+  // ── Load contact (need their phone) ────────────────────────────────────────
+  const { data: contact } = await supabase
+    .from("contacts")
+    .select("phone")
+    .eq("id", conversation.contact_id)
+    .single()
+
+  if (!contact?.phone) {
+    return NextResponse.json(
+      { error: "Contact has no phone number on file" },
+      { status: 422 },
+    )
+  }
+
+  // ── Load business (need twilio_number) ─────────────────────────────────────
+  const { data: business } = await supabase
+    .from("businesses")
+    .select("twilio_number")
+    .eq("id", user.business_id)
+    .single()
+
+  if (!business?.twilio_number) {
+    return NextResponse.json(
+      { error: "Business has no Twilio number configured" },
+      { status: 422 },
+    )
+  }
+
+  // ── Send SMS via Twilio ─────────────────────────────────────────────────────
+  let twilioMessageSid: string | null = null
+  try {
+    const sent = await twilioClient.messages.create({
+      body,
+      from: business.twilio_number,
+      to:   contact.phone,
+    })
+    twilioMessageSid = sent.sid
+  } catch (err) {
+    console.error("Twilio send error", err)
+    return NextResponse.json({ error: "Failed to send SMS" }, { status: 502 })
+  }
+
+  // ── Insert outbound Message row ─────────────────────────────────────────────
   const { data: message, error: insertError } = await supabase
     .from("messages")
     .insert({
-      conversation_id: conversationId,
-      direction: "outbound",
+      conversation_id:    conversationId,
+      direction:          "outbound",
       body,
-      sender_name: null, // could be enriched with user display name
+      sender_name:        user.name,
+      twilio_message_sid: twilioMessageSid,
+      sent_by:            user.id,
     })
     .select()
     .single()
@@ -69,14 +107,15 @@ export async function POST(
     return NextResponse.json({ error: insertError.message }, { status: 500 })
   }
 
-  // Update conversation's preview + timestamp
+  // ── Update conversation preview + timestamp ─────────────────────────────────
+  const preview = body.length > 100 ? `${body.slice(0, 100)}…` : body
   await supabase
     .from("conversations")
     .update({
-      last_message_at: message.created_at,
-      last_message_preview: body.length > 100 ? body.slice(0, 100) + "…" : body,
+      last_message_at:      message.created_at,
+      last_message_preview: preview,
     })
     .eq("id", conversationId)
 
-  return NextResponse.json({ message })
+  return NextResponse.json({ success: true, message_id: message.id })
 }

@@ -6,7 +6,7 @@ export type ConversationStatus = "open" | "closed" | "follow_up"
 
 export type LeadStatus = "new" | "contacted" | "qualified" | "customer"
 
-export type CallStatus = "answered" | "missed" | "voicemail"
+export type CallStatus = "answered" | "missed" | "voicemail" | "in_progress"
 
 export type CallDirection = "inbound" | "outbound"
 
@@ -25,12 +25,16 @@ export interface Call {
   id: string
   business_id: string
   contact_id: string | null
+  twilio_call_sid?: string | null
+  from_number?: string | null
   direction: CallDirection
   status: CallStatus
   /** Duration in seconds */
   duration: number | null
   voicemail_url: string | null
+  recording_url?: string | null
   transcript: string | null
+  answered_by?: string | null        // user.id who answered
   created_at: string
   contact?: Contact | null
 }
@@ -68,6 +72,12 @@ export interface Message {
   body: string
   created_at: string
   sender_name: string | null
+  twilio_message_sid?: string | null
+  sent_by?: string | null            // user.id (null for inbound / system messages)
+}
+
+export interface SendReplyPayload {
+  body: string
 }
 
 /** Supabase `users` table — bridges Clerk userId ↔ business_id */
@@ -80,9 +90,9 @@ export interface PortalUser {
 
 // ─── Settings types ────────────────────────────────────────────────────────
 
-export type RoutingMode = "round_robin" | "first_available" | "broadcast"
+export type RoutingMode = "assistant_first" | "simultaneous" | "owner_only"
 
-export type AfterHoursMode = "voicemail" | "forward" | "ivr"
+export type AfterHoursMode = "voicemail" | "forward" | "message"
 
 export interface BusinessHours {
   /** ISO day 0 = Sunday … 6 = Saturday */
@@ -96,6 +106,7 @@ export interface Business {
   id: string
   name: string
   phone: string | null
+  twilio_number?: string | null
   timezone: string
   voicemail_enabled: boolean
   business_hours: BusinessHours[]
@@ -123,6 +134,7 @@ export interface User {
   role: "owner" | "va" | "admin" | "assistant" | "castlestone_admin"
   name: string | null
   email: string | null
+  phone?: string | null
   status?: UserStatus
   created_at: string
 }

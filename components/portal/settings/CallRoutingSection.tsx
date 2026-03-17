@@ -8,26 +8,26 @@ import type { ToastState } from "@/components/portal/SettingsPage"
 
 const ROUTING_MODES: { value: RoutingMode; label: string; description: string }[] = [
   {
-    value: "round_robin",
-    label: "Round Robin",
-    description: "Rotate calls evenly across all available agents.",
+    value: "assistant_first",
+    label: "Assistant First",
+    description: "Ring the first available VA or assistant.",
   },
   {
-    value: "first_available",
-    label: "First Available",
-    description: "Route to the first agent who picks up.",
+    value: "simultaneous",
+    label: "Simultaneous",
+    description: "Ring all agents and the owner at the same time.",
   },
   {
-    value: "broadcast",
-    label: "Broadcast",
-    description: "Ring all agents simultaneously.",
+    value: "owner_only",
+    label: "Owner Only",
+    description: "Route directly to the business owner.",
   },
 ]
 
 const AFTER_HOURS_OPTIONS: { value: AfterHoursMode; label: string }[] = [
   { value: "voicemail", label: "Send to Voicemail" },
-  { value: "forward", label: "Forward to Number" },
-  { value: "ivr", label: "Play IVR Menu" },
+  { value: "forward",  label: "Forward to Number" },
+  { value: "message",  label: "Play Closed Message" },
 ]
 
 // ─── Skeleton ─────────────────────────────────────────────────────────────────
@@ -55,7 +55,7 @@ export default function CallRoutingSection({ showToast }: Props) {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
 
-  const [mode, setMode] = useState<RoutingMode>("first_available")
+  const [mode, setMode] = useState<RoutingMode>("assistant_first")
   const [ringTimeout, setRingTimeout] = useState(30)
   const [afterHoursMode, setAfterHoursMode] = useState<AfterHoursMode>("voicemail")
   const [forwardNumber, setForwardNumber] = useState("")
@@ -67,7 +67,7 @@ export default function CallRoutingSection({ showToast }: Props) {
       .then((data: { routing?: RoutingRule }) => {
         if (data.routing) {
           const r = data.routing
-          setMode(r.mode ?? "first_available")
+          setMode(r.mode ?? "assistant_first")
           setRingTimeout(r.ring_timeout ?? 30)
           setAfterHoursMode(r.after_hours_mode ?? "voicemail")
           setForwardNumber(r.forward_number ?? "")
