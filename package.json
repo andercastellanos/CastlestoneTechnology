@@ -20,6 +20,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.71.1",
+    "svix": "^1.88.0",
     "tailwind-merge": "^3.4.1",
     "twilio": "^5.13.0",
     "zod": "^4.3.6"
