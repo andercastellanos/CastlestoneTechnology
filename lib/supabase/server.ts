@@ -11,3 +11,15 @@ export function createServerSupabaseClient() {
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
   )
 }
+
+/**
+ * Service-role client for platform/admin queries (bypasses RLS).
+ * Identical to {@link createServerSupabaseClient}; named separately so admin
+ * call sites read clearly. Server-only — never import in client components.
+ */
+export function createAdminSupabaseClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  )
+}

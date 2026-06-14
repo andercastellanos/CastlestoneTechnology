@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     new URLSearchParams(formText),
   )
 
-  const { CallSid, From, To, CallStatus } = params
+  const { CallSid, From, To } = params
 
   // 2 — Validate Twilio signature (bypassed in development for easier testing)
   if (process.env.NODE_ENV === "production") {
@@ -73,14 +73,17 @@ export async function POST(req: NextRequest) {
   const { business, rules } = result
 
   // 4 — Record the inbound call immediately (status updated via status callback)
-  await supabase.from("calls").insert({
+  const { error } = await supabase.from("calls").insert([{
     business_id:     business.id,
     twilio_call_sid: CallSid,
     from_number:     From,
     direction:       "inbound",
-    status:          CallStatus ?? "in_progress",
+    status:          "in_progress",
     contact_id:      null,
-  })
+  }])
+  if (error) {
+    console.error("Failed to insert call:", error)
+  }
 
   // 5 — Branch on business hours
   const inHours = isWithinBusinessHours(business.business_hours, business.timezone)
@@ -92,7 +95,7 @@ export async function POST(req: NextRequest) {
       // Ring the first online VA / assistant
       const { data: va } = await supabase
         .from("users")
-        .select("phone")
+        .select("id, phone")
         .eq("business_id", business.id)
         .in("role", ["va", "assistant"])
         .eq("status", "online")
@@ -100,10 +103,12 @@ export async function POST(req: NextRequest) {
         .limit(1)
         .single()
 
-      const dial = twiml.dial({
-        timeout: rules.ring_timeout,
-        action:  `${siteUrl}/api/twilio/voice/fallback`,
-      })
+      // Stage 1 of the assistant_first chain. The action route (?stage=va)
+      // escalates to the owner on failure, or finalizes on "completed".
+      const action = va?.id
+        ? `${siteUrl}/api/twilio/voice/fallback?stage=va&dialed=${va.id}`
+        : `${siteUrl}/api/twilio/voice/fallback?stage=va`
+      const dial = twiml.dial({ timeout: rules.ring_timeout, action })
       if (va?.phone) dial.number({}, va.phone as string)
 
     } else if (rules.mode === "simultaneous") {
@@ -115,9 +120,12 @@ export async function POST(req: NextRequest) {
         .in("role", ["owner", "va", "assistant"])
         .not("phone", "is", null)
 
+      // Simultaneous: several <Number>s ring at once, so the answering user
+      // can't be read from the action params — the route resolves it via the
+      // Twilio API using DialCallSid (?multi=1).
       const dial = twiml.dial({
         timeout: rules.ring_timeout,
-        action:  `${siteUrl}/api/twilio/voice/fallback`,
+        action:  `${siteUrl}/api/twilio/voice/fallback?stage=final&multi=1`,
       })
       agents?.forEach((u) => {
         if (u.phone) dial.number({}, u.phone as string)
@@ -127,16 +135,17 @@ export async function POST(req: NextRequest) {
       // Ring only the business owner
       const { data: owner } = await supabase
         .from("users")
-        .select("phone")
+        .select("id, phone")
         .eq("business_id", business.id)
         .eq("role", "owner")
         .not("phone", "is", null)
         .single()
 
-      const dial = twiml.dial({
-        timeout: rules.ring_timeout,
-        action:  `${siteUrl}/api/twilio/voice/fallback`,
-      })
+      // Single sequential stage — finalize on completion, voicemail on failure.
+      const action = owner?.id
+        ? `${siteUrl}/api/twilio/voice/fallback?stage=final&dialed=${owner.id}`
+        : `${siteUrl}/api/twilio/voice/fallback?stage=final`
+      const dial = twiml.dial({ timeout: rules.ring_timeout, action })
       if (owner?.phone) dial.number({}, owner.phone as string)
     }
 

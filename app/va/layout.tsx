@@ -16,8 +16,13 @@ export default async function VALayout({ children }: { children: React.ReactNode
     .eq("clerk_user_id", userId)
     .single()
 
+  // Not provisioned yet → friendly pending screen (don't loop into the portal).
+  if (!profile) {
+    redirect("/account-pending")
+  }
+
   // Owners go to their portal, everyone else needs a VA role
-  if (!profile || profile.role === "owner") {
+  if (profile.role === "owner") {
     redirect("/portal/inbox")
   }
 

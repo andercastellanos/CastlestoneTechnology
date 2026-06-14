@@ -13,7 +13,7 @@ import {
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
-import { VIRTUAL_ASSISTANT_ROLES, VIRTUAL_ASSISTANT_PRICING } from "@/src/lib/constants"
+import { VIRTUAL_ASSISTANT_ROLES, VIRTUAL_ASSISTANT_PRICING } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: "Virtual Assistant Services | Social Media, HR, Tech & More",

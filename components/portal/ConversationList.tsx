@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { useUser } from "@clerk/nextjs"
 import { Search } from "lucide-react"
-import { getSupabaseBrowserClient } from "@/lib/supabase/client"
+import { useSupabaseBrowserClient } from "@/lib/hooks/useSupabaseBrowserClient"
 import type { ConversationWithContact, ConversationStatus } from "@/lib/types"
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -59,6 +59,7 @@ interface Props {
 export default function ConversationList({ selectedId }: Props) {
   const { user, isLoaded } = useUser()
   const router = useRouter()
+  const supabase = useSupabaseBrowserClient()
 
   const [businessId, setBusinessId] = useState<string | null>(null)
   const [conversations, setConversations] = useState<ConversationWithContact[]>([])
@@ -69,7 +70,6 @@ export default function ConversationList({ selectedId }: Props) {
   useEffect(() => {
     if (!isLoaded || !user) return
 
-    const supabase = getSupabaseBrowserClient()
     supabase
       .from("users")
       .select("business_id")
@@ -78,12 +78,11 @@ export default function ConversationList({ selectedId }: Props) {
       .then(({ data }) => {
         setBusinessId(data?.business_id ?? null)
       })
-  }, [isLoaded, user])
+  }, [isLoaded, user, supabase])
 
   // ── Fetch conversations + realtime subscription ────────────────────────
   const fetchConversations = useCallback(async () => {
     if (!businessId) return
-    const supabase = getSupabaseBrowserClient()
     const { data } = await supabase
       .from("conversations")
       .select("*, contact:contacts(*)")
@@ -92,7 +91,7 @@ export default function ConversationList({ selectedId }: Props) {
 
     setConversations((data as ConversationWithContact[]) ?? [])
     setLoading(false)
-  }, [businessId])
+  }, [businessId, supabase])
 
   useEffect(() => {
     if (!businessId) {
@@ -103,7 +102,6 @@ export default function ConversationList({ selectedId }: Props) {
     setLoading(true)
     fetchConversations()
 
-    const supabase = getSupabaseBrowserClient()
     const channel = supabase
       .channel("conversations-list")
       .on(
@@ -124,7 +122,7 @@ export default function ConversationList({ selectedId }: Props) {
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [businessId, fetchConversations, isLoaded])
+  }, [businessId, fetchConversations, isLoaded, supabase])
 
   // ── Filtered list ──────────────────────────────────────────────────────
   const filtered = conversations.filter((c) => {

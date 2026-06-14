@@ -58,6 +58,7 @@ export default function CallRoutingSection({ showToast }: Props) {
   const [mode, setMode] = useState<RoutingMode>("assistant_first")
   const [ringTimeout, setRingTimeout] = useState(30)
   const [afterHoursMode, setAfterHoursMode] = useState<AfterHoursMode>("voicemail")
+  const [escalationPhone, setEscalationPhone] = useState("")
   const [forwardNumber, setForwardNumber] = useState("")
   const [ivrEnabled, setIvrEnabled] = useState(false)
 
@@ -70,6 +71,7 @@ export default function CallRoutingSection({ showToast }: Props) {
           setMode(r.mode ?? "assistant_first")
           setRingTimeout(r.ring_timeout ?? 30)
           setAfterHoursMode(r.after_hours_mode ?? "voicemail")
+          setEscalationPhone(r.escalation_phone ?? "")
           setForwardNumber(r.forward_number ?? "")
           setIvrEnabled(r.ivr_enabled ?? false)
         }
@@ -88,7 +90,10 @@ export default function CallRoutingSection({ showToast }: Props) {
           mode,
           ring_timeout: ringTimeout,
           after_hours_mode: afterHoursMode,
-          forward_number: afterHoursMode === "forward" ? forwardNumber : null,
+          // Persist both numbers as their literal current values, independent of
+          // the active mode/after-hours setting, so neither is ever wiped on save.
+          escalation_phone: escalationPhone.trim() || null,
+          forward_number: forwardNumber.trim() || null,
           ivr_enabled: ivrEnabled,
         }),
       })
@@ -147,6 +152,26 @@ export default function CallRoutingSection({ showToast }: Props) {
               </div>
             </div>
 
+            {/* Escalation number — only relevant for assistant_first */}
+            {mode === "assistant_first" && (
+              <div>
+                <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-[#555555]">
+                  Escalation Number
+                </p>
+                <input
+                  type="tel"
+                  value={escalationPhone}
+                  onChange={(e) => setEscalationPhone(e.target.value)}
+                  placeholder="+1 (555) 000-0000"
+                  className="w-full rounded-sm border border-[#e6dbc9] bg-white px-3 py-2 text-sm text-[#222222] placeholder-[#aaaaaa] outline-none transition-colors focus:border-[#c8a97e] focus:ring-1 focus:ring-[#c8a97e]/30"
+                />
+                <p className="mt-1 text-xs text-[#888888]">
+                  Rings this number if the receptionist misses a call during business
+                  hours. Leave blank to send missed calls straight to voicemail.
+                </p>
+              </div>
+            )}
+
             {/* Ring timeout */}
             <div>
               <div className="mb-2 flex items-center justify-between">
@@ -190,7 +215,7 @@ export default function CallRoutingSection({ showToast }: Props) {
               {afterHoursMode === "forward" && (
                 <div className="mt-3">
                   <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-[#555555]">
-                    Forward To
+                    After-Hours Forward Number
                   </p>
                   <input
                     type="tel"
@@ -199,28 +224,32 @@ export default function CallRoutingSection({ showToast }: Props) {
                     placeholder="+1 (555) 000-0000"
                     className="w-full rounded-sm border border-[#e6dbc9] bg-white px-3 py-2 text-sm text-[#222222] placeholder-[#aaaaaa] outline-none transition-colors focus:border-[#c8a97e] focus:ring-1 focus:ring-[#c8a97e]/30"
                   />
+                  <p className="mt-1 text-xs text-[#888888]">
+                    Where to send calls that come in after business hours.
+                  </p>
                 </div>
               )}
             </div>
 
-            {/* IVR toggle */}
-            <div className="flex items-center justify-between">
+            {/* IVR toggle — backend not yet implemented; disabled until then */}
+            <div className="flex items-center justify-between opacity-60">
               <div>
-                <p className="text-sm font-medium text-[#222222]">IVR Menu</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-sm font-medium text-[#222222]">IVR Menu</p>
+                  <span className="rounded-full bg-[#ede9e0] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[#888888]">
+                    Coming soon
+                  </span>
+                </div>
                 <p className="text-xs text-[#888888]">Play an automated menu before routing</p>
               </div>
               <button
                 type="button"
-                onClick={() => setIvrEnabled((v) => !v)}
-                className={`relative h-6 w-11 rounded-full transition-colors ${
-                  ivrEnabled ? "bg-[#c8a97e]" : "bg-[#d9d4cc]"
-                }`}
+                disabled
+                aria-disabled="true"
+                title="Coming soon"
+                className="relative h-6 w-11 cursor-not-allowed rounded-full bg-[#d9d4cc]"
               >
-                <span
-                  className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform ${
-                    ivrEnabled ? "translate-x-5" : "translate-x-0.5"
-                  }`}
-                />
+                <span className="absolute top-0.5 h-5 w-5 translate-x-0.5 rounded-full bg-white shadow-sm" />
               </button>
             </div>
           </div>

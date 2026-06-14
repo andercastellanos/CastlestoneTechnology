@@ -47,6 +47,7 @@ export async function PATCH(request: Request) {
   if ("mode" in body) upsertData.mode = body.mode
   if ("ring_timeout" in body) upsertData.ring_timeout = body.ring_timeout
   if ("after_hours_mode" in body) upsertData.after_hours_mode = body.after_hours_mode
+  if ("escalation_phone" in body) upsertData.escalation_phone = body.escalation_phone
   if ("forward_number" in body) upsertData.forward_number = body.forward_number
   if ("ivr_enabled" in body) upsertData.ivr_enabled = body.ivr_enabled
 

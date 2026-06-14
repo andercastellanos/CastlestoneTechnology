@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
   // ── 2. Find open Conversation or create one ───────────────────────────────
   const { data: existingConv } = await supabase
     .from("conversations")
-    .select("id")
+    .select("id, unread_count")
     .eq("business_id", business.id)
     .eq("contact_id", contactId)
     .eq("status", "open")
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
   if (!conversationId) return emptyTwiML()
 
   // ── 3. Insert inbound Message ─────────────────────────────────────────────
-  await supabase.from("messages").insert({
+  const { error: msgErr } = await supabase.from("messages").insert({
     conversation_id:    conversationId,
     direction:          "inbound",
     body:               Body,
@@ -88,13 +88,20 @@ export async function POST(req: NextRequest) {
     twilio_message_sid: MessageSid,
     sent_by:            null,
   })
+  if (msgErr) console.error("messaging/incoming: message insert failed:", msgErr)
 
-  // ── 4. Update conversation timestamp + preview (only if it already existed) ─
+  // ── 4. Update conversation timestamp + preview + unread (existing convos) ──
+  // (New conversations already set these at creation.)
   if (existingConv) {
-    await supabase
+    const { error: convErr } = await supabase
       .from("conversations")
-      .update({ last_message_at: now, last_message_preview: preview })
+      .update({
+        last_message_at:      now,
+        last_message_preview: preview,
+        unread_count:         (existingConv.unread_count ?? 0) + 1,
+      })
       .eq("id", conversationId)
+    if (convErr) console.error("messaging/incoming: conversation update failed:", convErr)
   }
 
   return emptyTwiML()

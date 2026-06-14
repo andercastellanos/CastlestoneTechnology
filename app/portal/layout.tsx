@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
+import { createServerSupabaseClient } from "@/lib/supabase/server"
 import PortalSidebar from "@/components/portal/PortalSidebar"
 
 export const metadata = {
@@ -18,6 +19,18 @@ export default async function PortalLayout({
 
   if (!userId) {
     redirect("/sign-in")
+  }
+
+  // No matching users row → signed in but not provisioned yet.
+  const supabase = createServerSupabaseClient()
+  const { data: profile } = await supabase
+    .from("users")
+    .select("id")
+    .eq("clerk_user_id", userId)
+    .maybeSingle()
+
+  if (!profile) {
+    redirect("/account-pending")
   }
 
   return (

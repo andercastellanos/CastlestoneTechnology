@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Send } from "lucide-react"
-import { getSupabaseBrowserClient } from "@/lib/supabase/client"
+import { useSupabaseBrowserClient } from "@/lib/hooks/useSupabaseBrowserClient"
 import type { Message } from "@/lib/types"
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -50,6 +50,7 @@ interface Props {
 
 export default function MessageThread({ conversationId }: Props) {
   const router = useRouter()
+  const supabase = useSupabaseBrowserClient()
   const bottomRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -61,7 +62,6 @@ export default function MessageThread({ conversationId }: Props) {
 
   // ── Fetch messages ────────────────────────────────────────────────────
   const fetchMessages = useCallback(async () => {
-    const supabase = getSupabaseBrowserClient()
     const { data } = await supabase
       .from("messages")
       .select("*")
@@ -70,7 +70,7 @@ export default function MessageThread({ conversationId }: Props) {
 
     setMessages((data as Message[]) ?? [])
     setLoading(false)
-  }, [conversationId])
+  }, [conversationId, supabase])
 
   // ── Subscribe to realtime inserts ─────────────────────────────────────
   useEffect(() => {
@@ -78,7 +78,6 @@ export default function MessageThread({ conversationId }: Props) {
     setMessages([])
     fetchMessages()
 
-    const supabase = getSupabaseBrowserClient()
     const channel = supabase
       .channel(`messages-${conversationId}`)
       .on(
@@ -111,7 +110,7 @@ export default function MessageThread({ conversationId }: Props) {
     return () => {
       supabase.removeChannel(channel)
     }
-  }, [conversationId, fetchMessages])
+  }, [conversationId, fetchMessages, supabase])
 
   // ── Auto-scroll to bottom ─────────────────────────────────────────────
   useEffect(() => {

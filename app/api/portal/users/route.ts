@@ -49,12 +49,13 @@ export async function POST(request: Request) {
 
   if (!profile) return NextResponse.json({ error: "User profile not found" }, { status: 403 })
 
-  // TODO: trigger Clerk invitation email — for now insert a placeholder row
+  // Pre-create a PENDING row (clerk_user_id = null). The Clerk webhook links it
+  // by email when the invitee signs up. See app/api/webhooks/clerk/route.ts.
   const { data: user, error } = await supabase
     .from("users")
     .insert({
       business_id: profile.business_id,
-      clerk_user_id: `pending-${Date.now()}`,
+      clerk_user_id: null,
       role: body.role ?? "va",
       email: body.email,
       name: null,

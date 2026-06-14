@@ -36,21 +36,85 @@ export async function POST(req: NextRequest) {
   const { type, data } = evt
 
   if (type === "user.created") {
+    // LINK-BY-EMAIL RECONCILER (not a blind insert).
+    // Invariant: never insert a user without a business_id.
     const clerkId = data.id as string
     const name    = [data.first_name, data.last_name].filter(Boolean).join(" ") || null
-    const email   = (data.email_addresses?.[0]?.email_address as string) ?? null
-    const role    = (data.public_metadata?.role as string) ?? "owner"
+    const email   = (data.email_addresses?.[0]?.email_address as string | undefined)
+      ?.toLowerCase() ?? null
 
-    const { error } = await supabase.from("users").insert({
+    if (!email) {
+      console.warn("clerk webhook user.created: no email on Clerk user", clerkId)
+      return new NextResponse("OK", { status: 200 })
+    }
+
+    // 1 — Look for an existing (admin-provisioned) row by email, case-insensitive.
+    const { data: existing, error: lookupErr } = await supabase
+      .from("users")
+      .select("id, clerk_user_id, business_id")
+      .ilike("email", email)
+      .limit(1)
+      .maybeSingle()
+
+    if (lookupErr) {
+      console.error("user.created lookup error", lookupErr)
+      return new NextResponse("Database error", { status: 500 })
+    }
+
+    if (existing) {
+      const pending =
+        !existing.clerk_user_id || existing.clerk_user_id.startsWith("pending-")
+
+      if (pending) {
+        // 2 — Admin/provision path: link the pending row to this Clerk user.
+        const { error } = await supabase
+          .from("users")
+          .update({ clerk_user_id: clerkId, name })
+          .eq("id", existing.id)
+        if (error) {
+          console.error("user.created link error", error)
+          return new NextResponse("Database error", { status: 500 })
+        }
+      } else if (existing.clerk_user_id !== clerkId) {
+        // 3 — Conflict: email already linked to a DIFFERENT Clerk user. Don't clobber.
+        console.warn(
+          `user.created conflict: ${email} is already linked to ${existing.clerk_user_id}; ` +
+            `refusing to relink to ${clerkId}`,
+        )
+      }
+      // else: already linked to this same clerkId → idempotent no-op.
+      return new NextResponse("OK", { status: 200 })
+    }
+
+    // 4 — No provisioned row. Self-signup is gated behind a flag (default OFF).
+    if (process.env.SELF_SIGNUP_ENABLED !== "true") {
+      console.warn(
+        `user.created: unprovisioned signup for ${email}; self-signup is OFF — no row created`,
+      )
+      return new NextResponse("OK", { status: 200 })
+    }
+
+    // Self-signup ON: create a business, then insert this user as its owner.
+    const { data: business, error: bizErr } = await supabase
+      .from("businesses")
+      .insert({ name: `${name ?? email}'s Business` })
+      .select("id")
+      .single()
+    if (bizErr || !business) {
+      console.error("user.created self-signup business insert error", bizErr)
+      return new NextResponse("Database error", { status: 500 })
+    }
+
+    const { error: userErr } = await supabase.from("users").insert({
       clerk_user_id: clerkId,
+      business_id:   business.id,
+      role:          "owner",
       name,
       email,
-      role,
-      status: "offline",
+      status:        "offline",
     })
-
-    if (error) {
-      console.error("user.created DB error", error)
+    if (userErr) {
+      console.error("user.created self-signup user insert error", userErr)
       return new NextResponse("Database error", { status: 500 })
     }
 
