@@ -4,6 +4,8 @@
 
 export type ConversationStatus = "open" | "closed" | "follow_up"
 
+export type MessagingChannel = "sms" | "whatsapp"
+
 export type LeadStatus = "new" | "contacted" | "qualified" | "customer"
 
 export type CallStatus = "answered" | "missed" | "voicemail" | "in_progress"
@@ -52,6 +54,7 @@ export interface Conversation {
   id: string
   business_id: string
   contact_id: string
+  channel: MessagingChannel
   status: ConversationStatus
   last_message_at: string
   last_message_preview: string | null
@@ -107,6 +110,7 @@ export interface Business {
   name: string
   phone: string | null
   twilio_number?: string | null
+  whatsapp_number: string | null
   /** Subscription tier; defaults to 'basic' (free). */
   plan?: string | null
   /** Billing state; defaults to 'active'. */
@@ -144,6 +148,23 @@ export interface User {
   phone?: string | null
   status?: UserStatus
   created_at: string
+}
+
+/**
+ * Captured signup demand: a verified Clerk user who reached /account-pending
+ * without a provisioned `users` row. NOT an account — provisioning stays manual.
+ * Written server-side (service-role); readable only by castlestone_admin.
+ */
+export type SignupRequestStatus = "pending" | "approved" | "declined"
+
+export interface SignupRequest {
+  id: string
+  email: string
+  clerk_user_id: string | null
+  name: string | null
+  status: SignupRequestStatus
+  created_at: string
+  updated_at: string
 }
 
 // ─── Platform admin types ────────────────────────────────────────────────────

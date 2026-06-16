@@ -1,6 +1,14 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server"
 
-const isProtectedRoute = createRouteMatcher(["/portal(.*)", "/va(.*)"])
+// Auth-gated areas. Everything else (/, /sign-in, /sign-up, /account-pending,
+// /api/webhooks/clerk, /api/twilio/*, marketing) stays PUBLIC by default —
+// auth.protect() only runs for these matches.
+const isProtectedRoute = createRouteMatcher([
+  "/portal(.*)",
+  "/va(.*)",
+  "/admin(.*)",
+  "/dashboard(.*)",
+])
 
 export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {

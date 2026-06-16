@@ -4,7 +4,8 @@ import { useEffect, useRef, useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, Send } from "lucide-react"
 import { useSupabaseBrowserClient } from "@/lib/hooks/useSupabaseBrowserClient"
-import type { Message } from "@/lib/types"
+import type { Message, MessagingChannel } from "@/lib/types"
+import ChannelBadge from "@/components/portal/ChannelBadge"
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -55,6 +56,7 @@ export default function MessageThread({ conversationId }: Props) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const [messages, setMessages] = useState<Message[]>([])
+  const [convChannel, setConvChannel] = useState<MessagingChannel>("sms")
   const [loading, setLoading] = useState(true)
   const [reply, setReply] = useState("")
   const [sending, setSending] = useState(false)
@@ -77,6 +79,16 @@ export default function MessageThread({ conversationId }: Props) {
     setLoading(true)
     setMessages([])
     fetchMessages()
+
+    // Load this thread's channel for the header badge + footer copy.
+    supabase
+      .from("conversations")
+      .select("channel")
+      .eq("id", conversationId)
+      .single()
+      .then(({ data }) => {
+        if (data?.channel) setConvChannel(data.channel as MessagingChannel)
+      })
 
     const channel = supabase
       .channel(`messages-${conversationId}`)
@@ -179,16 +191,17 @@ export default function MessageThread({ conversationId }: Props) {
   // ── Render ─────────────────────────────────────────────────────────────
   return (
     <div className="flex h-full flex-col">
-      {/* Mobile back button */}
-      <div className="flex items-center border-b border-[#e6dbc9] bg-white px-4 py-3 md:hidden">
+      {/* Thread header: mobile back button + channel badge (always visible) */}
+      <div className="flex items-center justify-between border-b border-[#e6dbc9] bg-white px-4 py-3">
         <button
           type="button"
           onClick={() => router.push("/portal/inbox")}
-          className="flex items-center gap-1.5 text-sm font-medium text-[#555555] transition-colors hover:text-[#222222]"
+          className="flex items-center gap-1.5 text-sm font-medium text-[#555555] transition-colors hover:text-[#222222] md:hidden"
         >
           <ArrowLeft className="h-4 w-4" />
           Back
         </button>
+        <ChannelBadge channel={convChannel} className="ml-auto" />
       </div>
 
       {/* Messages area */}
@@ -262,7 +275,9 @@ export default function MessageThread({ conversationId }: Props) {
           </button>
         </div>
         <p className="mt-1.5 text-[11px] text-[#aaaaaa]">
-          Replies send as SMS from your virtual receptionist line
+          {convChannel === "whatsapp"
+            ? "Replies send as WhatsApp from your virtual receptionist line"
+            : "Replies send as SMS from your virtual receptionist line"}
         </p>
       </div>
     </div>

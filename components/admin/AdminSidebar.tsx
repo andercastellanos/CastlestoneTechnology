@@ -8,6 +8,7 @@ import { useState } from "react"
 import {
   LayoutDashboard,
   Users,
+  UserPlus,
   PhoneCall,
   Activity,
   Menu,
@@ -18,6 +19,7 @@ import {
 const navLinks = [
   { label: "Overview", href: "/admin", icon: LayoutDashboard },
   { label: "Clients", href: "/admin/clients", icon: Users },
+  { label: "Requests", href: "/admin/requests", icon: UserPlus },
   { label: "Provision Number", href: "/admin/provision", icon: PhoneCall },
   { label: "SLA Monitor", href: "/admin/sla", icon: Activity },
 ]

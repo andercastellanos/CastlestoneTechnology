@@ -1,11 +1,12 @@
 import { auth } from "@clerk/nextjs/server"
 import { NextResponse } from "next/server"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
-import { twilioClient, getUserByClerkId } from "@/lib/twilio"
+import { twilioClient, getUserByClerkId, buildOutboundAddressing } from "@/lib/twilio"
 import type { SendReplyPayload } from "@/lib/types"
 
 // POST /api/conversations/[id]/reply
-// Sends an outbound SMS via Twilio and records it as a Message row.
+// Sends an outbound message via Twilio (SMS or WhatsApp, per the conversation's
+// channel) and records it as a Message row.
 
 export async function POST(
   request: Request,
@@ -37,7 +38,7 @@ export async function POST(
   // ── Verify conversation belongs to this business ────────────────────────────
   const { data: conversation } = await supabase
     .from("conversations")
-    .select("id, contact_id, business_id")
+    .select("id, contact_id, business_id, channel")
     .eq("id", conversationId)
     .eq("business_id", user.business_id)
     .single()
@@ -60,32 +61,48 @@ export async function POST(
     )
   }
 
-  // ── Load business (need twilio_number) ─────────────────────────────────────
+  // ── Load business (need the channel's sender number) ───────────────────────
   const { data: business } = await supabase
     .from("businesses")
-    .select("twilio_number")
+    .select("twilio_number, whatsapp_number")
     .eq("id", user.business_id)
     .single()
 
-  if (!business?.twilio_number) {
+  const { from, to } = buildOutboundAddressing({
+    channel:      conversation.channel,
+    business:     business ?? { twilio_number: null, whatsapp_number: null },
+    contactPhone: contact.phone,
+  })
+
+  // For SMS the sender is the business twilio_number; for WhatsApp it falls back
+  // to the shared sandbox sender — so only SMS can be "unconfigured" here.
+  if (conversation.channel === "sms" && !business?.twilio_number) {
     return NextResponse.json(
       { error: "Business has no Twilio number configured" },
       { status: 422 },
     )
   }
 
-  // ── Send SMS via Twilio ─────────────────────────────────────────────────────
+  // ── Send via Twilio (send-before-insert preserved) ─────────────────────────
   let twilioMessageSid: string | null = null
   try {
-    const sent = await twilioClient.messages.create({
-      body,
-      from: business.twilio_number,
-      to:   contact.phone,
-    })
+    const sent = await twilioClient.messages.create({ body, from, to })
     twilioMessageSid = sent.sid
   } catch (err) {
-    console.error("Twilio send error", err)
-    return NextResponse.json({ error: "Failed to send SMS" }, { status: 502 })
+    // Surface the Twilio error code so failures are diagnosable in testing.
+    const e = err as { code?: number; message?: string }
+    const hint =
+      e.code === 63016
+        ? " — WhatsApp free-form message outside the 24h customer-service window"
+        : ""
+    console.error(
+      `Twilio send failed [channel=${conversation.channel}, code=${e.code ?? "?"}]: ${e.message ?? err}${hint}`,
+    )
+    // Do NOT insert a phantom 'sent' message — bail before the DB write.
+    return NextResponse.json(
+      { error: `Failed to send message${hint}` },
+      { status: 502 },
+    )
   }
 
   // ── Insert outbound Message row ─────────────────────────────────────────────

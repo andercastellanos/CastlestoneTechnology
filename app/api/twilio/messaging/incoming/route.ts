@@ -1,10 +1,16 @@
 import { type NextRequest } from "next/server"
-import { getBusinessByTwilioNumber, validateTwilioSignature, emptyTwiML } from "@/lib/twilio"
+import {
+  getBusinessByTwilioNumber,
+  getBusinessByWhatsAppNumber,
+  validateTwilioSignature,
+  emptyTwiML,
+} from "@/lib/twilio"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
+import type { Business, MessagingChannel } from "@/lib/types"
 
 // POST /api/twilio/messaging/incoming
-// Twilio inbound SMS webhook.
-// Finds/creates Contact → Conversation → inserts Message → updates preview.
+// Twilio inbound SMS + WhatsApp webhook.
+// Finds/creates Contact → Conversation (per channel) → inserts Message → bumps activity.
 
 export async function POST(req: NextRequest) {
   const formText = await req.text()
@@ -20,21 +26,66 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Look up the business that owns the destination Twilio number
-  const result = await getBusinessByTwilioNumber(To)
-  if (!result) return emptyTwiML()
+  // Twilio prefixes WhatsApp endpoints with "whatsapp:"; SMS endpoints are bare.
+  const channel: MessagingChannel = From.startsWith("whatsapp:")
+    ? "whatsapp"
+    : "sms"
+  const bareFrom = From.replace(/^whatsapp:/, "")
+  const bareTo = To.replace(/^whatsapp:/, "")
 
-  const { business } = result
-  const supabase      = createServerSupabaseClient()
-  const now           = new Date().toISOString()
-  const preview       = Body.length > 100 ? `${Body.slice(0, 100)}…` : Body
+  const supabase = createServerSupabaseClient()
 
-  // ── 1. Find or create Contact for the sender ──────────────────────────────
+  // ── Resolve the owning business by channel ────────────────────────────────
+  let business: Business
+
+  if (channel === "sms") {
+    // Unchanged: match the destination Twilio number, requires routing rules.
+    const result = await getBusinessByTwilioNumber(To)
+    if (!result) return emptyTwiML()
+    business = result.business
+  } else {
+    // WhatsApp: match the business's whatsapp_number (no routing rules needed).
+    let wa = await getBusinessByWhatsAppNumber(bareTo)
+
+    if (!wa) {
+      // Sandbox fallback: non-prod only, and only for the shared sandbox sender.
+      const isSandboxTo = bareTo === process.env.TWILIO_WHATSAPP_SANDBOX_NUMBER
+      if (process.env.VERCEL_ENV !== "production" && isSandboxTo) {
+        const sandboxId = process.env.WHATSAPP_SANDBOX_BUSINESS_ID
+        const { data } = sandboxId
+          ? await supabase
+              .from("businesses")
+              .select("*")
+              .eq("id", sandboxId)
+              .single()
+          : { data: null }
+        wa = (data as Business | null) ?? null
+        if (!wa) {
+          console.warn(
+            `messaging/incoming: dropped whatsapp inbound — sandbox business not found (WHATSAPP_SANDBOX_BUSINESS_ID=${sandboxId ?? "unset"})`,
+          )
+          return emptyTwiML()
+        }
+      } else {
+        console.warn(
+          `messaging/incoming: dropped whatsapp inbound — no business for whatsapp_number=${bareTo} ` +
+            `(env=${process.env.VERCEL_ENV ?? "dev"}, matchesSandbox=${isSandboxTo})`,
+        )
+        return emptyTwiML()
+      }
+    }
+    business = wa
+  }
+
+  const now     = new Date().toISOString()
+  const preview = Body.length > 100 ? `${Body.slice(0, 100)}…` : Body
+
+  // ── 1. Find or create Contact for the sender (always the BARE number) ──────
   const { data: existingContact } = await supabase
     .from("contacts")
     .select("id")
     .eq("business_id", business.id)
-    .eq("phone", From)
+    .eq("phone", bareFrom)
     .maybeSingle()
 
   let contactId = existingContact?.id
@@ -42,7 +93,7 @@ export async function POST(req: NextRequest) {
   if (!contactId) {
     const { data: created } = await supabase
       .from("contacts")
-      .insert({ business_id: business.id, phone: From })
+      .insert({ business_id: business.id, phone: bareFrom })
       .select("id")
       .single()
     contactId = created?.id
@@ -50,34 +101,24 @@ export async function POST(req: NextRequest) {
 
   if (!contactId) return emptyTwiML()
 
-  // ── 2. Find open Conversation or create one ───────────────────────────────
-  const { data: existingConv } = await supabase
-    .from("conversations")
-    .select("id, unread_count")
-    .eq("business_id", business.id)
-    .eq("contact_id", contactId)
-    .eq("status", "open")
-    .maybeSingle()
-
-  let conversationId = existingConv?.id
-
-  if (!conversationId) {
-    const { data: created } = await supabase
-      .from("conversations")
-      .insert({
-        business_id:          business.id,
-        contact_id:           contactId,
-        status:               "open",
-        last_message_at:      now,
-        last_message_preview: preview,
-        unread_count:         1,
-      })
-      .select("id")
-      .single()
-    conversationId = created?.id
+  // ── 2. Get or create the open Conversation atomically, per channel ────────
+  // upsert_open_conversation() is backed by the partial unique index
+  // (business_id, contact_id, channel) WHERE status='open'. WhatsApp and SMS
+  // for the same contact resolve to SEPARATE open threads.
+  const { data: conversationId, error: convErr } = await supabase.rpc(
+    "upsert_open_conversation",
+    {
+      p_business_id: business.id,
+      p_contact_id:  contactId,
+      p_preview:     preview,
+      p_at:          now,
+      p_channel:     channel,
+    },
+  )
+  if (convErr || !conversationId) {
+    console.error("messaging/incoming: conversation upsert failed:", convErr)
+    return emptyTwiML()
   }
-
-  if (!conversationId) return emptyTwiML()
 
   // ── 3. Insert inbound Message ─────────────────────────────────────────────
   const { error: msgErr } = await supabase.from("messages").insert({
@@ -90,19 +131,8 @@ export async function POST(req: NextRequest) {
   })
   if (msgErr) console.error("messaging/incoming: message insert failed:", msgErr)
 
-  // ── 4. Update conversation timestamp + preview + unread (existing convos) ──
-  // (New conversations already set these at creation.)
-  if (existingConv) {
-    const { error: convErr } = await supabase
-      .from("conversations")
-      .update({
-        last_message_at:      now,
-        last_message_preview: preview,
-        unread_count:         (existingConv.unread_count ?? 0) + 1,
-      })
-      .eq("id", conversationId)
-    if (convErr) console.error("messaging/incoming: conversation update failed:", convErr)
-  }
+  // Conversation activity (last_message_at / preview / unread_count) is bumped
+  // atomically inside upsert_open_conversation() above — no separate update.
 
   return emptyTwiML()
 }

@@ -1,6 +1,6 @@
 import twilio from "twilio"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
-import type { Business, RoutingRule, User } from "@/lib/types"
+import type { Business, MessagingChannel, RoutingRule, User } from "@/lib/types"
 
 // ─── Singleton Twilio REST client ─────────────────────────────────────────────
 
@@ -62,6 +62,49 @@ export async function getBusinessByTwilioNumber(
   if (rErr || !rules) return null
 
   return { business: business as Business, rules: rules as RoutingRule }
+}
+
+/**
+ * Look up a business by its bare (no "whatsapp:" prefix) E.164 WhatsApp number.
+ * Unlike getBusinessByTwilioNumber, this does NOT require a routing_rules row —
+ * WhatsApp routing is independent of the voice/SMS routing config.
+ */
+export async function getBusinessByWhatsAppNumber(
+  bareNumber: string,
+): Promise<Business | null> {
+  const supabase = createServerSupabaseClient()
+  const { data: business, error } = await supabase
+    .from("businesses")
+    .select("*")
+    .eq("whatsapp_number", bareNumber)
+    .single()
+
+  if (error || !business) return null
+  return business as Business
+}
+
+/**
+ * Resolve the Twilio { from, to } pair for an outbound message by channel.
+ *  - sms      → bare numbers, unchanged from the original behavior.
+ *  - whatsapp → both endpoints carry the "whatsapp:" prefix; the sender is the
+ *    business's own whatsapp_number, falling back to the shared sandbox sender.
+ */
+export function buildOutboundAddressing({
+  channel,
+  business,
+  contactPhone,
+}: {
+  channel: MessagingChannel
+  business: Pick<Business, "twilio_number" | "whatsapp_number">
+  contactPhone: string
+}): { from: string; to: string } {
+  if (channel === "whatsapp") {
+    const sender =
+      business.whatsapp_number ?? process.env.TWILIO_WHATSAPP_SANDBOX_NUMBER
+    return { from: `whatsapp:${sender}`, to: `whatsapp:${contactPhone}` }
+  }
+  // sms (unchanged)
+  return { from: business.twilio_number as string, to: contactPhone }
 }
 
 // ─── User lookup ──────────────────────────────────────────────────────────────

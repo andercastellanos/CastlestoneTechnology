@@ -6,6 +6,7 @@ import { Search } from "lucide-react"
 import { getSupabaseBrowserClient } from "@/lib/supabase/client"
 import { useVAUser } from "@/lib/hooks/useVAUser"
 import type { ConversationWithContact, ConversationStatus } from "@/lib/types"
+import ChannelBadge from "@/components/portal/ChannelBadge"
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
@@ -191,11 +192,14 @@ export default function VAConversationList({ activeId }: { activeId?: string }) 
                       )}
 
                       <div className="mt-1.5 flex items-center justify-between gap-2">
-                        <span
-                          className={`rounded-sm px-1.5 py-0.5 text-[10px] font-medium ${STATUS_BADGE[conv.status]}`}
-                        >
-                          {STATUS_LABELS[conv.status]}
-                        </span>
+                        <div className="flex items-center gap-1.5">
+                          <ChannelBadge channel={conv.channel} />
+                          <span
+                            className={`rounded-sm px-1.5 py-0.5 text-[10px] font-medium ${STATUS_BADGE[conv.status]}`}
+                          >
+                            {STATUS_LABELS[conv.status]}
+                          </span>
+                        </div>
 
                         {/* Claim button — only on unassigned open conversations */}
                         {conv.status === "open" && isUnassigned && (

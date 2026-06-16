@@ -1,6 +1,5 @@
-import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
-import { createAdminSupabaseClient } from "@/lib/supabase/server"
+import { reconcileUser } from "@/lib/auth/reconcile"
 import AdminSidebar from "@/components/admin/AdminSidebar"
 
 export default async function AdminLayout({
@@ -8,18 +7,16 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { userId } = await auth()
-  if (!userId) redirect("/sign-in")
+  // Synchronous link-by-email, then gate to platform admins only.
+  const profile = await reconcileUser()
 
-  const supabase = createAdminSupabaseClient()
-  const { data: profile } = await supabase
-    .from("users")
-    .select("role")
-    .eq("clerk_user_id", userId)
-    .single()
+  // No provisioned row → pending screen (don't bounce into a portal loop).
+  if (!profile) {
+    redirect("/account-pending")
+  }
 
-  // Only platform admins may enter; everyone else goes to their client portal.
-  if (!profile || profile.role !== "castlestone_admin") {
+  // Everyone else with a row but the wrong role goes to their client portal.
+  if (profile.role !== "castlestone_admin") {
     redirect("/portal/inbox")
   }
 

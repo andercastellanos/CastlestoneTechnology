@@ -1,20 +1,12 @@
-import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
-import { createServerSupabaseClient } from "@/lib/supabase/server"
+import { reconcileUser } from "@/lib/auth/reconcile"
 import VASidebar from "@/components/va/VASidebar"
 
 const VA_ROLES = ["assistant", "castlestone_admin"] as const
 
 export default async function VALayout({ children }: { children: React.ReactNode }) {
-  const { userId } = await auth()
-  if (!userId) redirect("/sign-in")
-
-  const supabase = createServerSupabaseClient()
-  const { data: profile } = await supabase
-    .from("users")
-    .select("role")
-    .eq("clerk_user_id", userId)
-    .single()
+  // Synchronous link-by-email, then gate by role.
+  const profile = await reconcileUser()
 
   // Not provisioned yet → friendly pending screen (don't loop into the portal).
   if (!profile) {

@@ -1,6 +1,5 @@
-import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
-import { createServerSupabaseClient } from "@/lib/supabase/server"
+import { reconcileUser } from "@/lib/auth/reconcile"
 import PortalSidebar from "@/components/portal/PortalSidebar"
 
 export const metadata = {
@@ -15,19 +14,9 @@ export default async function PortalLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { userId } = await auth()
-
-  if (!userId) {
-    redirect("/sign-in")
-  }
-
-  // No matching users row → signed in but not provisioned yet.
-  const supabase = createServerSupabaseClient()
-  const { data: profile } = await supabase
-    .from("users")
-    .select("id")
-    .eq("clerk_user_id", userId)
-    .maybeSingle()
+  // Synchronous link-by-email: resolves (and links, if pending) the user's row.
+  // No row to link → signed in but not provisioned yet.
+  const profile = await reconcileUser()
 
   if (!profile) {
     redirect("/account-pending")

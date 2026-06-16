@@ -6,6 +6,7 @@ import { useUser } from "@clerk/nextjs"
 import { Search } from "lucide-react"
 import { useSupabaseBrowserClient } from "@/lib/hooks/useSupabaseBrowserClient"
 import type { ConversationWithContact, ConversationStatus } from "@/lib/types"
+import ChannelBadge from "@/components/portal/ChannelBadge"
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -218,6 +219,7 @@ export default function ConversationList({ selectedId }: Props) {
                           {c.unread_count > 99 ? "99+" : c.unread_count}
                         </span>
                       )}
+                      <ChannelBadge channel={c.channel} />
                       <span
                         className={`rounded-sm px-1.5 py-0.5 text-[10px] font-medium leading-none ${STATUS_STYLES[c.status]}`}
                       >
