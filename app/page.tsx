@@ -62,34 +62,6 @@ const techSolutions: { icon: LucideIcon; title: string; description: string }[] 
   },
 ]
 
-const platformFeatures = [
-  "Real-time shared inbox for SMS and WhatsApp conversations",
-  "Call routing rules for business hours, escalation, and voicemail",
-  "Separate dashboards for business owners, assistants, and admins",
-  "Secure sign-in with role-based access",
-]
-
-const platformStack = ["Next.js", "TypeScript", "Supabase", "Twilio", "Clerk"]
-
-const projectSteps = [
-  {
-    step: "01",
-    title: "Free scoping call",
-    description: "30 minutes to understand the problem, the tools you use, and your budget.",
-  },
-  {
-    step: "02",
-    title: "Fixed-scope proposal",
-    description: "A written scope, timeline, and price before any work starts.",
-  },
-  {
-    step: "03",
-    title: "Build and hand over",
-    description:
-      "Weekly demos while we build, then a full handover. You own the code and the accounts.",
-  },
-]
-
 /* ── Bilingual support teams (existing offers) ─────────────────── */
 
 const specialistRoles = [
@@ -210,72 +182,6 @@ export default function Home() {
                 See all technology solutions →
               </Link>
             </div>
-          </div>
-        </section>
-
-        {/* ── Built In-House ───────────────────────────────── */}
-        <section className="mx-auto w-full max-w-5xl px-6 py-20">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c8a97e]">
-                Built in-house
-              </p>
-              <h2 className="mt-4 font-heading text-4xl font-bold text-[#222222] sm:text-5xl">
-                Our own platform is our first case study.
-              </h2>
-              <p className="mt-4 leading-relaxed text-[#6b7280]">
-                Before building for clients, we built Castlestone&apos;s own business phone and
-                messaging platform.
-              </p>
-              <Link href="/book-demo" className={`mt-8 ${goldOutlineButton}`}>
-                Ask for a Walkthrough
-              </Link>
-            </div>
-
-            <div className="rounded-xl border border-[#e6dbc9] bg-white p-8">
-              <ul className="space-y-3">
-                {platformFeatures.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 text-sm text-[#222222]">
-                    <span className="mt-0.5 font-bold text-[#c8a97e]" aria-hidden="true">
-                      ✓
-                    </span>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-6 flex flex-wrap gap-2 border-t border-[#e6dbc9] pt-6">
-                {platformStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full border border-[#e5e5e5] bg-[#f8f5ef] px-2.5 py-0.5 text-xs font-medium text-[#6b7280]"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── How a Project Works ──────────────────────────── */}
-        <section className="border-y border-[#e6dbc9] bg-[#f8f5ef] py-20">
-          <div className="mx-auto w-full max-w-5xl px-6">
-            <h2 className="mb-12 text-center font-heading text-4xl font-bold text-[#222222] sm:text-5xl">
-              How a Project Works
-            </h2>
-            <ol className="grid gap-8 sm:grid-cols-3">
-              {projectSteps.map((item) => (
-                <li key={item.step} className="rounded-xl border border-[#e5e5e5] bg-white p-6">
-                  <p className="text-3xl leading-none text-[#c8a97e] [font-family:var(--font-heading)]">
-                    {item.step}
-                  </p>
-                  <h3 className="mt-4 font-semibold text-[#222222]">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#6b7280]">
-                    {item.description}
-                  </p>
-                </li>
-              ))}
-            </ol>
           </div>
         </section>
 
