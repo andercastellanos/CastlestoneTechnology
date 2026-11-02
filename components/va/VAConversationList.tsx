@@ -2,11 +2,12 @@
 
 import { useEffect, useState, useCallback } from "react"
 import Link from "next/link"
-import { Search } from "lucide-react"
+import { Search, Plus } from "lucide-react"
 import { getSupabaseBrowserClient } from "@/lib/supabase/client"
 import { useVAUser } from "@/lib/hooks/useVAUser"
 import type { ConversationWithContact, ConversationStatus } from "@/lib/types"
 import ChannelBadge from "@/components/portal/ChannelBadge"
+import NewConversationModal from "@/components/portal/NewConversationModal"
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 
@@ -47,6 +48,7 @@ export default function VAConversationList({ activeId }: { activeId?: string }) 
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState("")
   const [claiming, setClaiming] = useState<string | null>(null)
+  const [isNewOpen, setIsNewOpen] = useState(false)
 
   const fetchConversations = useCallback(async () => {
     if (!businessId || !userId) return
@@ -123,9 +125,20 @@ export default function VAConversationList({ activeId }: { activeId?: string }) 
     <div className="flex h-full flex-col">
       {/* Header */}
       <div className="border-b border-[#e6dbc9] px-4 py-4">
-        <h1 className="mb-3 text-lg font-semibold text-[#222222] [font-family:var(--font-heading)]">
-          Inbox
-        </h1>
+        <div className="mb-3 flex items-center justify-between">
+          <h1 className="text-lg font-semibold text-[#222222] [font-family:var(--font-heading)]">
+            Inbox
+          </h1>
+          <button
+            type="button"
+            onClick={() => setIsNewOpen(true)}
+            aria-label="New conversation"
+            className="inline-flex h-8 items-center gap-1.5 rounded-sm bg-[#c8a97e] px-2.5 text-xs font-medium text-white transition-colors hover:bg-[#b69468]"
+          >
+            <Plus className="h-3.5 w-3.5" />
+            New
+          </button>
+        </div>
         <div className="relative">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#aaaaaa]" />
           <input
@@ -219,6 +232,12 @@ export default function VAConversationList({ activeId }: { activeId?: string }) 
               )
             })}
       </div>
+
+      <NewConversationModal
+        isOpen={isNewOpen}
+        onClose={() => setIsNewOpen(false)}
+        inboxBasePath="/va/inbox"
+      />
     </div>
   )
 }

@@ -1,12 +1,13 @@
 "use client"
 
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { useUser } from "@clerk/nextjs"
-import { Search } from "lucide-react"
+import { Search, Plus } from "lucide-react"
 import { useSupabaseBrowserClient } from "@/lib/hooks/useSupabaseBrowserClient"
 import type { ConversationWithContact, ConversationStatus } from "@/lib/types"
 import ChannelBadge from "@/components/portal/ChannelBadge"
+import NewConversationModal from "@/components/portal/NewConversationModal"
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
@@ -66,6 +67,7 @@ export default function ConversationList({ selectedId }: Props) {
   const [conversations, setConversations] = useState<ConversationWithContact[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState("")
+  const [isNewOpen, setIsNewOpen] = useState(false)
 
   // ── Fetch business_id for this Clerk user ──────────────────────────────
   useEffect(() => {
@@ -113,8 +115,26 @@ export default function ConversationList({ selectedId }: Props) {
           table: "conversations",
           filter: `business_id=eq.${businessId}`,
         },
-        () => {
-          // Refetch on any insert/update/delete so ordering stays correct
+        (payload) => {
+          // UPDATE (new message preview, unread_count, read, status) → patch the
+          // affected row in place so the list doesn't reorder/jump while the user
+          // is looking at it. The realtime payload has no joined contact, so we
+          // keep the contact already loaded on the existing row.
+          if (payload.eventType === "UPDATE") {
+            const updated = payload.new as Partial<ConversationWithContact> & {
+              id: string
+            }
+            setConversations((prev) =>
+              prev.map((c) =>
+                c.id === updated.id
+                  ? { ...c, ...updated, contact: c.contact }
+                  : c,
+              ),
+            )
+            return
+          }
+          // INSERT / DELETE → refetch so new conversations appear and ordering
+          // resets (these are infrequent and expected to change the list).
           fetchConversations()
         },
       )
@@ -124,6 +144,43 @@ export default function ConversationList({ selectedId }: Props) {
       supabase.removeChannel(channel)
     }
   }, [businessId, fetchConversations, isLoaded, supabase])
+
+  // ── React to navigation (open/create a conversation) ───────────────────
+  // The list mounts once and otherwise relies on realtime; this guarantees a
+  // freshly created or opened thread surfaces — and its unread badge clears —
+  // without depending on realtime delivery for the conversations table.
+  const didMountRef = useRef(false)
+  useEffect(() => {
+    // Instantly clear the opened conversation's unread badge (the /read route
+    // persists this server-side; this is just the optimistic UI).
+    if (selectedId) {
+      setConversations((prev) =>
+        prev.map((c) =>
+          c.id === selectedId && c.unread_count > 0
+            ? { ...c, unread_count: 0 }
+            : c,
+        ),
+      )
+    }
+    // Skip the initial mount — the subscribe effect above already fetches once.
+    if (!didMountRef.current) {
+      didMountRef.current = true
+      return
+    }
+    if (!businessId) return
+    // Refetch so a just-created conversation appears, then re-clear the opened
+    // thread's badge in case the /read write hasn't committed server-side yet.
+    fetchConversations().then(() => {
+      if (selectedId) {
+        setConversations((prev) =>
+          prev.map((c) =>
+            c.id === selectedId ? { ...c, unread_count: 0 } : c,
+          ),
+        )
+      }
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId])
 
   // ── Filtered list ──────────────────────────────────────────────────────
   const filtered = conversations.filter((c) => {
@@ -139,9 +196,20 @@ export default function ConversationList({ selectedId }: Props) {
     <div className="flex h-full flex-col">
       {/* Header + search */}
       <div className="border-b border-[#e6dbc9] px-4 pb-3 pt-4">
-        <h1 className="mb-3 text-lg font-semibold tracking-tight text-[#222222] [font-family:var(--font-heading)]">
-          Inbox
-        </h1>
+        <div className="mb-3 flex items-center justify-between">
+          <h1 className="text-lg font-semibold tracking-tight text-[#222222] [font-family:var(--font-heading)]">
+            Inbox
+          </h1>
+          <button
+            type="button"
+            onClick={() => setIsNewOpen(true)}
+            aria-label="New conversation"
+            className="inline-flex h-8 items-center gap-1.5 rounded-sm bg-[#c8a97e] px-2.5 text-xs font-medium text-white transition-colors hover:bg-[#b69468]"
+          >
+            <Plus className="h-3.5 w-3.5" />
+            New
+          </button>
+        </div>
         <div className="relative">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[#999999]" />
           <input
@@ -209,13 +277,21 @@ export default function ConversationList({ selectedId }: Props) {
                     </span>
                   </div>
 
+                  {/* Show the phone number when the row title is a name, so the
+                      user can always see who they're messaging. */}
+                  {c.contact?.name && c.contact?.phone && (
+                    <span className="block truncate text-[11px] text-[#999999]">
+                      {c.contact.phone}
+                    </span>
+                  )}
+
                   <div className="mt-0.5 flex items-center justify-between gap-2">
                     <p className="truncate text-xs text-[#777777]">
                       {c.last_message_preview ?? "No messages yet"}
                     </p>
                     <div className="flex shrink-0 items-center gap-1.5">
                       {c.unread_count > 0 && (
-                        <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c8a97e] px-1 text-[10px] font-semibold text-white">
+                        <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#e2562b] px-1 text-[10px] font-semibold text-white">
                           {c.unread_count > 99 ? "99+" : c.unread_count}
                         </span>
                       )}
@@ -233,6 +309,12 @@ export default function ConversationList({ selectedId }: Props) {
           })
         )}
       </div>
+
+      <NewConversationModal
+        isOpen={isNewOpen}
+        onClose={() => setIsNewOpen(false)}
+        inboxBasePath="/portal/inbox"
+      />
     </div>
   )
 }

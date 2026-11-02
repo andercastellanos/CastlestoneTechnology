@@ -52,7 +52,7 @@ interface Props {
 export default function MessageThread({ conversationId }: Props) {
   const router = useRouter()
   const supabase = useSupabaseBrowserClient()
-  const bottomRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   const [messages, setMessages] = useState<Message[]>([])
@@ -79,6 +79,12 @@ export default function MessageThread({ conversationId }: Props) {
     setLoading(true)
     setMessages([])
     fetchMessages()
+
+    // Mark this conversation read → clears the unread badge in the inbox list.
+    // Fire-and-forget; the list's realtime subscription reflects unread_count=0.
+    fetch(`/api/conversations/${conversationId}/read`, { method: "POST" }).catch(
+      () => {},
+    )
 
     // Load this thread's channel for the header badge + footer copy.
     supabase
@@ -125,8 +131,15 @@ export default function MessageThread({ conversationId }: Props) {
   }, [conversationId, fetchMessages, supabase])
 
   // ── Auto-scroll to bottom ─────────────────────────────────────────────
+  // Set scrollTop directly on the scroll container (always lands at the true
+  // bottom regardless of the last element's height) and defer with rAF so it
+  // runs after the new message has been painted and scrollHeight reflects it.
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" })
+    const container = scrollRef.current
+    if (!container) return
+    requestAnimationFrame(() => {
+      container.scrollTop = container.scrollHeight
+    })
   }, [messages])
 
   // ── Auto-grow textarea ────────────────────────────────────────────────
@@ -167,7 +180,18 @@ export default function MessageThread({ conversationId }: Props) {
         body: JSON.stringify({ body }),
       })
       if (!res.ok) {
-        const data = (await res.json()) as { error?: string }
+        const data = (await res.json()) as {
+          error?: string
+          message_sent?: boolean
+        }
+        if (data.message_sent) {
+          // Twilio accepted it: restoring the draft would invite a duplicate send.
+          setMessages((prev) => prev.filter((m) => m.id !== optimisticId))
+          setSendError(
+            data.error ?? "Message submitted for sending, but could not be saved. Do not resend it.",
+          )
+          return
+        }
         throw new Error(data.error ?? "Failed to send")
       }
       // Realtime will deliver the confirmed message and deduplicate
@@ -205,7 +229,10 @@ export default function MessageThread({ conversationId }: Props) {
       </div>
 
       {/* Messages area */}
-      <div className="flex-1 space-y-3 overflow-y-auto px-4 py-5 md:px-6">
+      <div
+        ref={scrollRef}
+        className="flex-1 space-y-3 overflow-y-auto px-4 py-5 md:px-6"
+      >
         {loading ? (
           <>
             <MessageSkeleton side="left" />
@@ -246,7 +273,6 @@ export default function MessageThread({ conversationId }: Props) {
             )
           })
         )}
-        <div ref={bottomRef} />
       </div>
 
       {/* Reply box */}

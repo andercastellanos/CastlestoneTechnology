@@ -121,7 +121,15 @@ export async function POST(
 
   if (insertError) {
     console.error("Message insert error", insertError)
-    return NextResponse.json({ error: insertError.message }, { status: 500 })
+    return NextResponse.json(
+      {
+        error: "Your message was submitted for sending, but could not be saved to the conversation history. Do not resend it.",
+        id: conversationId,
+        message_sent: true,
+        message_saved: false,
+      },
+      { status: 502 },
+    )
   }
 
   // ── Update conversation preview + timestamp ─────────────────────────────────
