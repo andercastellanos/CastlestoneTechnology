@@ -7,11 +7,11 @@ import { SITE_CONFIG } from "@/lib/constants"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "About Us - Miami-Based Virtual Staffing Company",
+  title: "About Our Miami Team",
   description:
     "Learn how Castlestone Technology connects US businesses with elite bilingual talent from Latin America. Founded in Miami, FL in 2023.",
   alternates: {
-    canonical: "https://castlestonetechnology.com/company/about",
+    canonical: "/company/about",
   },
 }
 

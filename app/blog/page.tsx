@@ -3,13 +3,14 @@ import Link from "next/link"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
+import { SOCIAL_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "Blog & Resources | Castlestone Technology",
+  title: "Blog & Resources",
   description:
     "Insights on virtual assistants, remote work, and business efficiency from the Castlestone Technology team.",
   robots: { index: true, follow: true },
-  alternates: { canonical: "https://castlestonetechnology.com/blog" },
+  alternates: { canonical: "/blog" },
   openGraph: {
     type: "website",
     title: "Blog & Resources | Castlestone Technology",
@@ -17,21 +18,14 @@ export const metadata: Metadata = {
       "Insights on virtual assistants, remote work, and business efficiency from the Castlestone Technology team.",
     url: "https://castlestonetechnology.com/blog",
     siteName: "Castlestone Technology",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Castlestone Technology Blog",
-      },
-    ],
+    images: SOCIAL_IMAGES.openGraph,
   },
   twitter: {
     card: "summary_large_image",
+    images: SOCIAL_IMAGES.twitter,
     title: "Blog & Resources | Castlestone Technology",
     description:
       "Insights on virtual assistants, remote work, and business efficiency from the Castlestone Technology team.",
-    images: ["/og-image.png"],
   },
 }
 

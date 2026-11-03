@@ -5,11 +5,11 @@ import Container from "@/components/shared/Container"
 import CalendlyEmbed from "@/components/shared/CalendlyEmbed"
 
 export const metadata: Metadata = {
-  title: "Book a Free Consultation | Castlestone Technology",
+  title: "Book a Free Consultation",
   description:
     "Book a free 30-minute consultation. Get a custom quote for software, AI, marketing automation, or bilingual support teams—no commitment.",
   alternates: {
-    canonical: "https://castlestonetechnology.com/book-demo",
+    canonical: "/book-demo",
   },
 }
 

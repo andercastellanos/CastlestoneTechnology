@@ -3,11 +3,12 @@ import Link from "next/link"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
+import { SITE_CONFIG, SOCIAL_IMAGES } from "@/lib/constants"
 
 const TITLE = "5 Tasks You Should Stop Doing Yourself Right Now"
 const DESCRIPTION =
-  "From inbox management to calendar chaos, here are the 5 recurring tasks costing you hours every week — and exactly how a virtual assistant takes them off your plate."
-const CANONICAL = "https://castlestonetechnology.com/blog/5-tasks-to-delegate-to-your-va"
+  "A practical guide to five tasks you can delegate to a virtual assistant, from inbox management to scheduling, so you can focus on growing your business."
+const CANONICAL = "/blog/5-tasks-to-delegate-to-your-va"
 const PUBLISHED = "2026-01-15T08:00:00Z"
 const KEYWORDS = [
   "virtual assistant tasks",
@@ -18,7 +19,7 @@ const KEYWORDS = [
 ]
 
 export const metadata: Metadata = {
-  title: `${TITLE} | Castlestone Technology`,
+  title: "5 Tasks to Delegate to a VA",
   description: DESCRIPTION,
   keywords: KEYWORDS,
   authors: [{ name: "Castlestone Technology", url: "https://castlestonetechnology.com" }],
@@ -32,20 +33,13 @@ export const metadata: Metadata = {
     siteName: "Castlestone Technology",
     publishedTime: PUBLISHED,
     authors: ["Castlestone Technology"],
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "5 Tasks You Should Stop Doing Yourself | Castlestone Technology",
-      },
-    ],
+    images: SOCIAL_IMAGES.openGraph,
   },
   twitter: {
     card: "summary_large_image",
+    images: SOCIAL_IMAGES.twitter,
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/og-image.png"],
   },
 }
 
@@ -72,9 +66,9 @@ const jsonLd = {
   },
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": CANONICAL,
+    "@id": new URL(CANONICAL, SITE_CONFIG.url).href,
   },
-  image: "https://castlestonetechnology.com/og-image.png",
+  image: new URL(SITE_CONFIG.ogImage, SITE_CONFIG.url).href,
   keywords: KEYWORDS.join(", "),
 }
 

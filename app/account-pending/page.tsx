@@ -5,7 +5,10 @@ import { SignOutButton } from "@clerk/nextjs"
 import { reconcileUser, captureSignupRequest } from "@/lib/auth/reconcile"
 import PendingAutoRefresh from "./PendingAutoRefresh"
 
-export const metadata: Metadata = { title: "Account Pending" }
+export const metadata: Metadata = {
+  title: "Account Pending",
+  robots: { index: false, follow: false },
+}
 
 export const dynamic = "force-dynamic"
 

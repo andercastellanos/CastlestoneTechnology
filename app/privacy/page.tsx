@@ -4,10 +4,10 @@ import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Castlestone Technology",
+  title: "Privacy Policy",
   description:
     "How Castlestone Technology collects, uses, and protects your personal information.",
-  alternates: { canonical: "https://castlestonetechnology.com/privacy" },
+  alternates: { canonical: "/privacy" },
 }
 
 export default function PrivacyPage() {

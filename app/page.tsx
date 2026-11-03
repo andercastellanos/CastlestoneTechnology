@@ -12,13 +12,51 @@ import {
 } from "lucide-react"
 import Header from "./components/layout/Header"
 import Footer from "./components/layout/Footer"
+import { SITE_CONFIG } from "@/lib/constants"
+
+const title = "Castlestone Technology | Custom Software & AI"
+const description =
+  "Web apps, AI agents, automations, integrations and websites, built by a nearshore engineering team in U.S. time zones. Bilingual support teams available too."
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Castlestone Technology | Custom Software & AI for Growing Businesses",
+    absolute: title,
   },
-  description:
-    "Web apps, AI agents, automations, integrations and websites, built by a nearshore engineering team in U.S. time zones. Bilingual support teams available too.",
+  description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    title,
+    description,
+    url: "/",
+    siteName: "Castlestone Technology",
+  },
+}
+
+const siteUrl = new URL("/", SITE_CONFIG.url).href
+const organizationId = `${siteUrl}#organization`
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": organizationId,
+      name: SITE_CONFIG.name,
+      url: siteUrl,
+      logo: new URL("/logo.png", siteUrl).href,
+      description: SITE_CONFIG.description,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      name: SITE_CONFIG.name,
+      url: siteUrl,
+      description: SITE_CONFIG.description,
+      publisher: { "@id": organizationId },
+    },
+  ],
 }
 
 /* ── Technology Solutions (lead offer) ─────────────────────────── */
@@ -277,6 +315,10 @@ export default function Home() {
       </main>
 
       <Footer />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
     </div>
   )
 }

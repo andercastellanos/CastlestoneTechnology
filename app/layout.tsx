@@ -17,7 +17,7 @@ const bodyFont = DM_Sans({
 
 const siteName = "Castlestone Technology"
 const siteDescription =
-  "Elite virtual assistants and AI-powered reception from Latin America. Save 60% on staffing costs."
+  "Custom software, AI agents, and automation built by a nearshore engineering team in U.S. time zones—plus bilingual support teams for growing businesses."
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://castlestonetechnology.com"
 
@@ -42,9 +42,6 @@ export const metadata: Metadata = {
   authors: [{ name: siteName }],
   creator: siteName,
   publisher: siteName,
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -52,21 +49,12 @@ export const metadata: Metadata = {
     siteName,
     title: siteName,
     description: siteDescription,
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: `${siteName} Open Graph Image`,
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: siteName,
     description: siteDescription,
     creator: "@castlestonetech",
-    images: ["/og-image.png"],
   },
   robots: {
     index: true,

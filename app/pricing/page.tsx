@@ -5,9 +5,12 @@ import Footer from "../components/layout/Footer"
 import Header from "../components/layout/Header"
 
 export const metadata: Metadata = {
-  title: "Pricing - Virtual Assistant & Front Desk Services",
+  title: "Front Desk & VA Pricing",
   description:
     "Transparent pricing for virtual front desk and virtual assistant services. Plans starting at $1,200/month. Save 60% vs. in-house staff.",
+  alternates: {
+    canonical: "/pricing",
+  },
 }
 
 type PricingPlan = {

@@ -13,12 +13,12 @@ import {
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
-import { VIRTUAL_ASSISTANT_ROLES, VIRTUAL_ASSISTANT_PRICING } from "@/lib/constants"
+import { VIRTUAL_ASSISTANT_ROLES, VIRTUAL_ASSISTANT_PRICING, SOCIAL_IMAGES } from "@/lib/constants"
 
 export const metadata: Metadata = {
-  title: "Virtual Assistant Services | Social Media, HR, Tech & More",
+  title: "Virtual Assistant Services",
   description:
-    "Hire bilingual virtual assistants, social media managers, HR coordinators, website managers, and technology specialists from Latin America. Save 60% vs. in-house hiring. Matches in 48 hours.",
+    "Hire bilingual virtual assistants for admin, social media, HR, IT, and website support. Latin American talent working in U.S. time zones.",
   keywords: [
     "virtual assistant services",
     "bilingual virtual assistant",
@@ -30,12 +30,13 @@ export const metadata: Metadata = {
     "social media executive assistant",
   ],
   alternates: {
-    canonical: "https://castlestonetechnology.com/services/virtual-assistant",
+    canonical: "/services/virtual-assistant",
   },
   openGraph: {
     title: "Virtual Assistant Specialists | Castlestone Technology",
     description: "6 specialist tracks. Bilingual talent. 60% savings. Start in 72 hours.",
     url: "https://castlestonetechnology.com/services/virtual-assistant",
+    images: SOCIAL_IMAGES.openGraph,
   },
 }
 

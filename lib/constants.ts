@@ -1,16 +1,29 @@
 export const SITE_CONFIG = {
   name: "Castlestone Technology",
-  description: "Elite virtual assistants and AI-powered reception from Latin America. Save 60% on staffing costs.",
+  description: "Custom software, AI agents, and automation built by a nearshore engineering team in U.S. time zones—plus bilingual support teams for growing businesses.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://castlestonetechnology.com",
-  ogImage: "/og-image.png",
+  ogImage: "/opengraph-image",
+  twitterImage: "/twitter-image",
   links: {
     twitter: "https://twitter.com/castlestonetech",
     linkedin: "https://linkedin.com/company/castlestone-technology",
   },
   contact: {
     email: "hello@castlestonetechnology.com",
-    phone: "+1 (305) XXX-XXXX",
   },
+}
+
+const socialImageDetails = {
+  width: 1200,
+  height: 630,
+  alt: "Castlestone Technology — Custom software & AI for growing businesses",
+}
+
+// Pages that define their own social metadata must also specify their images;
+// nested metadata replaces those fields inherited from the root layout.
+export const SOCIAL_IMAGES = {
+  openGraph: [{ url: SITE_CONFIG.ogImage, ...socialImageDetails }],
+  twitter: [{ url: SITE_CONFIG.twitterImage, ...socialImageDetails }],
 }
 
 export const BRAND = {

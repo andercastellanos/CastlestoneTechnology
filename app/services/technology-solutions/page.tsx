@@ -6,11 +6,11 @@ import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 
 export const metadata: Metadata = {
-  title: "Technology Solutions - Software & AI Engineering | Castlestone Technology",
+  title: "Software & AI Engineering",
   description:
-    "Custom applications, websites, automations, and product features built by elite nearshore engineers from Latin America — at a fraction of traditional U.S. development costs.",
+    "Custom software, web apps, AI agents, and automations built by nearshore engineers in Latin America. Scope your next project with Castlestone.",
   alternates: {
-    canonical: "https://castlestonetechnology.com/services/technology-solutions",
+    canonical: "/services/technology-solutions",
   },
 }
 

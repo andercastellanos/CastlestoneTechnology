@@ -21,6 +21,7 @@ import {
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
+import { SOCIAL_IMAGES } from "@/lib/constants"
 
 const title = "SMS & Email Marketing Automation"
 const description =
@@ -37,6 +38,7 @@ export const metadata: Metadata = {
     description,
     url: "/services/marketing-automation",
     type: "website",
+    images: SOCIAL_IMAGES.openGraph,
   },
 }
 

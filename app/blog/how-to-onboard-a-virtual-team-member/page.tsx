@@ -3,11 +3,12 @@ import Link from "next/link"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
+import { SITE_CONFIG, SOCIAL_IMAGES } from "@/lib/constants"
 
 const TITLE = "How to Onboard a Virtual Team Member in Under a Week"
 const DESCRIPTION =
   "A practical checklist for getting a new remote team member up to speed fast, without the confusion or back-and-forth that usually slows things down."
-const CANONICAL = "https://castlestonetechnology.com/blog/how-to-onboard-a-virtual-team-member"
+const CANONICAL = "/blog/how-to-onboard-a-virtual-team-member"
 const PUBLISHED = "2026-01-28T08:00:00Z"
 const KEYWORDS = [
   "onboard virtual assistant",
@@ -17,7 +18,7 @@ const KEYWORDS = [
 ]
 
 export const metadata: Metadata = {
-  title: `${TITLE} | Castlestone Technology`,
+  title: "Onboard a Virtual Team in a Week",
   description: DESCRIPTION,
   keywords: KEYWORDS,
   authors: [{ name: "Castlestone Technology", url: "https://castlestonetechnology.com" }],
@@ -31,20 +32,13 @@ export const metadata: Metadata = {
     siteName: "Castlestone Technology",
     publishedTime: PUBLISHED,
     authors: ["Castlestone Technology"],
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "How to Onboard a Virtual Team Member | Castlestone Technology",
-      },
-    ],
+    images: SOCIAL_IMAGES.openGraph,
   },
   twitter: {
     card: "summary_large_image",
+    images: SOCIAL_IMAGES.twitter,
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/og-image.png"],
   },
 }
 
@@ -71,9 +65,9 @@ const jsonLd = {
   },
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": CANONICAL,
+    "@id": new URL(CANONICAL, SITE_CONFIG.url).href,
   },
-  image: "https://castlestonetechnology.com/og-image.png",
+  image: new URL(SITE_CONFIG.ogImage, SITE_CONFIG.url).href,
   keywords: KEYWORDS.join(", "),
 }
 

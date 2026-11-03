@@ -3,11 +3,12 @@ import Link from "next/link"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
+import { SITE_CONFIG, SOCIAL_IMAGES } from "@/lib/constants"
 
 const TITLE = "The Real Cost of Missed Calls for Small Businesses"
 const DESCRIPTION =
   "Research shows 85% of callers who can't reach you won't call back. Here's what that means for your bottom line — and how a virtual front desk changes the math."
-const CANONICAL = "https://castlestonetechnology.com/blog/the-real-cost-of-missed-calls"
+const CANONICAL = "/blog/the-real-cost-of-missed-calls"
 const PUBLISHED = "2026-02-10T08:00:00Z"
 const KEYWORDS = [
   "cost of missed calls",
@@ -18,7 +19,7 @@ const KEYWORDS = [
 ]
 
 export const metadata: Metadata = {
-  title: `${TITLE} | Castlestone Technology`,
+  title: "The Cost of Missed Calls",
   description: DESCRIPTION,
   keywords: KEYWORDS,
   authors: [{ name: "Castlestone Technology", url: "https://castlestonetechnology.com" }],
@@ -32,20 +33,13 @@ export const metadata: Metadata = {
     siteName: "Castlestone Technology",
     publishedTime: PUBLISHED,
     authors: ["Castlestone Technology"],
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "The Real Cost of Missed Calls | Castlestone Technology",
-      },
-    ],
+    images: SOCIAL_IMAGES.openGraph,
   },
   twitter: {
     card: "summary_large_image",
+    images: SOCIAL_IMAGES.twitter,
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/og-image.png"],
   },
 }
 
@@ -72,9 +66,9 @@ const jsonLd = {
   },
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": CANONICAL,
+    "@id": new URL(CANONICAL, SITE_CONFIG.url).href,
   },
-  image: "https://castlestonetechnology.com/og-image.png",
+  image: new URL(SITE_CONFIG.ogImage, SITE_CONFIG.url).href,
   keywords: KEYWORDS.join(", "),
 }
 

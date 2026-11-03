@@ -4,9 +4,9 @@ import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 
 export const metadata: Metadata = {
-  title: "Terms of Service - Castlestone Technology",
+  title: "Terms of Service",
   description: "Terms and conditions for using Castlestone Technology services.",
-  alternates: { canonical: "https://castlestonetechnology.com/terms" },
+  alternates: { canonical: "/terms" },
 }
 
 export default function TermsPage() {

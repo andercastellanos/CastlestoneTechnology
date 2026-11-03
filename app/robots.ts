@@ -1,12 +1,15 @@
-import { MetadataRoute } from "next"
+import type { MetadataRoute } from "next"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = SITE_CONFIG.url.replace(/\/+$/, "")
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/portal/", "/api/", "/admin/"],
+      disallow: ["/portal/", "/api/", "/admin/", "/va/", "/dashboard/"],
     },
-    sitemap: "https://castlestonetechnology.com/sitemap.xml",
+    sitemap: `${baseUrl}/sitemap.xml`,
   }
 }

@@ -5,9 +5,12 @@ import Footer from "../../components/layout/Footer"
 import Header from "../../components/layout/Header"
 
 export const metadata: Metadata = {
-  title: "Virtual Front Desk - AI-Powered Reception Service",
+  title: "Virtual Front Desk",
   description:
     "iPad-powered virtual receptionist for your office. Live video greeting, call routing, and visitor management. Starting at $1,200/month.",
+  alternates: {
+    canonical: "/services/virtual-front-desk",
+  },
 }
 
 const features = [

@@ -1,22 +1,24 @@
-import { MetadataRoute } from "next"
+import type { MetadataRoute } from "next"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://castlestonetechnology.com"
+  const baseUrl = SITE_CONFIG.url.replace(/\/+$/, "")
 
   return [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    { url: `${baseUrl}/services/virtual-front-desk`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/services/virtual-assistant`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/services/marketing-automation`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.9 },
-    { url: `${baseUrl}/pricing`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/company/about`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
-    { url: `${baseUrl}/book-demo`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
-    { url: `${baseUrl}/blog/5-tasks-to-delegate-to-your-va`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/blog/how-to-onboard-a-virtual-team-member`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
-    { url: `${baseUrl}/blog/the-real-cost-of-missed-calls`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },
+    { url: baseUrl, changeFrequency: "weekly", priority: 1 },
+    { url: `${baseUrl}/services/virtual-front-desk`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/services/virtual-assistant`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/services/technology-solutions`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/services/marketing-automation`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/pricing`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/company/about`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/book-demo`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/contact`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/privacy`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/terms`, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${baseUrl}/blog`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/blog/5-tasks-to-delegate-to-your-va`, lastModified: "2026-01-15T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/blog/how-to-onboard-a-virtual-team-member`, lastModified: "2026-01-28T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/blog/the-real-cost-of-missed-calls`, lastModified: "2026-02-10T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
   ]
 }
