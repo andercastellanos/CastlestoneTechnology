@@ -8,6 +8,7 @@ type ContactFormValues = {
   email: string
   company: string
   message: string
+  website: string
 }
 
 type SubmissionStatus = {
@@ -20,6 +21,7 @@ const initialForm: ContactFormValues = {
   email: "",
   company: "",
   message: "",
+  website: "",
 }
 
 export default function ContactForm() {
@@ -34,6 +36,7 @@ export default function ContactForm() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (isSubmitting) return
     setStatus(null)
     setIsSubmitting(true)
 
@@ -41,7 +44,7 @@ export default function ContactForm() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, source_page: window.location.pathname }),
       })
 
       const payload = (await response.json()) as {
@@ -71,6 +74,19 @@ export default function ContactForm() {
   return (
     <section className="rounded-sm border border-[#e6dbc9] bg-white p-8 sm:p-10">
       <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="absolute -left-[10000px] h-px w-px overflow-hidden" aria-hidden="true">
+          <label htmlFor="contact-website">Leave this field empty</label>
+          <input
+            id="contact-website"
+            name="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.website}
+            onChange={handleChange}
+            disabled={isSubmitting}
+          />
+        </div>
         <div>
           <label htmlFor="name" className="text-sm font-medium text-[#222222]">
             Name
@@ -82,6 +98,8 @@ export default function ContactForm() {
             value={form.name}
             onChange={handleChange}
             required
+            maxLength={120}
+            disabled={isSubmitting}
             className="mt-2 block h-11 w-full rounded-sm border border-[#e6dbc9] px-3 text-sm text-[#222222] outline-none transition-colors focus:border-[#c8a97e]"
           />
         </div>
@@ -97,6 +115,8 @@ export default function ContactForm() {
             value={form.email}
             onChange={handleChange}
             required
+            maxLength={254}
+            disabled={isSubmitting}
             className="mt-2 block h-11 w-full rounded-sm border border-[#e6dbc9] px-3 text-sm text-[#222222] outline-none transition-colors focus:border-[#c8a97e]"
           />
         </div>
@@ -111,6 +131,8 @@ export default function ContactForm() {
             type="text"
             value={form.company}
             onChange={handleChange}
+            maxLength={200}
+            disabled={isSubmitting}
             className="mt-2 block h-11 w-full rounded-sm border border-[#e6dbc9] px-3 text-sm text-[#222222] outline-none transition-colors focus:border-[#c8a97e]"
           />
         </div>
@@ -125,6 +147,8 @@ export default function ContactForm() {
             value={form.message}
             onChange={handleChange}
             required
+            maxLength={10000}
+            disabled={isSubmitting}
             rows={5}
             className="mt-2 block w-full rounded-sm border border-[#e6dbc9] px-3 py-2 text-sm text-[#222222] outline-none transition-colors focus:border-[#c8a97e]"
           />
@@ -141,6 +165,7 @@ export default function ContactForm() {
 
       {status ? (
         <p
+          role={status.type === "error" ? "alert" : "status"}
           className={`mt-5 text-sm ${
             status.type === "success" ? "text-[#c8a97e]" : "text-red-600"
           }`}
