@@ -67,7 +67,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-[#e6dbc9] pt-6 text-sm text-[#555555] sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2025 Castlestone Technology. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Castlestone Technology. All rights reserved.</p>
           <p>Made in Miami, FL</p>
         </div>
       </div>

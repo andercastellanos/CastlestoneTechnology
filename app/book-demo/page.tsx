@@ -39,8 +39,8 @@ export default function DemoPage() {
                 Book Your Free Consultation
               </h1>
               <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-                Schedule a 30-minute call to see how Castlestone can reduce your staffing costs by{" "}
-                <span className="text-primary font-semibold">60%</span>. No commitment required.
+                Schedule a free 30-minute call. Tell us what you need, and
+                we&apos;ll show you how we&apos;d approach it. No commitment required.
               </p>
             </div>
           </Container>
