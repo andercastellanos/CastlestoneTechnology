@@ -4,6 +4,7 @@ import {
   Bot,
   Globe,
   LayoutDashboard,
+  MessageSquareText,
   Plug,
   ShoppingCart,
   Smartphone,
@@ -172,6 +173,24 @@ export default function Home() {
                   <p className="mt-2 text-sm leading-relaxed text-[#6b7280]">{description}</p>
                 </div>
               ))}
+              <article className="col-span-full flex flex-col items-start gap-5 rounded-xl border border-[#e5e5e5] bg-white p-6 transition-shadow hover:shadow-md lg:col-span-3 lg:flex-row lg:items-center">
+                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#c8a97e]/10">
+                  <MessageSquareText className="h-5 w-5 text-[#c8a97e]" aria-hidden="true" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold text-[#222222]">SMS &amp; Email Marketing</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#6b7280]">
+                    Automated text coupons, promotions, and email campaigns, in English and Spanish,
+                    tracked from send to redemption.
+                  </p>
+                </div>
+                <Link
+                  href="/services/marketing-automation"
+                  className="shrink-0 text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c8a97e]"
+                >
+                  Learn more →
+                </Link>
+              </article>
             </div>
 
             <div className="mt-10 text-center">

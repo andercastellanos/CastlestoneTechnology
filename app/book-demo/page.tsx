@@ -7,16 +7,16 @@ import CalendlyEmbed from "@/components/shared/CalendlyEmbed"
 export const metadata: Metadata = {
   title: "Book a Free Consultation | Castlestone Technology",
   description:
-    "Schedule a free 30-minute consultation with the Castlestone team. No commitment required — get a custom quote and see how we can reduce your staffing costs by 60%.",
+    "Book a free 30-minute consultation. Get a custom quote for software, AI, marketing automation, or bilingual support teams—no commitment.",
   alternates: {
     canonical: "https://castlestonetechnology.com/book-demo",
   },
 }
 
 const benefits = [
-  "Live demo of the virtual front desk",
-  "Custom pricing quote for your business",
-  "VA matching based on your specific needs",
+  "A walkthrough of the service you're interested in",
+  "A custom quote for your business",
+  "Honest recommendations on where to start",
   "Answers to any questions you have",
 ]
 

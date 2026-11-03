@@ -8,6 +8,7 @@ const services = [
   { name: "Virtual Front Desk", href: "/services/virtual-front-desk" },
   { name: "Virtual Assistants", href: "/services/virtual-assistant" },
   { name: "Technology Solutions", href: "/services/technology-solutions" },
+  { name: "SMS & Email Marketing", href: "/services/marketing-automation" },
 ]
 
 export default function Header() {

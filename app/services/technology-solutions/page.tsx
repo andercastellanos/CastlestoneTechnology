@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { MessageSquareText } from "lucide-react"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
@@ -210,6 +211,24 @@ export default function TechnologySolutionsPage() {
                   <p className="text-sm text-muted-foreground">{cap.description}</p>
                 </div>
               ))}
+              <article className="col-span-full flex flex-col items-start gap-5 rounded-lg border border-[#c8a97e]/30 bg-white p-6 shadow-sm transition-shadow hover:shadow-md lg:flex-row lg:items-center">
+                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#c8a97e]/10">
+                  <MessageSquareText className="h-5 w-5 text-[#c8a97e]" aria-hidden="true" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="mb-2 font-semibold text-foreground">SMS &amp; Email Marketing</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    Automated text coupons, promotions, and email campaigns, in English and Spanish,
+                    tracked from send to redemption.
+                  </p>
+                </div>
+                <Link
+                  href="/services/marketing-automation"
+                  className="shrink-0 text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c8a97e]"
+                >
+                  Learn more →
+                </Link>
+              </article>
             </div>
           </Container>
         </section>

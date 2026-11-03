@@ -8,6 +8,7 @@ const footerColumns = [
       { label: "Virtual Front Desk", href: "/services/virtual-front-desk" },
       { label: "Virtual Assistants", href: "/services/virtual-assistant" },
       { label: "Technology Solutions", href: "/services/technology-solutions" },
+      { label: "SMS & Email Marketing", href: "/services/marketing-automation" },
     ],
   },
   {
