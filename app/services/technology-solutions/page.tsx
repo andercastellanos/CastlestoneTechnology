@@ -1,6 +1,5 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { MessageSquareText } from "lucide-react"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
@@ -21,17 +20,52 @@ const stats = [
   { value: "Full-Stack", label: "AI, Web, Mobile & More" },
 ]
 
-const capabilities = [
+const capabilities: {
+  icon: string
+  title: string
+  description: string
+  href?: string
+}[] = [
+  {
+    icon: "☎️",
+    title: "AI Receptionist",
+    description:
+      "AI that answers every call, books appointments, takes messages, and sends urgent calls to your team.",
+  },
+  {
+    icon: "💬",
+    title: "SMS & Email Marketing",
+    description:
+      "Automated text coupons, promotions, and email campaigns, tracked from send to redemption.",
+    href: "/services/marketing-automation",
+  },
+  {
+    icon: "📍",
+    title: "Local SEO & AI Search",
+    description:
+      "Get found on Google Maps, in local search, and in AI answers from ChatGPT and Google.",
+  },
   {
     icon: "🖥️",
-    title: "Web Apps & SaaS",
+    title: "Custom Software & Web Apps",
     description: "Dashboards, client portals, internal tools, SaaS platforms",
   },
   {
     icon: "🤖",
     title: "AI & Automation",
     description:
-      "Chatbots, document AI, voice agents, custom GPT integrations, workflow automation",
+      "Chatbots, document AI, custom GPT integrations, workflow automation",
+  },
+  {
+    icon: "🌐",
+    title: "Websites & Landing Pages",
+    description: "Marketing sites, redesigns, conversion-focused builds",
+  },
+  {
+    icon: "📅",
+    title: "Online Booking",
+    description:
+      "Online booking, deposits, reminders, and calendar sync so customers can book without calling.",
   },
   {
     icon: "📱",
@@ -44,14 +78,24 @@ const capabilities = [
     description: "Custom storefronts, Shopify development, payment integrations",
   },
   {
+    icon: "📊",
+    title: "Data Dashboards",
+    description: "Your sales, bookings, and marketing numbers in one live dashboard.",
+  },
+  {
     icon: "🔗",
     title: "APIs & Integrations",
     description: "Third-party connections, custom REST APIs, data pipelines",
   },
   {
-    icon: "🌐",
-    title: "Websites & Landing Pages",
-    description: "Marketing sites, redesigns, conversion-focused builds",
+    icon: "⚙️",
+    title: "Automations & Workflows",
+    description: "Zapier-level automation built custom to your exact needs",
+  },
+  {
+    icon: "🛠️",
+    title: "Website Care",
+    description: "Monthly updates, backups, and fixes so your site stays fast and online.",
   },
   {
     icon: "⚡",
@@ -62,11 +106,6 @@ const capabilities = [
     icon: "🏗️",
     title: "CTO-as-a-Service",
     description: "Tech strategy, architecture decisions, and engineering leadership",
-  },
-  {
-    icon: "⚙️",
-    title: "Automations & Workflows",
-    description: "Zapier-level automation built custom to your exact needs",
   },
 ]
 
@@ -126,8 +165,8 @@ const qualityPillars = [
   },
   {
     icon: "💬",
-    title: "Bilingual Professionals",
-    description: "English-fluent, async-friendly, no communication gaps.",
+    title: "Clear Communication",
+    description: "Async-friendly teams in U.S. time zones, with no communication gaps.",
   },
 ]
 
@@ -209,26 +248,16 @@ export default function TechnologySolutionsPage() {
                   </div>
                   <h3 className="font-semibold text-foreground mb-2">{cap.title}</h3>
                   <p className="text-sm text-muted-foreground">{cap.description}</p>
+                  {cap.href && (
+                    <Link
+                      href={cap.href}
+                      className="mt-4 inline-block text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c8a97e]"
+                    >
+                      Learn more →
+                    </Link>
+                  )}
                 </div>
               ))}
-              <article className="col-span-full flex flex-col items-start gap-5 rounded-lg border border-[#c8a97e]/30 bg-white p-6 shadow-sm transition-shadow hover:shadow-md lg:flex-row lg:items-center">
-                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#c8a97e]/10">
-                  <MessageSquareText className="h-5 w-5 text-[#c8a97e]" aria-hidden="true" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="mb-2 font-semibold text-foreground">SMS &amp; Email Marketing</h3>
-                  <p className="text-sm leading-relaxed text-muted-foreground">
-                    Automated text coupons, promotions, and email campaigns, in English and Spanish,
-                    tracked from send to redemption.
-                  </p>
-                </div>
-                <Link
-                  href="/services/marketing-automation"
-                  className="shrink-0 text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c8a97e]"
-                >
-                  Learn more →
-                </Link>
-              </article>
             </div>
           </Container>
         </section>

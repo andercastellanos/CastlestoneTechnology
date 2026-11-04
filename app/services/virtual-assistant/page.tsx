@@ -18,10 +18,9 @@ import { VIRTUAL_ASSISTANT_ROLES, VIRTUAL_ASSISTANT_PRICING, SOCIAL_IMAGES } fro
 export const metadata: Metadata = {
   title: "Virtual Assistant Services",
   description:
-    "Hire bilingual virtual assistants for admin, social media, HR, IT, and website support. Latin American talent working in U.S. time zones.",
+    "Hire virtual assistants for admin, social media, HR, IT, and website support. Latin American talent working in U.S. time zones.",
   keywords: [
     "virtual assistant services",
-    "bilingual virtual assistant",
     "social media manager remote",
     "HR virtual assistant",
     "website manager remote",
@@ -34,7 +33,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Virtual Assistant Specialists | Castlestone Technology",
-    description: "6 specialist tracks. Bilingual talent. 60% savings. Start in 72 hours.",
+    description: "6 specialist tracks. Latin American talent. 60% savings. Start in 72 hours.",
     url: "https://castlestonetechnology.com/services/virtual-assistant",
     images: SOCIAL_IMAGES.openGraph,
   },
@@ -52,7 +51,7 @@ const iconMap: Record<string, LucideIcon> = {
 const heroStats = [
   { value: "60%", label: "Cost savings" },
   { value: "6", label: "Specialist tracks" },
-  { value: "EN/ES", label: "Bilingual" },
+  { value: "U.S.", label: "Time Zones" },
   { value: "No", label: "Long-term contracts" },
 ]
 
@@ -80,9 +79,9 @@ const steps = [
 const whyLatAm = [
   {
     icon: "🗣️",
-    title: "Bilingual by Default",
+    title: "Clear Communication",
     description:
-      "All professionals are fully fluent in English and Spanish, removing communication barriers entirely.",
+      "Every professional is vetted for clear, professional communication with your team and customers.",
   },
   {
     icon: "🕐",
@@ -119,7 +118,7 @@ export default function VirtualAssistantPage() {
                 <span className="block">Every Role. Every Function.</span>
               </h1>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-[#6b7280]">
-                Bilingual virtual professionals from Latin America — available across 6 specialist
+                Virtual professionals from Latin America — available across 6 specialist
                 tracks to support every part of your business.
               </p>
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -163,7 +162,7 @@ export default function VirtualAssistantPage() {
                 Find Your Specialist
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[#6b7280]">
-                Every professional is pre-vetted, bilingual, and ready within 72 hours.
+                Every professional is pre-vetted and ready within 72 hours.
               </p>
             </div>
 
@@ -250,7 +249,7 @@ export default function VirtualAssistantPage() {
                 Simple, Transparent Pricing
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-[#6b7280]">
-                All plans include a dedicated specialist, bilingual support, and weekly check-ins.
+                All plans include a dedicated specialist and weekly check-ins.
               </p>
             </div>
 

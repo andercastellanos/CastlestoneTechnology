@@ -17,7 +17,7 @@ const bodyFont = DM_Sans({
 
 const siteName = "Castlestone Technology"
 const siteDescription =
-  "Custom software, AI agents, and automation built by a nearshore engineering team in U.S. time zones—plus bilingual support teams for growing businesses."
+  "Custom software, AI agents, and automation built by a nearshore engineering team in U.S. time zones—plus virtual support teams for growing businesses."
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://castlestonetechnology.com"
 

@@ -7,7 +7,7 @@ import CalendlyEmbed from "@/components/shared/CalendlyEmbed"
 export const metadata: Metadata = {
   title: "Book a Free Consultation",
   description:
-    "Book a free 30-minute consultation. Get a custom quote for software, AI, marketing automation, or bilingual support teams—no commitment.",
+    "Book a free 30-minute consultation. Get a custom quote for software, AI, marketing automation, or virtual support teams—no commitment.",
   alternates: {
     canonical: "/book-demo",
   },

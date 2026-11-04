@@ -2,10 +2,12 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import {
   Bot,
+  CalendarCheck,
   Globe,
   LayoutDashboard,
+  MapPin,
   MessageSquareText,
-  Plug,
+  PhoneCall,
   ShoppingCart,
   Smartphone,
   type LucideIcon,
@@ -16,7 +18,7 @@ import { SITE_CONFIG } from "@/lib/constants"
 
 const title = "Castlestone Technology | Custom Software & AI"
 const description =
-  "Web apps, AI agents, automations, integrations and websites, built by a nearshore engineering team in U.S. time zones. Bilingual support teams available too."
+  "Web apps, AI agents, automations, integrations and websites, built by a nearshore engineering team in U.S. time zones. Virtual support teams available too."
 
 export const metadata: Metadata = {
   title: {
@@ -67,17 +69,30 @@ const heroCommitments = [
   { value: "Your code", label: "Full handover when we finish" },
 ]
 
-const techSolutions: { icon: LucideIcon; title: string; description: string }[] = [
+const techSolutions: {
+  icon: LucideIcon
+  title: string
+  description: string
+  href?: string
+}[] = [
+  {
+    icon: PhoneCall,
+    title: "AI Receptionist",
+    description:
+      "AI that answers every call, books appointments, takes messages, and sends urgent calls to your team.",
+  },
   {
     icon: Bot,
     title: "AI Agents & Automation",
     description:
-      "Chatbots, AI phone and WhatsApp agents, document processing, and workflow automation.",
+      "Chatbots, WhatsApp agents, document processing, and workflow automation.",
   },
   {
-    icon: LayoutDashboard,
-    title: "Web Apps & Client Portals",
-    description: "Dashboards, internal tools, client portals, and SaaS products.",
+    icon: MessageSquareText,
+    title: "SMS & Email Marketing",
+    description:
+      "Automated text coupons, promotions, and email campaigns, tracked from send to redemption.",
+    href: "/services/marketing-automation",
   },
   {
     icon: Globe,
@@ -85,23 +100,36 @@ const techSolutions: { icon: LucideIcon; title: string; description: string }[] 
     description: "Fast, search-ready marketing sites and redesigns built to convert.",
   },
   {
-    icon: Plug,
-    title: "APIs & Integrations",
-    description: "Connect your CRM, payments, phone system, and the tools you already use.",
+    icon: MapPin,
+    title: "Local SEO & AI Search",
+    description:
+      "Get found on Google Maps, in local search, and in AI answers from ChatGPT and Google.",
   },
   {
-    icon: ShoppingCart,
-    title: "E-Commerce",
-    description: "Custom storefronts, Shopify builds, and payment integrations.",
+    icon: CalendarCheck,
+    title: "Online Booking",
+    description:
+      "Online booking, deposits, reminders, and calendar sync so customers can book without calling.",
+  },
+  {
+    icon: LayoutDashboard,
+    title: "Custom Software & Web Apps",
+    description:
+      "Internal tools, client portals, and SaaS products built around how you work.",
   },
   {
     icon: Smartphone,
     title: "Mobile Apps",
     description: "iOS and Android apps built with React Native.",
   },
+  {
+    icon: ShoppingCart,
+    title: "E-Commerce",
+    description: "Custom storefronts, Shopify builds, and payment integrations.",
+  },
 ]
 
-/* ── Bilingual support teams (existing offers) ─────────────────── */
+/* ── Virtual support teams (existing offers) ───────────────────── */
 
 const specialistRoles = [
   "Virtual Assistant",
@@ -122,16 +150,16 @@ const supportCards: {
   {
     title: "Specialist Tracks",
     description:
-      "Six bilingual specialist roles covering every business function — from admin and social media to HR, IT, and website management.",
+      "Six specialist roles covering every business function — from admin and social media to HR, IT, and website management.",
     href: "/services/virtual-assistant",
     chips: specialistRoles,
   },
   {
     title: "Virtual Front Desk",
     description:
-      "Live video reception for your office — a bilingual professional who greets visitors, routes calls, and manages your front desk presence.",
+      "Live video reception for your office — a dedicated professional who greets visitors, routes calls, and manages your front desk presence.",
     href: "/services/virtual-front-desk",
-    chips: ["Live Video Greeting", "Call Routing", "Visitor Logging", "Bilingual EN/ES"],
+    chips: ["Live Video Greeting", "Call Routing", "Visitor Logging", "Message Taking"],
     status: "In development",
   },
 ]
@@ -159,7 +187,7 @@ export default function Home() {
 
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[#6b7280] [font-family:var(--font-sans)]">
             Web apps, AI agents, automations, and integrations — scoped in Florida and built by our
-            nearshore engineering team, working in U.S. time zones in English and Spanish.
+            nearshore engineering team, working in U.S. time zones.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -199,7 +227,7 @@ export default function Home() {
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {techSolutions.map(({ icon: Icon, title, description }) => (
+              {techSolutions.map(({ icon: Icon, title, description, href }) => (
                 <div
                   key={title}
                   className="rounded-xl border border-[#e5e5e5] bg-white p-6 transition-shadow hover:shadow-md"
@@ -209,26 +237,16 @@ export default function Home() {
                   </div>
                   <h3 className="font-semibold text-[#222222]">{title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[#6b7280]">{description}</p>
+                  {href && (
+                    <Link
+                      href={href}
+                      className="mt-4 inline-block text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c8a97e]"
+                    >
+                      Learn more →
+                    </Link>
+                  )}
                 </div>
               ))}
-              <article className="col-span-full flex flex-col items-start gap-5 rounded-xl border border-[#e5e5e5] bg-white p-6 transition-shadow hover:shadow-md lg:col-span-3 lg:flex-row lg:items-center">
-                <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-[#c8a97e]/10">
-                  <MessageSquareText className="h-5 w-5 text-[#c8a97e]" aria-hidden="true" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="font-semibold text-[#222222]">SMS &amp; Email Marketing</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#6b7280]">
-                    Automated text coupons, promotions, and email campaigns, in English and Spanish,
-                    tracked from send to redemption.
-                  </p>
-                </div>
-                <Link
-                  href="/services/marketing-automation"
-                  className="shrink-0 text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c8a97e]"
-                >
-                  Learn more →
-                </Link>
-              </article>
             </div>
 
             <div className="mt-10 text-center">
@@ -242,15 +260,15 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── Bilingual Support Teams ──────────────────────── */}
+        {/* ── Virtual Support Teams ────────────────────────── */}
         <section className="mx-auto w-full max-w-5xl px-6 py-20">
           <div className="mb-12 text-center">
             <h2 className="font-heading text-4xl font-bold text-[#222222] sm:text-5xl">
-              Bilingual Support Teams
+              Virtual Support Teams
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-[#6b7280]">
-              Need people, not just software? Bilingual English and Spanish professionals from
-              Latin America.
+              Need people, not just software? Dedicated professionals from Latin America,
+              working in U.S. time zones.
             </p>
           </div>
 

@@ -6,7 +6,7 @@ import ContactForm from "./ContactForm"
 export const metadata: Metadata = {
   title: "Contact Us",
   description:
-    "Questions about custom software, AI, or bilingual support teams? Send us a message and we'll get back to you.",
+    "Questions about custom software, AI, or virtual support teams? Send us a message and we'll get back to you.",
   alternates: {
     canonical: "/contact",
   },

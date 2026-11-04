@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
   name: "Castlestone Technology",
-  description: "Custom software, AI agents, and automation built by a nearshore engineering team in U.S. time zones—plus bilingual support teams for growing businesses.",
+  description: "Custom software, AI agents, and automation built by a nearshore engineering team in U.S. time zones—plus virtual support teams for growing businesses.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://castlestonetechnology.com",
   ogImage: "/opengraph-image",
   twitterImage: "/twitter-image",
@@ -121,7 +121,7 @@ export const VIRTUAL_ASSISTANT_ROLES = [
     name: "Virtual Assistant (General)",
     icon: "LayoutDashboard",
     description:
-      "Versatile bilingual professionals managing your calendar, email, data entry, travel coordination, and day-to-day administrative tasks.",
+      "Versatile professionals managing your calendar, email, data entry, travel coordination, and day-to-day administrative tasks.",
     skills: [
       "Calendar & inbox management",
       "Data entry & research",
@@ -136,10 +136,10 @@ export const VIRTUAL_ASSISTANT_ROLES = [
     name: "Social Media Manager",
     icon: "Share2",
     description:
-      "Content creators and community managers who grow your brand across Instagram, LinkedIn, Facebook, TikTok, and X — fully bilingual.",
+      "Content creators and community managers who grow your brand across Instagram, LinkedIn, Facebook, TikTok, and X.",
     skills: [
       "Content calendar planning",
-      "Caption writing (EN/ES)",
+      "Caption writing",
       "Reel & post scheduling",
       "Community engagement",
       "Analytics reporting",
@@ -217,7 +217,7 @@ export const VIRTUAL_ASSISTANT_PRICING = [
     features: [
       "40 hours per month",
       "1 specialist role",
-      "Bilingual EN/ES support",
+      "Weekly check-ins",
       "Email support",
       "Weekly status updates",
     ],
@@ -230,7 +230,7 @@ export const VIRTUAL_ASSISTANT_PRICING = [
     features: [
       "80 hours per month",
       "1 specialist role",
-      "Bilingual EN/ES support",
+      "Weekly check-ins",
       "Priority support",
       "Weekly reporting",
       "Dedicated account contact",
@@ -244,7 +244,7 @@ export const VIRTUAL_ASSISTANT_PRICING = [
     features: [
       "160 hours per month",
       "Up to 2 specialist roles",
-      "Bilingual EN/ES support",
+      "Weekly check-ins",
       "Dedicated manager",
       "Slack channel access",
       "SLA guarantee",

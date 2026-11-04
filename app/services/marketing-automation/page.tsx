@@ -175,11 +175,6 @@ const faqs = [
       "Each channel has a role. Email can carry longer updates and useful content, while SMS can support timely reminders and short messages. We coordinate the sequence around customer preferences so the channels work together without unnecessary repetition.",
   },
   {
-    question: "Can campaigns be in Spanish?",
-    answer:
-      "Yes. Every campaign can run in English, Spanish, or both, so you reach your whole customer base.",
-  },
-  {
     question: "Who writes and approves the messages?",
     answer:
       "Copywriting and branded templates can be included in your project scope, or we can work with content your team supplies. Your team reviews the content, audience, and sending settings before campaigns go live.",
@@ -210,7 +205,7 @@ export default function MarketingAutomationPage() {
                 Follow up with new leads, stay connected to your customers, and
                 bring them back. We build campaigns and workflows around your
                 business so your team can spend less time sending every message
-                by hand. Campaigns run in English and Spanish.
+                by hand.
               </p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <Link

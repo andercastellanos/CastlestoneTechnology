@@ -35,7 +35,7 @@ export default function TermsPage() {
               <h2 className="font-heading text-xl font-bold mt-10 mb-3">Services</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Castlestone Technology provides virtual assistant and virtual front desk services
-                staffed by bilingual professionals. Service scope, hours, and deliverables are
+                staffed by trained professionals. Service scope, hours, and deliverables are
                 defined in your individual service agreement.
               </p>
 

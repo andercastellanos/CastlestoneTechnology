@@ -9,7 +9,7 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "About Our Miami Team",
   description:
-    "Learn how Castlestone Technology connects US businesses with elite bilingual talent from Latin America. Founded in Miami, FL in 2023.",
+    "Learn how Castlestone Technology connects US businesses with elite talent from Latin America. Founded in Miami, FL in 2023.",
   alternates: {
     canonical: "/company/about",
   },
@@ -44,7 +44,6 @@ const values = [
 ]
 
 const latinAmericaStats = [
-  { value: "95%", label: "English Proficiency" },
   { value: "GMT-5", label: "Time Zone Alignment" },
   { value: "70%", label: "Average Cost Savings" },
   { value: "2 Weeks", label: "Average Placement Time" },
@@ -61,7 +60,7 @@ export default function AboutPage() {
               We&apos;re Building the Future of Work
             </h1>
             <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              {SITE_CONFIG.name} connects US businesses with elite bilingual
+              {SITE_CONFIG.name} connects US businesses with elite
               professionals from Latin America - delivering the same quality as
               in-house staff at 60% less cost.
             </p>
@@ -84,7 +83,7 @@ export default function AboutPage() {
                 </p>
                 <p className="mt-4 text-muted-foreground">
                   We built a technology-enabled staffing model that sources,
-                  vets, and places bilingual professionals from Colombia and
+                  vets, and places professionals from Colombia and
                   across Latin America into remote roles for US companies. Our
                   clients get dedicated, full-time support at a fraction of the
                   traditional cost.
@@ -140,13 +139,13 @@ export default function AboutPage() {
               Why Latin America?
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-muted-foreground">
-              Latin America offers something rare - a highly educated,
-              bilingual workforce in US-compatible time zones, with deep
+              Latin America offers something rare - a highly educated
+              workforce in US-compatible time zones, with deep
               cultural alignment and a strong work ethic. Our talent pool is
               drawn primarily from Colombia&apos;s top universities and
               professional networks.
             </p>
-            <div className="mt-12 grid grid-cols-2 gap-8 text-center sm:grid-cols-4">
+            <div className="mt-12 grid gap-8 text-center sm:grid-cols-3">
               {latinAmericaStats.map((item) => (
                 <div key={item.label}>
                   <p className="text-4xl font-bold text-primary">{item.value}</p>
