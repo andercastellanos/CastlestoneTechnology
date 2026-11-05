@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState } from "react"
 import { ChevronDown, ChevronUp, Plus } from "lucide-react"
 import { getSupabaseBrowserClient } from "@/lib/supabase/client"
 import { useVAUser } from "@/lib/hooks/useVAUser"
@@ -170,31 +170,26 @@ export default function VACallList() {
   const { userId, businessId, loading: userLoading } = useVAUser()
 
   const [calls, setCalls] = useState<CallWithAnsweredBy[]>([])
-  const [loading, setLoading] = useState(true)
+  const [fetchedBusinessId, setFetchedBusinessId] = useState<string | null>(null)
+  const loading = userLoading || Boolean(businessId && fetchedBusinessId !== businessId)
   const [activeTab, setActiveTab] = useState<TabKey>("all")
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [notesMap, setNotesMap] = useState<Record<string, Note[]>>({})
 
-  const fetchCalls = useCallback(async () => {
-    if (!businessId) return
+  useEffect(() => {
+    if (userLoading || !businessId) return
     const supabase = getSupabaseBrowserClient()
-    const { data } = await supabase
+    supabase
       .from("calls")
       .select("*, contact:contacts(*)")
       .eq("business_id", businessId)
       .gte("created_at", todayStart())
       .order("created_at", { ascending: false })
-
-    setCalls((data as CallWithAnsweredBy[]) ?? [])
-    setLoading(false)
-  }, [businessId])
-
-  useEffect(() => {
-    if (userLoading) return
-    if (!businessId) { setLoading(false); return }
-    setLoading(true)
-    fetchCalls()
-  }, [businessId, userLoading, fetchCalls])
+      .then(({ data }) => {
+        setCalls((data as CallWithAnsweredBy[]) ?? [])
+        setFetchedBusinessId(businessId)
+      })
+  }, [businessId, userLoading])
 
   // ── Tab filter ────────────────────────────────────────────────────────────
   const filtered = calls.filter((c) => {

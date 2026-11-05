@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState } from "react"
 import { Search, Plus, X } from "lucide-react"
 import { getSupabaseBrowserClient } from "@/lib/supabase/client"
 import { useBusinessId } from "@/lib/hooks/useBusinessId"
@@ -215,31 +215,26 @@ export default function ContactList() {
   const { businessId, loading: bizLoading } = useBusinessId()
 
   const [contacts, setContacts] = useState<Contact[]>([])
-  const [loading, setLoading] = useState(true)
+  const [fetchedBusinessId, setFetchedBusinessId] = useState<string | null>(null)
+  const loading = bizLoading || Boolean(businessId && fetchedBusinessId !== businessId)
   const [search, setSearch] = useState("")
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null)
   const [showAddModal, setShowAddModal] = useState(false)
 
   // ── Fetch contacts ────────────────────────────────────────────────────────
-  const fetchContacts = useCallback(async () => {
-    if (!businessId) return
+  useEffect(() => {
+    if (bizLoading || !businessId) return
     const supabase = getSupabaseBrowserClient()
-    const { data } = await supabase
+    supabase
       .from("contacts")
       .select("*")
       .eq("business_id", businessId)
       .order("created_at", { ascending: false })
-
-    setContacts((data as Contact[]) ?? [])
-    setLoading(false)
-  }, [businessId])
-
-  useEffect(() => {
-    if (bizLoading) return
-    if (!businessId) { setLoading(false); return }
-    setLoading(true)
-    fetchContacts()
-  }, [businessId, bizLoading, fetchContacts])
+      .then(({ data }) => {
+        setContacts((data as Contact[]) ?? [])
+        setFetchedBusinessId(businessId)
+      })
+  }, [businessId, bizLoading])
 
   // ── Client-side search filter ─────────────────────────────────────────────
   const filtered = contacts.filter((c) => {

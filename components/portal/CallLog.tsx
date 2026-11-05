@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState } from "react"
 import { Play, ChevronDown, ChevronUp, PhoneIncoming, PhoneOutgoing } from "lucide-react"
 import { getSupabaseBrowserClient } from "@/lib/supabase/client"
 import { useBusinessId } from "@/lib/hooks/useBusinessId"
@@ -79,32 +79,27 @@ export default function CallLog() {
   const { businessId, loading: bizLoading } = useBusinessId()
 
   const [calls, setCalls] = useState<Call[]>([])
-  const [loading, setLoading] = useState(true)
+  const [fetchedBusinessId, setFetchedBusinessId] = useState<string | null>(null)
+  const loading = bizLoading || Boolean(businessId && fetchedBusinessId !== businessId)
   const [activeTab, setActiveTab] = useState<FilterTab>("all")
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [notesMap, setNotesMap] = useState<Record<string, Note[]>>({})
   const [notesLoading, setNotesLoading] = useState<Record<string, boolean>>({})
 
   // ── Fetch calls ─────────────────────────────────────────────────────────
-  const fetchCalls = useCallback(async () => {
-    if (!businessId) return
+  useEffect(() => {
+    if (bizLoading || !businessId) return
     const supabase = getSupabaseBrowserClient()
-    const { data } = await supabase
+    supabase
       .from("calls")
       .select("*, contact:contacts(*)")
       .eq("business_id", businessId)
       .order("created_at", { ascending: false })
-
-    setCalls((data as Call[]) ?? [])
-    setLoading(false)
-  }, [businessId])
-
-  useEffect(() => {
-    if (bizLoading) return
-    if (!businessId) { setLoading(false); return }
-    setLoading(true)
-    fetchCalls()
-  }, [businessId, bizLoading, fetchCalls])
+      .then(({ data }) => {
+        setCalls((data as Call[]) ?? [])
+        setFetchedBusinessId(businessId)
+      })
+  }, [businessId, bizLoading])
 
   // ── Expand row → fetch notes ─────────────────────────────────────────────
   async function handleRowClick(callId: string) {

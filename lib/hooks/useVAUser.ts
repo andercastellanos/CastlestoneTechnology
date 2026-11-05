@@ -21,14 +21,10 @@ export function useVAUser(): UseVAUserResult {
   const [userId, setUserId] = useState<string | null>(null)
   const [businessId, setBusinessId] = useState<string | null>(null)
   const [role, setRole] = useState<User["role"] | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [fetching, setFetching] = useState(true)
 
   useEffect(() => {
-    if (!isLoaded) return
-    if (!user) {
-      setLoading(false)
-      return
-    }
+    if (!isLoaded || !user) return
 
     const supabase = getSupabaseBrowserClient()
     supabase
@@ -40,9 +36,9 @@ export function useVAUser(): UseVAUserResult {
         setUserId(data?.id ?? null)
         setBusinessId(data?.business_id ?? null)
         setRole(data?.role ?? null)
-        setLoading(false)
+        setFetching(false)
       })
   }, [isLoaded, user])
 
-  return { userId, businessId, role, loading: !isLoaded || loading }
+  return { userId, businessId, role, loading: !isLoaded || (user ? fetching : false) }
 }

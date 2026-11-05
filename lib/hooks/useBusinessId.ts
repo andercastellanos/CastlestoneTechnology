@@ -16,14 +16,10 @@ interface UseBusinessIdResult {
 export function useBusinessId(): UseBusinessIdResult {
   const { user, isLoaded } = useUser()
   const [businessId, setBusinessId] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
+  const [fetching, setFetching] = useState(true)
 
   useEffect(() => {
-    if (!isLoaded) return
-    if (!user) {
-      setLoading(false)
-      return
-    }
+    if (!isLoaded || !user) return
 
     const supabase = getSupabaseBrowserClient()
     supabase
@@ -33,9 +29,9 @@ export function useBusinessId(): UseBusinessIdResult {
       .single()
       .then(({ data }) => {
         setBusinessId(data?.business_id ?? null)
-        setLoading(false)
+        setFetching(false)
       })
   }, [isLoaded, user])
 
-  return { businessId, loading: !isLoaded || loading }
+  return { businessId, loading: !isLoaded || (user ? fetching : false) }
 }
