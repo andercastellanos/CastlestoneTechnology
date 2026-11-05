@@ -17,13 +17,14 @@ vm.runInNewContext(outputText, {
   },
 })
 
-test("the route map covers exactly the six paired English pages without duplicate URLs", () => {
+test("the route map covers exactly the seven paired English pages without duplicate URLs", () => {
   assert.deepEqual(Array.from(i18n.routeMap, pair => pair.en), [
     "/", "/contact", "/services/virtual-front-desk", "/services/virtual-assistant",
     "/services/technology-solutions", "/services/marketing-automation",
+    "/services/local-seo",
   ])
   const urls = Array.from(i18n.routeMap).flatMap(pair => [pair.en, pair.es])
-  assert.equal(new Set(urls).size, 12)
+  assert.equal(new Set(urls).size, 14)
 })
 
 test("every mapped page switches in both directions, including normalized URLs", () => {
