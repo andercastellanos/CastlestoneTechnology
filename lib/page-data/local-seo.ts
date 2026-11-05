@@ -9,7 +9,7 @@ export type LocalSeoContent = Record<
   | "aiTitle" | "aiDescription" | "reportingDescription" | "stepsHeading"
   | "auditTitle" | "auditDescription" | "buildTitle" | "buildDescription"
   | "reportTitle" | "reportDescription" | "pricingHeading" | "pricingDescription"
-  | "pricingRate" | "pricingMultipleLocations" | "pricingCta" | "faqHeading" | "faqWorthQuestion" | "faqWorthAnswer"
+  | "pricingCta" | "faqHeading" | "faqWorthQuestion" | "faqWorthAnswer"
   | "faqAiQuestion" | "faqAiAnswer" | "faqIncludedQuestion" | "faqIncludedAnswer"
   | "faqReportingQuestion" | "faqReportingAnswer" | "faqPricingQuestion" | "faqPricingAnswer"
   | "ctaHeading" | "ctaDescription",
@@ -26,13 +26,9 @@ const aiSearchSurvey = {
   url: "https://www.brightlocal.com/research/lcrs-ai-trust/",
 } as const
 
-export const localSeoPricing = { monthlyPerLocation: 750 } as const
-
 export const localSeoNumbers = {
   currentStat: [aiSearchSurvey.currentPercent, aiSearchSurvey.previousPercent, aiSearchSurvey.previousYear],
   sourceTitle: [aiSearchSurvey.year],
-  pricingRate: [String(localSeoPricing.monthlyPerLocation)],
-  faqPricingAnswer: [String(localSeoPricing.monthlyPerLocation)],
 } as const
 
 export const localSeoSourceUrl = aiSearchSurvey.url
