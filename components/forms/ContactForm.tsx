@@ -7,6 +7,7 @@ import type { ContactFormStrings } from "@/content/types/contact-form"
 import type { Locale } from "@/lib/i18n"
 import { contactFormLimits } from "@/lib/page-data/contact"
 import { contactFormError } from "@/lib/contact-form-messages"
+import { trackMarketingEvent } from "@/components/analytics/events"
 
 type ContactFormValues = {
   name: string
@@ -69,6 +70,7 @@ export default function ContactForm({
         throw new Error(payload.error || strings.errorMessage)
       }
 
+      trackMarketingEvent({ name: "generate_lead", language: locale })
       setStatus({
         type: "success",
         message: locale === "es" ? strings.successMessage : payload.message || strings.successMessage,
