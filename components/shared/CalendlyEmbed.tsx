@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
-import ContactForm from "@/app/contact/ContactForm"
+import ContactForm from "@/components/forms/ContactForm"
 
 // Enable embedded booking once a verified Calendly URL has been configured.
 const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL?.trim()

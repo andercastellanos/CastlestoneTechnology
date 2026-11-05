@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next"
 import { SITE_CONFIG } from "@/lib/constants"
+import { alternatesFor, routeMap } from "@/lib/i18n"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = SITE_CONFIG.url.replace(/\/+$/, "")
 
-  return [
+  const entries: MetadataRoute.Sitemap = [
     { url: baseUrl, changeFrequency: "weekly", priority: 1 },
     { url: `${baseUrl}/services/virtual-front-desk`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/services/virtual-assistant`, changeFrequency: "weekly", priority: 0.9 },
@@ -21,4 +22,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog/how-to-onboard-a-virtual-team-member`, lastModified: "2026-01-28T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/the-real-cost-of-missed-calls`, lastModified: "2026-02-10T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
   ]
+
+  const spanishEntries: MetadataRoute.Sitemap = routeMap.map((pair) => {
+    const english = entries.find((entry) => new URL(entry.url).pathname === pair.en)
+    return { ...english, url: `${baseUrl}${pair.es}` }
+  })
+
+  return [...entries, ...spanishEntries].map((entry) => {
+    const { languages } = alternatesFor(new URL(entry.url).pathname)
+    return languages ? { ...entry, alternates: { languages } } : entry
+  })
 }

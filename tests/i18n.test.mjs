@@ -1,0 +1,83 @@
+import assert from "node:assert/strict"
+import { readFileSync } from "node:fs"
+import test from "node:test"
+import vm from "node:vm"
+import ts from "typescript"
+
+const source = readFileSync(new URL("../lib/i18n.ts", import.meta.url), "utf8")
+const { outputText } = ts.transpileModule(source, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+})
+const i18n = {}
+vm.runInNewContext(outputText, {
+  exports: i18n,
+  require(name) {
+    assert.equal(name, "@/lib/constants")
+    return { SITE_CONFIG: { url: "https://castlestonetechnology.com///" } }
+  },
+})
+
+test("the route map covers exactly the six paired English pages without duplicate URLs", () => {
+  assert.deepEqual(Array.from(i18n.routeMap, pair => pair.en), [
+    "/", "/contact", "/services/virtual-front-desk", "/services/virtual-assistant",
+    "/services/technology-solutions", "/services/marketing-automation",
+  ])
+  const urls = Array.from(i18n.routeMap).flatMap(pair => [pair.en, pair.es])
+  assert.equal(new Set(urls).size, 12)
+})
+
+test("every mapped page switches in both directions, including normalized URLs", () => {
+  for (const pair of i18n.routeMap) {
+    for (const suffix of ["", "/", "///?campaign=one#form", "#form?ignored=yes"]) {
+      assert.equal(i18n.twinOf(`${pair.en}${suffix}`), pair.es)
+      assert.equal(i18n.twinOf(`${pair.es}${suffix}`), pair.en)
+      for (const locale of ["en", "es"]) {
+        assert.equal(i18n.switcherHref(`${pair.en}${suffix}`, locale), pair[locale])
+        assert.equal(i18n.switcherHref(`${pair.es}${suffix}`, locale), pair[locale])
+      }
+    }
+  }
+})
+
+test("unpaired pages use home-page switcher fallbacks and have no invented twins", () => {
+  for (const path of ["/pricing", "/company/about", "/book-demo", "/blog", "/privacy", "/terms", "/client-login", "/unknown"]) {
+    assert.equal(i18n.twinOf(`${path}/?from=nav#top`), null)
+    assert.equal(i18n.switcherHref(path, "en"), i18n.routeMap[0].en)
+    assert.equal(i18n.switcherHref(path, "es"), i18n.routeMap[0].es)
+  }
+})
+
+test("paired alternates are reciprocal and x-default always points to the English page", () => {
+  const absolute = path => `https://castlestonetechnology.com${path === "/" ? "" : path}`
+  for (const pair of i18n.routeMap) {
+    for (const path of [pair.en, pair.es]) {
+      const alternates = i18n.alternatesFor(`${path}///?source=test#content`)
+      assert.equal(alternates.canonical, absolute(path))
+      assert.deepEqual(Object.keys(alternates.languages), ["en-US", "es-US", "x-default"])
+      assert.equal(alternates.languages["en-US"], absolute(pair.en))
+      assert.equal(alternates.languages["es-US"], absolute(pair.es))
+      assert.equal(alternates.languages["x-default"], absolute(pair.en))
+    }
+  }
+})
+
+test("unpaired alternates contain only their normalized canonical", () => {
+  const alternates = i18n.alternatesFor("/pricing///?plan=va#plans")
+  assert.deepEqual(Object.keys(alternates), ["canonical"])
+  assert.equal(alternates.canonical, "https://castlestonetechnology.com/pricing")
+})
+
+test("localized internal links preserve queries and anchors without changing unpaired or external URLs", () => {
+  for (const pair of i18n.routeMap) {
+    for (const suffix of ["", "?campaign=one#details", "#details"]) {
+      assert.equal(i18n.hrefForLocale(pair.en + suffix, "es"), pair.es + suffix)
+      assert.equal(i18n.hrefForLocale(pair.en + suffix, "en"), pair.en + suffix)
+      assert.equal(i18n.hrefForLocale(pair.es + suffix, "es"), pair.es + suffix)
+    }
+    if (pair.en !== "/") assert.equal(i18n.hrefForLocale(pair.en + "/?from=card#details", "es"), pair.es + "?from=card#details")
+  }
+  for (const href of ["/book-demo", "/pricing?plan=one#plans", "/services/virtual-assistant/general", "#how-it-works", "mailto:hello@example.com", "https://example.com/contact", "//example.com/contact"]) {
+    assert.equal(i18n.hrefForLocale(href, "es"), href)
+    assert.equal(i18n.hrefForLocale(href, "en"), href)
+  }
+})

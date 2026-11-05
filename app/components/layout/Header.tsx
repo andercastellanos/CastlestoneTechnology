@@ -3,15 +3,40 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useState } from "react"
+import LanguageSwitcher from "@/components/layout/LanguageSwitcher"
+import { twinOf, type Locale } from "@/lib/i18n"
 
 const services = [
-  { name: "Virtual Front Desk", href: "/services/virtual-front-desk" },
-  { name: "Virtual Assistants", href: "/services/virtual-assistant" },
-  { name: "Technology Solutions", href: "/services/technology-solutions" },
-  { name: "SMS & Email Marketing", href: "/services/marketing-automation" },
+  { name: "Virtual Front Desk", esName: "Recepción virtual", href: "/services/virtual-front-desk" },
+  { name: "Virtual Assistants", esName: "Asistentes virtuales", href: "/services/virtual-assistant" },
+  { name: "Technology Solutions", esName: "Desarrollo de software", href: "/services/technology-solutions" },
+  { name: "SMS & Email Marketing", esName: "Marketing por SMS y email", href: "/services/marketing-automation" },
 ]
 
-export default function Header() {
+const navigationLabels = {
+  en: {
+    services: "Services",
+    pricing: "Pricing",
+    contact: "Contact",
+    clientLogin: "Client Login",
+    consultation: "Book a Free Consultation",
+    openMenu: "Open navigation menu",
+    closeMenu: "Close navigation menu",
+  },
+  es: {
+    services: "Servicios",
+    pricing: "Precios",
+    contact: "Contacto",
+    clientLogin: "Acceso clientes",
+    consultation: "Agende una consulta gratis",
+    openMenu: "Abrir menú de navegación",
+    closeMenu: "Cerrar menú de navegación",
+  },
+}
+
+export default function Header({ locale = "en" }: { locale?: Locale }) {
+  const labels = navigationLabels[locale]
+  const localizedHref = (href: string) => locale === "es" ? twinOf(href) ?? href : href
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false)
 
@@ -24,7 +49,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-[#e6dbc9] bg-white/95 backdrop-blur-sm">
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-6 lg:px-10">
         <Link
-          href="/"
+          href={localizedHref("/")}
           className="flex items-center gap-3 text-2xl leading-none tracking-tight text-[#222222] transition-colors hover:text-[#c8a97e] [font-family:var(--font-heading)] sm:text-3xl"
         >
           <Image
@@ -45,7 +70,7 @@ export default function Header() {
               className="inline-flex items-center gap-1 text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]"
               aria-haspopup="menu"
             >
-              Services
+              {labels.services}
               <svg
                 className="h-4 w-4 transition-transform group-hover:translate-y-[1px]"
                 viewBox="0 0 20 20"
@@ -66,10 +91,10 @@ export default function Header() {
               {services.map((item) => (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  href={localizedHref(item.href)}
                   className="block rounded-sm px-3 py-2 text-sm text-[#222222] transition-colors hover:bg-[#f8f5ef] hover:text-[#c8a97e]"
                 >
-                  {item.name}
+                  {locale === "es" ? item.esName : item.name}
                 </Link>
               ))}
             </div>
@@ -79,35 +104,36 @@ export default function Header() {
             href="/pricing"
             className="text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]"
           >
-            Pricing
+            {labels.pricing}
           </Link>
           <Link
-            href="/contact"
+            href={localizedHref("/contact")}
             className="text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]"
           >
-            Contact
+            {labels.contact}
           </Link>
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
+          <LanguageSwitcher locale={locale} />
           <Link
             href="/client-login"
             className="inline-flex h-10 items-center justify-center rounded-sm border border-[#c8a97e] px-4 text-sm font-medium text-[#c8a97e] transition-colors hover:bg-[#c8a97e] hover:text-white"
           >
-            Client Login
+            {labels.clientLogin}
           </Link>
           <Link
             href="/book-demo"
             className="inline-flex h-10 items-center justify-center rounded-sm bg-[#c8a97e] px-4 text-sm font-medium text-white transition-colors hover:bg-[#b69468]"
           >
-            Book a Free Consultation
+            {labels.consultation}
           </Link>
         </div>
 
         <button
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-[#e6dbc9] text-[#222222] transition-colors hover:text-[#c8a97e] md:hidden"
-          aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={mobileMenuOpen ? labels.closeMenu : labels.openMenu}
           aria-expanded={mobileMenuOpen}
           onClick={() => setMobileMenuOpen((open) => !open)}
         >
@@ -140,7 +166,7 @@ export default function Header() {
               className="flex items-center justify-between py-3 text-left text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]"
               aria-expanded={mobileServicesOpen}
             >
-              Services
+              {labels.services}
               <svg
                 className={`h-4 w-4 transition-transform ${
                   mobileServicesOpen ? "rotate-180" : ""
@@ -164,11 +190,11 @@ export default function Header() {
                 {services.map((item) => (
                   <Link
                     key={item.href}
-                    href={item.href}
+                    href={localizedHref(item.href)}
                     onClick={closeMobileMenu}
                     className="py-2 text-sm text-[#555555] transition-colors hover:text-[#c8a97e]"
                   >
-                    {item.name}
+                    {locale === "es" ? item.esName : item.name}
                   </Link>
                 ))}
               </div>
@@ -179,30 +205,36 @@ export default function Header() {
               onClick={closeMobileMenu}
               className="py-3 text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]"
             >
-              Pricing
+              {labels.pricing}
             </Link>
             <Link
-              href="/contact"
+              href={localizedHref("/contact")}
               onClick={closeMobileMenu}
               className="py-3 text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]"
             >
-              Contact
+              {labels.contact}
             </Link>
 
-            <div className="mt-3 grid grid-cols-2 gap-3 border-t border-[#e6dbc9] pt-4">
+            <div className="py-3">
+              <LanguageSwitcher locale={locale} onNavigate={closeMobileMenu} />
+            </div>
+
+            <div className={locale === "es"
+              ? "mt-3 grid grid-cols-1 gap-3 border-t border-[#e6dbc9] pt-4"
+              : "mt-3 grid grid-cols-2 gap-3 border-t border-[#e6dbc9] pt-4"}>
               <Link
                 href="/client-login"
                 onClick={closeMobileMenu}
                 className="inline-flex h-10 items-center justify-center rounded-sm border border-[#c8a97e] px-3 text-sm font-medium text-[#c8a97e] transition-colors hover:bg-[#c8a97e] hover:text-white"
               >
-                Client Login
+                {labels.clientLogin}
               </Link>
               <Link
                 href="/book-demo"
                 onClick={closeMobileMenu}
                 className="inline-flex h-10 items-center justify-center rounded-sm bg-[#c8a97e] px-3 text-sm font-medium text-white transition-colors hover:bg-[#b69468]"
               >
-                Book a Free Consultation
+                {labels.consultation}
               </Link>
             </div>
           </nav>
