@@ -4,6 +4,7 @@ import { ClerkProvider } from "@clerk/nextjs"
 import { SITE_CONFIG } from "@/lib/constants"
 import type { Locale } from "@/lib/i18n"
 import { spanishSiteContent } from "@/content/es/site"
+import MarketingAnalytics from "@/components/analytics/MarketingAnalytics"
 
 const headingFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -146,11 +147,14 @@ export function SiteRoot({
   children: React.ReactNode
   locale: Locale
 }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim()
+
   return (
     <ClerkProvider>
       <html lang={locale}>
         <body className={`${bodyFont.variable} ${headingFont.variable} antialiased`}>
           {children}
+          {gaId ? <MarketingAnalytics gaId={gaId} /> : null}
         </body>
       </html>
     </ClerkProvider>
