@@ -40,9 +40,8 @@ export async function spanishPageMetadata(
   const inherited = await parent
   const alternates = alternatesFor(options.path)
   const title = `${options.title} | ${SITE_CONFIG.name}`
-  const openGraphImages = options.explicitOpenGraphImage
-    ? SOCIAL_IMAGES.openGraph
-    : inherited.openGraph?.images ?? SOCIAL_IMAGES.openGraph
+  // Preserve the nearest file-based images, including their generated route and cache key.
+  const openGraphImages = inherited.openGraph?.images ?? SOCIAL_IMAGES.openGraph
 
   return {
     title: { absolute: title },

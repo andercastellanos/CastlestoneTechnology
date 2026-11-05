@@ -1,7 +1,7 @@
 import type { HomeContent } from "@/content/types/home"
 
 export const homeContent: HomeContent = {
-  "title": "Castlestone Technology | Custom Software & AI",
+  "title": "Castlestone Technology | Custom Software & AI Agency",
   "description": "Web apps, AI agents, automations, integrations and websites, built by a nearshore engineering team in U.S. time zones. Virtual support teams available too.",
   "metadata_openGraph_siteName": "Castlestone Technology",
   "heroCommitments_1_value": "Fixed scope",
