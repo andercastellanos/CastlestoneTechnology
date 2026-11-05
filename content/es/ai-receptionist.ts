@@ -9,6 +9,8 @@ export const aiReceptionistContent: AiReceptionistContent = {
   demoCta: "Agende una demostración de recepción con IA",
   missedCallsHeading: "El costo de las llamadas sin respuesta",
   missedCallsDescription: "¿Qué ocurre cuando su equipo no puede contestar? Comparta ejemplos de llamadas perdidas durante la demostración para evaluar dónde podría ayudarle un servicio de atención de llamadas.",
+  missedCallsStat: "En un estudio de {0} días con {1} pequeñas empresas, el {2} % de las llamadas quedó sin respuesta.",
+  missedCallsCredit: "Fuente: 411 Locals",
   missedCallsLink: "Conozca el costo de las llamadas sin respuesta",
   capabilitiesHeading: "Qué hace",
   capabilitiesDescription: "Un recepcionista virtual con IA contesta llamadas. Durante la demostración, revise las tareas que necesita cubrir y confirme qué funciones están disponibles para su negocio.",

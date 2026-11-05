@@ -7,6 +7,8 @@ export type AiReceptionistContent = {
   demoCta: string
   missedCallsHeading: string
   missedCallsDescription: string
+  missedCallsStat: string
+  missedCallsCredit: string
   missedCallsLink: string
   capabilitiesHeading: string
   capabilitiesDescription: string
@@ -40,6 +42,21 @@ export type AiReceptionistContent = {
   finalHeading: string
   finalDescription: string
 }
+
+export const aiReceptionistStudy = {
+  days: 30,
+  businesses: 85,
+  unansweredPercent: 62,
+  sourceUrl: "https://411locals.us/small-business-owners-dont-answer-62-of-phone-calls/",
+} as const
+
+export const aiReceptionistNumbers = {
+  missedCallsStat: [
+    String(aiReceptionistStudy.days),
+    String(aiReceptionistStudy.businesses),
+    String(aiReceptionistStudy.unansweredPercent),
+  ],
+} as const
 
 export const aiReceptionistLinks = {
   en: "/services/ai-receptionist",

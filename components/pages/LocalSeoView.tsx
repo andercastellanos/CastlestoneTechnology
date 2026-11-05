@@ -91,6 +91,8 @@ export default function LocalSeoView({ content, locale }: { content: LocalSeoCon
           <Container>
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="font-heading text-4xl font-bold sm:text-5xl">{copy.pricingHeading}</h2>
+              <p className="font-heading mt-6 text-3xl font-bold text-[#84633b] sm:text-4xl">{copy.pricingRate}</p>
+              <p className="mt-3 font-medium text-foreground">{copy.pricingMultipleLocations}</p>
               <p className="mt-5 leading-relaxed text-muted-foreground">{copy.pricingDescription}</p>
               <Link href="/book-demo" className={`${buttonClass} mt-7`}>{copy.pricingCta}</Link>
             </div>

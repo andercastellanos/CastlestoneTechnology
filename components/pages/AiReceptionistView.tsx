@@ -2,8 +2,9 @@ import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 import { SITE_CONFIG } from "@/lib/constants"
+import { resolveContent } from "@/lib/content"
 import { alternatesFor, hrefForLocale, type Locale } from "@/lib/i18n"
-import { aiReceptionistLinks, getAiReceptionistData, type AiReceptionistContent } from "@/lib/page-data/ai-receptionist"
+import { aiReceptionistLinks, aiReceptionistNumbers, aiReceptionistStudy, getAiReceptionistData, type AiReceptionistContent } from "@/lib/page-data/ai-receptionist"
 import { ArrowUpRight, ChevronDown, PhoneCall } from "lucide-react"
 import Link from "next/link"
 
@@ -12,7 +13,8 @@ const paragraphClass = "mt-5 text-base leading-relaxed text-muted-foreground sm:
 const linkClass = "inline-flex items-center gap-2 font-semibold text-[#80613a] underline decoration-[#c8a97e] underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#80613a]"
 const buttonClass = "inline-flex min-h-12 items-center justify-center rounded-sm bg-[#80613a] px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-[#634927] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#80613a]"
 
-export default function AiReceptionistView({ content: copy, locale }: { content: AiReceptionistContent; locale: Locale }) {
+export default function AiReceptionistView({ content, locale }: { content: AiReceptionistContent; locale: Locale }) {
+  const copy = resolveContent(content, aiReceptionistNumbers)
   const { industries, faqs } = getAiReceptionistData(copy)
   const service = {
     "@context": "https://schema.org",
@@ -51,6 +53,10 @@ export default function AiReceptionistView({ content: copy, locale }: { content:
           <Container>
             <div className="mx-auto max-w-3xl">
               <h2 className={headingClass}>{copy.missedCallsHeading}</h2>
+              <p className={`${paragraphClass} font-semibold text-foreground`}>{copy.missedCallsStat}</p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                <a href={aiReceptionistStudy.sourceUrl} className={linkClass}>{copy.missedCallsCredit}</a>
+              </p>
               <p className={paragraphClass}>{copy.missedCallsDescription}</p>
               <Link href={aiReceptionistLinks.missedCalls} className={`${linkClass} mt-6`}>{copy.missedCallsLink}<ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" /></Link>
             </div>

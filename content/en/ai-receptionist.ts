@@ -9,6 +9,8 @@ export const aiReceptionistContent: AiReceptionistContent = {
   demoCta: "Book an AI receptionist demo",
   missedCallsHeading: "The cost of missed calls",
   missedCallsDescription: "What happens when your team cannot pick up? Bring examples of missed calls to your demo so we can discuss where call answering could help your business.",
+  missedCallsStat: "In a {0}-day study of {1} small businesses, {2}% of calls went unanswered.",
+  missedCallsCredit: "Source: 411 Locals",
   missedCallsLink: "Read about the cost of missed calls",
   capabilitiesHeading: "What it does",
   capabilitiesDescription: "An AI receptionist answers calls. During your demo, review the tasks you need handled and confirm which capabilities are available today for your business.",

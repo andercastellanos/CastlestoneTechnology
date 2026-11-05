@@ -139,10 +139,10 @@ export default function AiReceptionistVsAnsweringServicePost() {
                     Compare the billing model, not just the headline fee
                   </h2>
                   <p>
-                    For an AI service, establish whether the monthly charge includes a usage allowance and whether extra calls or minutes create additional charges. Ask about setup, supported integrations, and any separate human assistance. Avoid treating a subscription as unlimited coverage unless the agreement actually says so.
+                    AI services may offer flat monthly software plans. Check whether the charge includes a usage allowance and whether extra calls or minutes create additional charges. Ask about setup, supported integrations, and any separate human assistance. Avoid treating a subscription as unlimited coverage unless the agreement actually says so.
                   </p>
                   <p>
-                    For a human answering service, ask whether billing is based on calls, time spent handling them, or a package with an allowance. Find out what counts as a billable interaction, how transfers are treated, and what happens when usage exceeds the package. Request the full terms rather than estimating from an advertised starting point.
+                    For a human answering service, ask whether billing is per minute, per call, or a package with an allowance. Find out what counts as a billable interaction, how transfers are treated, and what happens when usage exceeds the package. Request the full terms rather than estimating from an advertised starting point.
                   </p>
                   <p>
                     Use the same sample of your recent call activity for both quotes. Include the types of calls, approximate length, and tasks required. Then compare the likely bill alongside the work your staff will still handle. A service that only collects details and one that completes bookings are doing different amounts of work.

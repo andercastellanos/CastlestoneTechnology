@@ -4,10 +4,15 @@ import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 import { SITE_CONFIG, SOCIAL_IMAGES } from "@/lib/constants"
+import { aiReceptionistContent } from "@/content/en/ai-receptionist"
+import { resolveContent } from "@/lib/content"
+import { aiReceptionistNumbers, aiReceptionistStudy } from "@/lib/page-data/ai-receptionist"
+
+const missedCallsCopy = resolveContent(aiReceptionistContent, aiReceptionistNumbers)
 
 const TITLE = "The Real Cost of Missed Calls for Small Businesses"
 const DESCRIPTION =
-  "Research shows 85% of callers who can't reach you won't call back. Here's what that means for your bottom line — and how a virtual front desk changes the math."
+  `${missedCallsCopy.missedCallsStat} Here's what that means for your bottom line — and how a virtual front desk changes the math.`
 const CANONICAL = "/blog/the-real-cost-of-missed-calls"
 const PUBLISHED = "2026-02-10T08:00:00Z"
 const KEYWORDS = [
@@ -105,7 +110,8 @@ export default function BlogPost3() {
                 <div className="space-y-4 pt-10">
                   <p className="text-lg">
                     Missed calls cost small businesses an average of{" "}
-                    <strong>$126,000 per year.</strong> That&apos;s not a typo. And the reason is simpler than you think: <strong>85% of callers who can&apos;t reach you will never call back</strong> — they&apos;ll call your competitor instead.
+                    <strong>$126,000 per year.</strong> That&apos;s not a typo. <strong>{missedCallsCopy.missedCallsStat}</strong>{" "}
+                    <a href={aiReceptionistStudy.sourceUrl} className="underline underline-offset-4">{missedCallsCopy.missedCallsCredit}</a>
                   </p>
                   <p>
                     For most small businesses, the phone is still the primary revenue channel. Not a form. Not a chatbot. A phone call from someone who is ready to buy. Here&apos;s exactly what happens when that call goes unanswered.
@@ -115,10 +121,12 @@ export default function BlogPost3() {
                 {/* Section 1 */}
                 <div className="space-y-4">
                   <h2 className="font-heading border-l-4 border-[#c8a97e] pl-4 text-2xl font-bold text-[#222222]">
-                    The 85% Rule Nobody Talks About
+                    Calls That Go Unanswered
                   </h2>
                   <p>
-                    The research on call abandonment is stark. When a caller reaches voicemail or just rings out, 85% don&apos;t try again. Of those, 62% immediately call the next business they find — your competitor. Only 20% of callers sent to voicemail bother leaving a message at all, and of those, a full 67% of people ignore voicemails and delete them unheard.
+                    {missedCallsCopy.missedCallsStat}{" "}
+                    <a href={aiReceptionistStudy.sourceUrl} className="underline underline-offset-4">{missedCallsCopy.missedCallsCredit}</a>{" "}
+                    Only 20% of callers sent to voicemail bother leaving a message at all, and of those, a full 67% of people ignore voicemails and delete them unheard.
                   </p>
                   <p>
                     The arithmetic here is brutal. The average small business answers only 37.8% of incoming calls during business hours. That means for every ten people who call your business, six of them never speak to anyone. They either gave up, left a voicemail you&apos;ll return two days later when they&apos;ve already moved on, or went straight to a competitor who picked up.
@@ -187,7 +195,7 @@ export default function BlogPost3() {
                 {/* Conclusion */}
                 <div className="space-y-4 border-t border-[#e6dbc9] pt-10">
                   <p>
-                    The math on missed calls isn&apos;t complicated — it&apos;s just uncomfortable to look at. Most small businesses have been absorbing this revenue loss for years and attributing it to something else: the economy, competition, slow seasons. But if 62% of your callers are going to a competitor after a single unanswered call, the lever isn&apos;t marketing spend. It&apos;s coverage.
+                    The math on missed calls isn&apos;t complicated — it&apos;s just uncomfortable to look at. Most small businesses have been absorbing this revenue loss for years and attributing it to something else: the economy, competition, slow seasons. When calls go unanswered, the lever isn&apos;t marketing spend. It&apos;s coverage.
                   </p>
                   <p>
                     If you want to stop losing leads you already paid for, the fix is simpler and more affordable than you probably think.
