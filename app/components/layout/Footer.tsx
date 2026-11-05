@@ -11,13 +11,15 @@ const footerColumns = [
       { label: "Virtual Assistants", esLabel: "Asistentes virtuales", href: "/services/virtual-assistant" },
       { label: "Technology Solutions", esLabel: "Desarrollo de software", href: "/services/technology-solutions" },
       { label: "SMS & Email Marketing", esLabel: "Marketing por SMS y email", href: "/services/marketing-automation" },
+      { label: "AI Receptionist", esLabel: "Recepcionista con IA", href: "/services/ai-receptionist" },
+      { label: "Local SEO", esLabel: "SEO local", href: "/services/local-seo" },
     ],
   },
   {
     title: "Company",
     esTitle: "Empresa",
     links: [
-      { label: "About", esLabel: "Nosotros", href: "/about" },
+      { label: "About", esLabel: "Nosotros", href: "/company/about" },
       { label: "Contact", esLabel: "Contacto", href: "/contact" },
     ],
   },

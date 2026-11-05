@@ -43,6 +43,7 @@ export function getTechnologySolutionsData(copy: TechnologySolutionsContent) {
       icon: "☎️",
       title: copy.capabilities_1_title,
       description: copy.capabilities_1_description,
+      href: "/services/ai-receptionist",
     },
     {
       icon: "💬",
@@ -54,6 +55,7 @@ export function getTechnologySolutionsData(copy: TechnologySolutionsContent) {
       icon: "📍",
       title: copy.capabilities_3_title,
       description: copy.capabilities_3_description,
+      href: "/services/local-seo",
     },
     {
       icon: "🖥️",

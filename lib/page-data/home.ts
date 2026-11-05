@@ -31,6 +31,7 @@ export function getHomeData(copy: HomeContent) {
       icon: PhoneCall,
       title: copy.techSolutions_1_title,
       description: copy.techSolutions_1_description,
+      href: "/services/ai-receptionist",
     },
     {
       icon: Bot,
@@ -52,6 +53,7 @@ export function getHomeData(copy: HomeContent) {
       icon: MapPin,
       title: copy.techSolutions_5_title,
       description: copy.techSolutions_5_description,
+      href: "/services/local-seo",
     },
     {
       icon: CalendarCheck,
