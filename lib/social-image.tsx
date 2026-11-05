@@ -3,7 +3,9 @@ import { readFile } from "node:fs/promises"
 import { join } from "node:path"
 import { ImageResponse } from "next/og"
 
-export async function createSocialImage() {
+export async function createSocialImage(
+  tagline = "Custom software & AI for growing businesses",
+) {
   const [font, logo] = await Promise.all([
     readFile(join(process.cwd(), "app/assets/fonts/CormorantGaramond-Regular.ttf")),
     readFile(join(process.cwd(), "public/logo.png")),
@@ -46,7 +48,7 @@ export async function createSocialImage() {
           }}
         />
         <div style={{ display: "flex", fontSize: 34, color: "#555555" }}>
-          Custom software &amp; AI for growing businesses
+          {tagline}
         </div>
       </div>
     ),

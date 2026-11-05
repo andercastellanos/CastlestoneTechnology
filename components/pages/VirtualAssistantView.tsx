@@ -99,10 +99,10 @@ export default function VirtualAssistantView({ content, locale }: { content: Vir
                       ))}
                     </ul>
                     <Link
-                      href={hrefForLocale(`/services/virtual-assistant/${role.slug}`, locale)}
+                      href={hrefForLocale("/book-demo", locale)}
                       className="mt-6 inline-flex h-9 items-center justify-center rounded-sm border border-[#c8a97e] px-4 text-sm font-medium text-[#c8a97e] transition-colors hover:bg-[#c8a97e] hover:text-white"
                     >
-                      {copy.roleCta}
+                      {copy.heroPrimaryCta}
                     </Link>
                   </div>
                 )
