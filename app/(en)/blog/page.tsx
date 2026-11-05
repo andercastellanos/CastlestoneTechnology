@@ -54,6 +54,22 @@ const posts = [
     date: "February 10, 2026",
     slug: "/blog/the-real-cost-of-missed-calls",
   },
+  {
+    category: "AI Receptionists",
+    title: "How Do AI Receptionists Work?",
+    excerpt:
+      "Learn how AI receptionists answer calls, understand requests, book appointments, take messages, and hand off to your team, plus where their limits matter.",
+    date: "November 4, 2026",
+    slug: "/blog/how-do-ai-receptionists-work",
+  },
+  {
+    category: "AI Receptionists",
+    title: "AI Receptionist vs. Answering Service: An AI Answering Service Guide",
+    excerpt:
+      "Compare an AI answering service with a human answering service: how calls are handled, billing models, coverage, limitations, and the right fit for your business.",
+    date: "November 4, 2026",
+    slug: "/blog/ai-receptionist-vs-answering-service",
+  },
 ]
 
 export default function BlogPage() {
