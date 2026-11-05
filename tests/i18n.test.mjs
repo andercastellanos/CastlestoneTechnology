@@ -22,9 +22,10 @@ test("the route map covers the paired English pages without duplicate URLs", () 
     "/", "/contact", "/services/virtual-front-desk", "/services/virtual-assistant",
     "/services/technology-solutions", "/services/marketing-automation",
     "/services/ai-receptionist",
+    "/services/local-seo",
   ])
   const urls = Array.from(i18n.routeMap).flatMap(pair => [pair.en, pair.es])
-  assert.equal(new Set(urls).size, 14)
+  assert.equal(new Set(urls).size, i18n.routeMap.length * 2)
 })
 
 test("every mapped page switches in both directions, including normalized URLs", () => {
