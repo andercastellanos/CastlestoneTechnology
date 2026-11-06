@@ -1,6 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { twinOf, type Locale } from "@/lib/i18n"
+import { formatContactAddress, SITE_CONFIG } from "@/lib/constants"
 
 const footerColumns = [
   {
@@ -34,6 +35,8 @@ const footerColumns = [
 
 export default function Footer({ locale = "en" }: { locale?: Locale }) {
   const localizedHref = (href: string) => locale === "es" ? twinOf(href) ?? href : href
+  const address = formatContactAddress()
+  const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
   return (
     <footer className="border-t border-[#e6dbc9] bg-white">
       <div className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-10">
@@ -43,13 +46,34 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
         >
           <Image
             src="/logo.png"
-            alt="Castlestone Technology"
+            alt={SITE_CONFIG.name}
             width={44}
             height={44}
             className="h-[44px] w-[44px] object-contain"
           />
-          Castlestone Technology
+          {SITE_CONFIG.name}
         </Link>
+
+        <section aria-labelledby="footer-contact-heading" className="mt-6 space-y-2 font-sans text-sm text-[#555555]">
+          <h3 id="footer-contact-heading" className="text-2xl text-[#222222] [font-family:var(--font-heading)]">
+            {locale === "es" ? "Contacto" : "Contact"}
+          </h3>
+          <address className="not-italic leading-relaxed">
+            <a href={mapsHref} target="_blank" rel="noopener" className="transition-colors hover:text-[#c8a97e]">
+              {address}
+            </a>
+          </address>
+          <p>
+            <a href={`tel:${SITE_CONFIG.contact.phone.e164}`} className="transition-colors hover:text-[#c8a97e]">
+              {SITE_CONFIG.contact.phone.display}
+            </a>
+          </p>
+          <p>
+            <a href={`mailto:${SITE_CONFIG.contact.email}`} className="break-words transition-colors hover:text-[#c8a97e]">
+              {SITE_CONFIG.contact.email}
+            </a>
+          </p>
+        </section>
 
         <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {footerColumns.map((column) => (
@@ -74,8 +98,8 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-[#e6dbc9] pt-6 text-sm text-[#555555] sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Castlestone Technology. {locale === "es" ? "Todos los derechos reservados." : "All rights reserved."}</p>
-          <p>{locale === "es" ? "Hecho en Miami, FL" : "Made in Miami, FL"}</p>
+          <p>© {new Date().getFullYear()} {SITE_CONFIG.name}. {locale === "es" ? "Todos los derechos reservados." : "All rights reserved."}</p>
+          <p>{locale === "es" ? "Hecho en" : "Made in"} {SITE_CONFIG.contact.address.city}, {SITE_CONFIG.contact.address.region}</p>
         </div>
       </div>
     </footer>

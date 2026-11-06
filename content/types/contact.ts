@@ -7,6 +7,7 @@ export type ContactContent = {
   introduction: string
   emailLabel: string
   emailAddress: string
+  phoneLabel: string
   locationLabel: string
   location: string
   form: ContactFormStrings

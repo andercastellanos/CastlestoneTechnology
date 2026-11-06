@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
+import { formatContactAddress, SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -68,10 +69,10 @@ export default function PrivacyPage() {
                 You have the right to request access to, correction of, or deletion of your
                 personal data at any time by contacting us at{" "}
                 <a
-                  href="mailto:hello@castlestonetechnology.com"
+                  href={`mailto:${SITE_CONFIG.contact.email}`}
                   className="text-foreground underline underline-offset-4 hover:text-primary"
                 >
-                  hello@castlestonetechnology.com
+                  {SITE_CONFIG.contact.email}
                 </a>
                 .
               </p>
@@ -80,12 +81,12 @@ export default function PrivacyPage() {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 For any privacy-related questions, email{" "}
                 <a
-                  href="mailto:hello@castlestonetechnology.com"
+                  href={`mailto:${SITE_CONFIG.contact.email}`}
                   className="text-foreground underline underline-offset-4 hover:text-primary"
                 >
-                  hello@castlestonetechnology.com
+                  {SITE_CONFIG.contact.email}
                 </a>{" "}
-                or write to us at Castlestone Technology, Miami, FL, USA.
+                or write to us at Castlestone Technology, {formatContactAddress()}.
               </p>
             </div>
           </Container>

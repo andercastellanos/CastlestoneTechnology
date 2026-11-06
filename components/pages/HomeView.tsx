@@ -18,26 +18,16 @@ export default function HomeView({ content, locale }: { content: HomeContent; lo
   const { heroCommitments, techSolutions, supportCards } = getHomeData(copy)
   const siteUrl = new URL("/", SITE_CONFIG.url).href
 
-  const organizationId = `${siteUrl}#organization`
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "Organization",
-        "@id": organizationId,
-        name: SITE_CONFIG.name,
-        url: siteUrl,
-        logo: new URL("/logo.png", siteUrl).href,
-        description: copy.schemaDescription,
-      },
       {
         "@type": "WebSite",
         "@id": `${siteUrl}#website`,
         name: SITE_CONFIG.name,
         url: siteUrl,
         description: copy.schemaDescription,
-        publisher: { "@id": organizationId },
+        publisher: { "@id": SITE_CONFIG.organizationId },
       },
     ],
   }

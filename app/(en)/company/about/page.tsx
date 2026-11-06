@@ -7,9 +7,9 @@ import { SITE_CONFIG } from "@/lib/constants"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "About Our Miami Team",
+  title: `About Our ${SITE_CONFIG.contact.address.city} Team`,
   description:
-    "Learn how Castlestone Technology connects US businesses with elite talent from Latin America. Founded in Miami, FL in 2023.",
+    `Learn how Castlestone Technology connects US businesses with elite talent from Latin America. Founded in ${SITE_CONFIG.contact.address.city}, ${SITE_CONFIG.contact.address.region} in 2023.`,
   alternates: {
     canonical: "/company/about",
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const missionStats = [
   { value: "2023", label: "Founded" },
-  { value: "Miami, FL", label: "Headquarters" },
+  { value: `${SITE_CONFIG.contact.address.city}, ${SITE_CONFIG.contact.address.region}`, label: "Headquarters" },
   { value: "100+", label: "Clients Served" },
   { value: "4.9/5", label: "Avg Client Rating" },
 ]
@@ -75,7 +75,7 @@ export default function AboutPage() {
                   Our Story
                 </h2>
                 <p className="mt-4 text-muted-foreground">
-                  Castlestone Technology was founded in Miami in 2023 after our
+                  Castlestone Technology was founded in {SITE_CONFIG.contact.address.city} in 2023 after our
                   founders saw a clear gap in the market - small and mid-sized
                   businesses were spending $50,000+ per year on in-house
                   receptionists and administrative staff, yet getting

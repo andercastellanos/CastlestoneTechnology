@@ -1,5 +1,6 @@
 import { contactFormStrings } from "./contact-form"
 import type { ContactContent } from "@/content/types/contact"
+import { formatContactAddress, SITE_CONFIG } from "@/lib/constants"
 
 export const contactContent: ContactContent = {
   "metadata_title": "Contact Us",
@@ -7,8 +8,9 @@ export const contactContent: ContactContent = {
   "heading": "Get in Touch",
   "introduction": "Tell us about your goals and we will recommend the right virtual support plan for your business.",
   "emailLabel": "Email",
-  "emailAddress": "hello@castlestonetechnology.com",
+  "emailAddress": SITE_CONFIG.contact.email,
+  "phoneLabel": "Phone",
   "locationLabel": "Location",
-  "location": "Miami, Florida",
+  "location": formatContactAddress(),
   form: contactFormStrings
 }

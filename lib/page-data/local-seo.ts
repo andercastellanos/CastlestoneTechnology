@@ -72,9 +72,7 @@ export function localSeoServiceSchema(copy: LocalSeoContent, locale: Locale) {
     description: copy.description,
     url: canonical,
     provider: {
-      "@type": "Organization",
-      name: SITE_CONFIG.name,
-      url: SITE_CONFIG.url.replace(/\/+$/, ""),
+      "@id": SITE_CONFIG.organizationId,
     },
   }
 }

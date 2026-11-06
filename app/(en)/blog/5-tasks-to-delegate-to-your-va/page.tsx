@@ -50,20 +50,8 @@ const jsonLd = {
   description: DESCRIPTION,
   datePublished: PUBLISHED,
   dateModified: PUBLISHED,
-  author: {
-    "@type": "Organization",
-    name: "Castlestone Technology",
-    url: "https://castlestonetechnology.com",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Castlestone Technology",
-    url: "https://castlestonetechnology.com",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://castlestonetechnology.com/logo.png",
-    },
-  },
+  author: { "@id": SITE_CONFIG.organizationId },
+  publisher: { "@id": SITE_CONFIG.organizationId },
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": new URL(CANONICAL, SITE_CONFIG.url).href,

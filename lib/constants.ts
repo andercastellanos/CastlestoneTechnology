@@ -2,6 +2,7 @@ export const SITE_CONFIG = {
   name: "Castlestone Technology",
   description: "Custom software, AI agents, and automation built by a nearshore engineering team in U.S. time zones—plus virtual support teams for growing businesses.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://castlestonetechnology.com",
+  organizationId: "https://castlestonetechnology.com/#organization",
   ogImage: "/opengraph-image",
   twitterImage: "/twitter-image",
   links: {
@@ -9,9 +10,33 @@ export const SITE_CONFIG = {
     linkedin: "https://linkedin.com/company/castlestone-technology",
   },
   contact: {
-    email: "hello@castlestonetechnology.com",
+    email: "contact@castlestonetechnology.com",
+    phone: {
+      display: "(305) 697-0368",
+      e164: "+13056970368",
+    },
+    address: {
+      street: "1000 Brickell Ave",
+      suite: "Ste 715",
+      city: "Miami",
+      region: "FL",
+      postalCode: "33131",
+      country: "US",
+    },
   },
 }
+
+export function formatContactAddress(): string {
+  const { street, suite, city, region, postalCode } = SITE_CONFIG.contact.address
+  return `${street}, ${suite}, ${city}, ${region} ${postalCode}`
+}
+
+export const SERVICE_AREAS = [
+  SITE_CONFIG.contact.address.city,
+  "Fort Lauderdale",
+  "Palm Beach",
+  "Orlando",
+] as const
 
 const socialImageDetails = {
   width: 1200,

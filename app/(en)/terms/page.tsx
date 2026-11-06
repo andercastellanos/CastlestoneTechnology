@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: "Terms of Service",
@@ -86,10 +87,10 @@ export default function TermsPage() {
               <p className="text-muted-foreground leading-relaxed mb-4">
                 Questions about these terms? Email{" "}
                 <a
-                  href="mailto:hello@castlestonetechnology.com"
+                  href={`mailto:${SITE_CONFIG.contact.email}`}
                   className="text-foreground underline underline-offset-4 hover:text-primary"
                 >
-                  hello@castlestonetechnology.com
+                  {SITE_CONFIG.contact.email}
                 </a>
                 .
               </p>

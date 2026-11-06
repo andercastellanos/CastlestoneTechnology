@@ -4,6 +4,7 @@ import { redirect } from "next/navigation"
 import { SignOutButton } from "@clerk/nextjs"
 import { reconcileUser, captureSignupRequest } from "@/lib/auth/reconcile"
 import PendingAutoRefresh from "./PendingAutoRefresh"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export const metadata: Metadata = {
   title: "Account Pending",
@@ -50,7 +51,7 @@ export default async function AccountPendingPage() {
         </p>
         <PendingAutoRefresh />
         <a
-          href="mailto:hello@castlestonetechnology.com"
+          href={`mailto:${SITE_CONFIG.contact.email}`}
           className="mt-6 inline-flex h-10 items-center justify-center rounded-sm bg-[#c8a97e] px-5 text-sm font-medium text-white transition-colors hover:bg-[#b69468]"
         >
           Contact Castlestone

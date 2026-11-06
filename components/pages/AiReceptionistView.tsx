@@ -23,9 +23,7 @@ export default function AiReceptionistView({ content, locale }: { content: AiRec
     description: copy.description,
     url: alternatesFor(aiReceptionistLinks[locale]).canonical,
     provider: {
-      "@type": "Organization",
-      name: SITE_CONFIG.name,
-      url: SITE_CONFIG.url,
+      "@id": SITE_CONFIG.organizationId,
     },
     areaServed: { "@type": "Country", name: "United States" },
   }

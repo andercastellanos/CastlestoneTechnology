@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer"
 import Header from "@/components/layout/Header"
 import type { ContactContent } from "@/content/types/contact"
 import type { Locale } from "@/lib/i18n"
+import { SITE_CONFIG } from "@/lib/constants"
 
 export default function ContactView({ content, locale }: { content: ContactContent; locale: Locale }) {
   const copy = content
@@ -24,10 +25,20 @@ export default function ContactView({ content, locale }: { content: ContactConte
               <div>
                 <p className="text-xs uppercase tracking-[0.14em] text-[#555555]">{copy.emailLabel}</p>
                 <a
-                  href="mailto:hello@castlestonetechnology.com"
+                  href={`mailto:${SITE_CONFIG.contact.email}`}
                   className="mt-2 inline-block text-base text-[#222222] transition-colors hover:text-[#c8a97e]"
                 >
                   {copy.emailAddress}
+                </a>
+              </div>
+
+              <div>
+                <p className="text-xs uppercase tracking-[0.14em] text-[#555555]">{copy.phoneLabel}</p>
+                <a
+                  href={`tel:${SITE_CONFIG.contact.phone.e164}`}
+                  className="mt-2 inline-block text-base text-[#222222] transition-colors hover:text-[#c8a97e]"
+                >
+                  {SITE_CONFIG.contact.phone.display}
                 </a>
               </div>
 

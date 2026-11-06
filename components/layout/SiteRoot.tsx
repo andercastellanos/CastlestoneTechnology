@@ -1,7 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next"
 import { Cormorant_Garamond, DM_Sans } from "next/font/google"
 import { ClerkProvider } from "@clerk/nextjs"
-import { SITE_CONFIG } from "@/lib/constants"
+import { SERVICE_AREAS, SITE_CONFIG } from "@/lib/constants"
 import type { Locale } from "@/lib/i18n"
 import { spanishSiteContent } from "@/content/es/site"
 import MarketingAnalytics from "@/components/analytics/MarketingAnalytics"
@@ -21,6 +21,25 @@ const bodyFont = DM_Sans({
 const siteName = SITE_CONFIG.name
 const siteDescription = SITE_CONFIG.description
 const siteUrl = SITE_CONFIG.url
+const professionalServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": SITE_CONFIG.organizationId,
+  name: SITE_CONFIG.name,
+  url: new URL("/", siteUrl).href,
+  logo: new URL("/logo.png", siteUrl).href,
+  telephone: SITE_CONFIG.contact.phone.e164.replace(/^(\+\d)(\d{3})(\d{3})(\d{4})$/, "$1-$2-$3-$4"),
+  email: SITE_CONFIG.contact.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: `${SITE_CONFIG.contact.address.street}, ${SITE_CONFIG.contact.address.suite}`,
+    addressLocality: SITE_CONFIG.contact.address.city,
+    addressRegion: SITE_CONFIG.contact.address.region,
+    postalCode: SITE_CONFIG.contact.address.postalCode,
+    addressCountry: SITE_CONFIG.contact.address.country,
+  },
+  areaServed: SERVICE_AREAS.map((name) => ({ "@type": "City", name })),
+}
 const spanishImageAlt = spanishSiteContent.imageAlt
 
 const baseMetadata: Metadata = {
@@ -153,6 +172,10 @@ export function SiteRoot({
     <ClerkProvider>
       <html lang={locale}>
         <body className={`${bodyFont.variable} ${headingFont.variable} antialiased`}>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema).replace(/</g, "\\u003c") }}
+          />
           {children}
           {gaId ? <MarketingAnalytics gaId={gaId} /> : null}
         </body>
