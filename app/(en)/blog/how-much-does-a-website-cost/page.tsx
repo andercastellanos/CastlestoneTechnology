@@ -191,7 +191,7 @@ export default function WebsiteCostPost() {
                     Our process is discovery call, written quote, design, revisions, build, and launch. Use the consultation to explain what your customers need to accomplish and what your team needs to manage. The quote should reflect that discussion so you can review the proposed work before committing to it.
                   </p>
                   <p>
-                    For a local example of our work and approach, explore our <Link href="/blog/web-design-miami" className="text-[#80613a] underline underline-offset-4 hover:text-foreground">web design in Miami</Link> page. It features Sky Travel J&amp;M, our sister business, whose website our team designed and built. Reviewing a real project can make a discussion about pages, content, and contact options more concrete.
+                    For a local example of our work and approach, explore our <Link href="/blog/web-design-miami" className="text-[#80613a] underline underline-offset-4 hover:text-foreground">web design in Miami</Link> page. It features Sky Travel J&amp;M, a client, whose website our team designed and built. Reviewing a real project can make a discussion about pages, content, and contact options more concrete.
                   </p>
                 </div>
 

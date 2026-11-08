@@ -1,5 +1,6 @@
 import type { WebDesignCityContent } from "@/content/types/web-design-city"
-import { webDesignProject } from "@/lib/page-data/web-design"
+import { skyTravelProject } from "@/lib/page-data/projects"
+import { skyTravelCopy } from "@/content/es/projects"
 
 export const webDesignMiamiContent: WebDesignCityContent = {
   path: "/es/blog/diseno-web-miami",
@@ -13,10 +14,10 @@ export const webDesignMiamiContent: WebDesignCityContent = {
   primaryCta: "Agende una consulta gratuita",
   projectCta: "Conozca un proyecto de nuestro equipo",
   project: {
-    url: webDesignProject.url,
+    url: skyTravelProject.url,
     eyebrow: "Un proyecto de nuestro equipo",
-    heading: "Sky Travel J&M",
-    description: "Sky Travel J&M es nuestra empresa hermana, una agencia de peregrinaciones católicas en Brickell, Miami. Nuestro equipo diseñó y desarrolló su sitio web. Visítelo para conocer cómo presenta sus destinos, viajes y opciones de contacto.",
+    heading: skyTravelProject.name,
+    description: skyTravelCopy.description,
     featuresHeading: "Conozca el sitio web",
     features: [
       "Páginas de destinos y viajes",
@@ -66,7 +67,7 @@ export const webDesignMiamiContent: WebDesignCityContent = {
     items: [
       { question: "¿Cuánto cuesta un sitio web?", answer: "Definimos el precio después de una consulta gratuita y entregamos una cotización por escrito con un alcance fijo antes de iniciar el trabajo. La cotización depende de las páginas, funciones, conexiones con otras herramientas, contenido, redacción y plazo." },
       { question: "¿Dónde tiene su sede Castlestone y a qué negocios atiende?", answer: "Castlestone es una agencia con sede en Miami que trabaja con negocios de todo Estados Unidos. Definimos los proyectos en Miami y los desarrolla nuestro equipo de ingeniería en Latinoamérica." },
-      { question: "¿Puedo ver un sitio que su equipo haya diseñado y desarrollado?", answer: "Sí. Visite Sky Travel J&M, nuestra empresa hermana en Brickell, Miami. Diseñamos y desarrollamos su sitio de viajes de peregrinación católica, con páginas de destinos y viajes, filtros por año, una página de testimonios, un blog y contacto por WhatsApp." },
+      { question: "¿Puedo ver un sitio que su equipo haya diseñado y desarrollado?", answer: skyTravelCopy.faqAnswer },
       { question: "¿Podemos incluir reservas, pagos o conexiones con nuestras herramientas?", answer: "Comparta esas necesidades durante la llamada inicial. Las funciones como reservas o pagos en línea y las conexiones con las herramientas que ya utiliza influyen en el alcance y la cotización." },
       { question: "¿Qué sigue después de la llamada inicial?", answer: "El proceso continúa con la cotización por escrito, el diseño, las revisiones, el desarrollo y la publicación. El alcance fijo queda establecido por escrito antes de comenzar el trabajo." },
     ],

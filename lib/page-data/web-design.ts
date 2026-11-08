@@ -1,10 +1,3 @@
-// Project relationship and location approved by Andres. Public website features
-// were checked on the live site; no traffic, revenue, or performance claims.
-export const webDesignProject = {
-  name: "Sky Travel J&M",
-  url: "https://www.skytraveljm.com",
-} as const
-
 // Market figures only, for the cost article. These are not Castlestone prices.
 export const websiteCostSources = {
   webfx: {

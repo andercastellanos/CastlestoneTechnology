@@ -1,5 +1,6 @@
 import type { WebDesignCityContent } from "@/content/types/web-design-city"
-import { webDesignProject } from "@/lib/page-data/web-design"
+import { skyTravelProject } from "@/lib/page-data/projects"
+import { skyTravelCopy } from "@/content/en/projects"
 
 export const webDesignMiamiContent: WebDesignCityContent = {
   path: "/blog/web-design-miami",
@@ -13,10 +14,10 @@ export const webDesignMiamiContent: WebDesignCityContent = {
   primaryCta: "Book a free consultation",
   projectCta: "Explore a project from our team",
   project: {
-    url: webDesignProject.url,
+    url: skyTravelProject.url,
     eyebrow: "A project from our team",
-    heading: "Sky Travel J&M",
-    description: "Sky Travel J&M is our sister business, a Catholic pilgrimage travel agency in Brickell, Miami. Our team designed and built its website. Explore the live site to see how its destinations, trips, and contact options are presented.",
+    heading: skyTravelProject.name,
+    description: skyTravelCopy.description,
     featuresHeading: "Explore the website",
     features: [
       "Destination and trip pages",
@@ -66,7 +67,7 @@ export const webDesignMiamiContent: WebDesignCityContent = {
     items: [
       { question: "How much does a website cost?", answer: "We set pricing after a free consultation and provide a written fixed-scope quote before work starts. The quote depends on pages, features, tool connections, content and copywriting, and timeline." },
       { question: "Where is Castlestone based, and where do you work?", answer: "Castlestone is a Miami-based agency working with businesses across the U.S. Projects are scoped in Miami and built by our nearshore engineering team." },
-      { question: "Can I see a website your team designed and built?", answer: "Yes. Explore Sky Travel J&M, our sister business in Brickell, Miami. Our team designed and built its Catholic pilgrimage travel website, including destination and trip pages, year filters, a testimonials page, a blog, and WhatsApp contact." },
+      { question: "Can I see a website your team designed and built?", answer: skyTravelCopy.faqAnswer },
       { question: "Can we discuss booking, payments, or connections to our existing tools?", answer: "Yes. Bring those requirements to the discovery call. Features such as booking or online payments and connections to your existing tools affect the scope and quote." },
       { question: "What happens after the discovery call?", answer: "The process is a written quote, design, revisions, build, and launch. The fixed scope is set out in writing before work starts." },
     ],
