@@ -1,4 +1,17 @@
 export const blogNavigationContent = {
   related: "Related articles",
   cityFooter: "Web design by city",
+  home: "Home",
+  blog: "Blog",
+  services: "Services",
+  cityPrefix: "Web Design in",
+  serviceTitles: {
+  "/services/virtual-front-desk": "Virtual Front Desk",
+  "/services/virtual-assistant": "Virtual Assistants",
+  "/services/technology-solutions": "Technology Solutions",
+  "/services/marketing-automation": "SMS & Email Marketing",
+  "/services/ai-receptionist": "AI Receptionist",
+  "/services/local-seo": "Local SEO",
+  "/services/online-presence-setup": "Online Presence Setup"
+} as Record<string, string>,
 }

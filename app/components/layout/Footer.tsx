@@ -1,3 +1,4 @@
+import BreadcrumbData from "@/components/shared/BreadcrumbData"
 import RelatedArticles from "@/components/shared/RelatedArticles"
 import { webDesignCities } from "@/lib/page-data/web-design-cities"
 import { blogNavigationContent as en } from "@/content/en/blog-navigation"
@@ -44,6 +45,7 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
   const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
   return (
     <>
+      <BreadcrumbData />
       <RelatedArticles locale={locale} />
     <footer className="border-t border-[#e6dbc9] bg-white">
       <div className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-10">

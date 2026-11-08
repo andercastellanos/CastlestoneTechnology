@@ -1,0 +1,47 @@
+import assert from "node:assert/strict"
+import { readFileSync } from "node:fs"
+import test from "node:test"
+import vm from "node:vm"
+import ts from "typescript"
+
+const cache = new Map()
+function load(path) {
+  if (cache.has(path)) return cache.get(path)
+  const exports = {}
+  cache.set(path, exports)
+  vm.runInNewContext(ts.transpileModule(readFileSync(new URL("../" + path, import.meta.url), "utf8"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS },
+  }).outputText, {
+    exports,
+    require(name) {
+      if (name === "@/lib/constants") return { SITE_CONFIG: { url: "https://castlestonetechnology.com" } }
+      return load(name.replace("@/", "") + ".ts")
+    },
+  })
+  return exports
+}
+const { breadcrumbFor } = load("lib/page-data/breadcrumbs.ts")
+
+test("breadcrumb trails use the correct hierarchy, locale and normalized canonical", () => {
+  for (const [path, names] of [
+    ["/blog/geo-vs-seo", ["Home", "Blog"]],
+    ["/es/blog/cuanto-cuesta-una-pagina-web", ["Inicio", "Blog"]],
+    ["/blog/web-design-miami", ["Home"]],
+    ["/es/blog/diseno-web-palm-beach", ["Inicio"]],
+    ["/services/local-seo", ["Home", "Services"]],
+    ["/es/servicios/seo-local", ["Inicio", "Servicios"]],
+  ]) {
+    const data = breadcrumbFor(path + "/?campaign=one#details")
+    const items = Array.from(data.itemListElement)
+    assert.deepEqual(items.slice(0, -1).map(item => item.name), names)
+    assert.equal(items.at(-1).item, "https://castlestonetechnology.com" + path)
+    assert.deepEqual(items.map(item => item.position), items.map((_, index) => index + 1))
+    if (path.startsWith("/es/")) assert(items.every(item => item.item.startsWith("https://castlestonetechnology.com/es")))
+  }
+})
+
+test("non-target pages receive no breadcrumb and Services uses a real section", () => {
+  for (const path of ["/", "/es", "/blog", "/es/blog", "/book-demo", "/pricing", "/privacy", "/unknown"]) assert.equal(breadcrumbFor(path), null)
+  assert.equal(breadcrumbFor("/services/ai-receptionist").itemListElement[1].item, "https://castlestonetechnology.com#what-we-build")
+  assert.equal(breadcrumbFor("/es/servicios/recepcionista-virtual-ia").itemListElement[1].item, "https://castlestonetechnology.com/es#what-we-build")
+})
