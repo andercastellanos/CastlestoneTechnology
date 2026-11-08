@@ -28,8 +28,8 @@ test("breadcrumb trails use the correct hierarchy, locale and normalized canonic
     ["/es/blog/cuanto-cuesta-una-pagina-web", ["Inicio", "Blog"]],
     ["/blog/web-design-miami", ["Home"]],
     ["/es/blog/diseno-web-palm-beach", ["Inicio"]],
-    ["/services/local-seo", ["Home", "Services"]],
-    ["/es/servicios/seo-local", ["Inicio", "Servicios"]],
+    ["/services/local-seo", ["Home"]],
+    ["/es/servicios/seo-local", ["Inicio"]],
   ]) {
     const data = breadcrumbFor(path + "/?campaign=one#details")
     const items = Array.from(data.itemListElement)
@@ -40,8 +40,8 @@ test("breadcrumb trails use the correct hierarchy, locale and normalized canonic
   }
 })
 
-test("non-target pages receive no breadcrumb and Services uses a real section", () => {
+test("non-target pages receive no breadcrumb and service trails have two canonical levels", () => {
   for (const path of ["/", "/es", "/blog", "/es/blog", "/book-demo", "/pricing", "/privacy", "/unknown"]) assert.equal(breadcrumbFor(path), null)
-  assert.equal(breadcrumbFor("/services/ai-receptionist").itemListElement[1].item, "https://castlestonetechnology.com#what-we-build")
-  assert.equal(breadcrumbFor("/es/servicios/recepcionista-virtual-ia").itemListElement[1].item, "https://castlestonetechnology.com/es#what-we-build")
+  assert.equal(breadcrumbFor("/services/ai-receptionist").itemListElement.length, 2)
+  assert.equal(breadcrumbFor("/es/servicios/recepcionista-virtual-ia").itemListElement.length, 2)
 })

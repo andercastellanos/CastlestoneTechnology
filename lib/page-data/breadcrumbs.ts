@@ -25,8 +25,6 @@ export function breadcrumbFor(pathname: string) {
     const name = locale === "es" && "esCity" in city ? city.esCity : city.city
     title = `${copy.cityPrefix} ${name}`
   } else {
-    // Services is an existing homepage section, not a separate index route.
-    trail.push({ name: copy.services, item: `${home}#what-we-build` })
     title = serviceName
   }
   trail.push({ name: title, item: canonical })
