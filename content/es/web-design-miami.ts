@@ -6,10 +6,10 @@ export const webDesignMiamiContent: WebDesignCityContent = {
   city: "Miami",
   region: "FL",
   metadata_title: "Diseño web en Miami",
-  metadata_description: "Diseño web en Miami con un equipo con sede en Florida. Conozca nuestro proyecto Sky Travel J&M y solicite una consulta gratuita y una cotización por escrito.",
+  metadata_description: "Diseño web en Miami para negocios de todo EE. UU. Definimos los proyectos en Miami y los desarrolla nuestro equipo de ingeniería en Latinoamérica.",
   eyebrow: "Sitios web para negocios de Miami",
   heading: "Diseño web en Miami",
-  introduction: "El diseño web en Miami parte de cómo su negocio atiende a visitantes y clientes locales: los detalles de un viaje para una agencia de Brickell, el menú de un restaurante o una forma clara de consultar por un servicio profesional. Nuestro equipo, con sede en Florida, diseña y desarrolla sitios web a partir de esas necesidades.",
+  introduction: "El diseño web en Miami parte de cómo su negocio atiende a visitantes y clientes locales: los detalles de un viaje para una agencia de Brickell, el menú de un restaurante o una forma clara de consultar por un servicio profesional. Castlestone es una agencia con sede en Miami que trabaja con negocios de todo Estados Unidos. Definimos los proyectos en Miami y los desarrolla nuestro equipo de ingeniería en Latinoamérica.",
   primaryCta: "Agende una consulta gratuita",
   projectCta: "Conozca un proyecto de nuestro equipo",
   project: {
@@ -65,7 +65,7 @@ export const webDesignMiamiContent: WebDesignCityContent = {
     heading: "Preguntas sobre su sitio web en Miami",
     items: [
       { question: "¿Cuánto cuesta un sitio web?", answer: "Definimos el precio después de una consulta gratuita y entregamos una cotización por escrito con un alcance fijo antes de iniciar el trabajo. La cotización depende de las páginas, funciones, conexiones con otras herramientas, contenido, redacción y plazo." },
-      { question: "¿Su equipo tiene sede en Florida?", answer: "Sí. Somos un equipo con sede en Florida y ofrecemos diseño web en Miami. En una consulta gratuita podemos conversar sobre su negocio y su sitio web." },
+      { question: "¿Dónde tiene su sede Castlestone y a qué negocios atiende?", answer: "Castlestone es una agencia con sede en Miami que trabaja con negocios de todo Estados Unidos. Definimos los proyectos en Miami y los desarrolla nuestro equipo de ingeniería en Latinoamérica." },
       { question: "¿Puedo ver un sitio que su equipo haya diseñado y desarrollado?", answer: "Sí. Visite Sky Travel J&M, nuestra empresa hermana en Brickell, Miami. Diseñamos y desarrollamos su sitio de viajes de peregrinación católica, con páginas de destinos y viajes, filtros por año, una página de testimonios, un blog y contacto por WhatsApp." },
       { question: "¿Podemos incluir reservas, pagos o conexiones con nuestras herramientas?", answer: "Comparta esas necesidades durante la llamada inicial. Las funciones como reservas o pagos en línea y las conexiones con las herramientas que ya utiliza influyen en el alcance y la cotización." },
       { question: "¿Qué sigue después de la llamada inicial?", answer: "El proceso continúa con la cotización por escrito, el diseño, las revisiones, el desarrollo y la publicación. El alcance fijo queda establecido por escrito antes de comenzar el trabajo." },

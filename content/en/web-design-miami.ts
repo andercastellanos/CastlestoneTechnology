@@ -6,10 +6,10 @@ export const webDesignMiamiContent: WebDesignCityContent = {
   city: "Miami",
   region: "FL",
   metadata_title: "Web Design in Miami",
-  metadata_description: "Web design in Miami by a Florida-based team. Explore our Sky Travel J&M project and start with a free consultation and written fixed-scope quote.",
+  metadata_description: "Web design in Miami from a Miami-based agency serving U.S. businesses. Projects scoped in Miami and built by our nearshore engineering team.",
   eyebrow: "Websites for Miami businesses",
   heading: "Web Design in Miami",
-  introduction: "Web design in Miami starts with how your business serves visitors and local customers: trip details for a Brickell travel agency, menus for a restaurant, or a clear inquiry path for a professional service. Our Florida-based team designs and builds websites around those needs.",
+  introduction: "Web design in Miami starts with how your business serves visitors and local customers: trip details for a Brickell travel agency, menus for a restaurant, or a clear inquiry path for a professional service. Castlestone is a Miami-based agency working with businesses across the U.S. Projects are scoped in Miami and built by our nearshore engineering team.",
   primaryCta: "Book a free consultation",
   projectCta: "Explore a project from our team",
   project: {
@@ -65,7 +65,7 @@ export const webDesignMiamiContent: WebDesignCityContent = {
     heading: "Questions about your Miami website",
     items: [
       { question: "How much does a website cost?", answer: "We set pricing after a free consultation and provide a written fixed-scope quote before work starts. The quote depends on pages, features, tool connections, content and copywriting, and timeline." },
-      { question: "Is your team based in Florida?", answer: "Yes. We are a Florida-based team offering web design in Miami. Start with a free consultation to discuss your business and website." },
+      { question: "Where is Castlestone based, and where do you work?", answer: "Castlestone is a Miami-based agency working with businesses across the U.S. Projects are scoped in Miami and built by our nearshore engineering team." },
       { question: "Can I see a website your team designed and built?", answer: "Yes. Explore Sky Travel J&M, our sister business in Brickell, Miami. Our team designed and built its Catholic pilgrimage travel website, including destination and trip pages, year filters, a testimonials page, a blog, and WhatsApp contact." },
       { question: "Can we discuss booking, payments, or connections to our existing tools?", answer: "Yes. Bring those requirements to the discovery call. Features such as booking or online payments and connections to your existing tools affect the scope and quote." },
       { question: "What happens after the discovery call?", answer: "The process is a written quote, design, revisions, build, and launch. The fixed scope is set out in writing before work starts." },
