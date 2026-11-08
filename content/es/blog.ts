@@ -1,0 +1,29 @@
+import { blogPostContent as websiteCost } from "@/content/es/blog-website-cost"
+import { blogPostContent as aiWork } from "@/content/es/blog-ai-work"
+import { blogPostContent as aiComparison } from "@/content/es/blog-ai-comparison"
+import { webDesignMiamiContent } from "@/content/es/web-design-miami"
+import { webDesignOrlandoContent } from "@/content/es/web-design-orlando"
+import { webDesignFortLauderdaleContent } from "@/content/es/web-design-fort-lauderdale"
+import { webDesignPalmBeachContent } from "@/content/es/web-design-palm-beach"
+
+export const blogContent = {
+  path: "/es/blog",
+  title: "Blog de Castlestone",
+  description: "Guías para evaluar sitios web y atención de llamadas con IA, y páginas de diseño web para Miami, Orlando, Fort Lauderdale, West Palm Beach y Boca Raton.",
+  heading: "Blog de Castlestone",
+  introduction: "En el blog de Castlestone encontrará guías para evaluar las herramientas de su negocio y páginas para planificar su sitio web según lo que necesita.",
+  readLabel: "Lea la guía",
+  cityLabel: "Conozca el servicio de diseño web",
+  cityCategory: "Diseño web por ciudad",
+  author: "Por el equipo de Castlestone",
+  articleLabel: "Contenido del artículo",
+  relatedServices: "Servicios relacionados",
+  miamiLabel: "Diseño web en Miami",
+  contactLabel: "Consulte con nuestro equipo",
+  sourceLabel: "Fuente:",
+}
+
+export const spanishBlogEntries = [
+  ...[websiteCost, aiWork, aiComparison].map((post) => ({ path: post.path, title: post.title, description: post.description, category: post.category, kind: "article" as const })),
+  ...[webDesignMiamiContent, webDesignOrlandoContent, webDesignFortLauderdaleContent, webDesignPalmBeachContent].map((city) => ({ path: city.path, title: city.heading, description: city.metadata_description, category: blogContent.cityCategory, kind: "city" as const })),
+]

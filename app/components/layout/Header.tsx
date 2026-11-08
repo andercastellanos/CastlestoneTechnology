@@ -112,6 +112,7 @@ export default function Header({ locale = "en" }: { locale?: Locale }) {
           >
             {labels.contact}
           </Link>
+          {locale === "es" && <Link href="/es/blog" className="text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]">Blog</Link>}
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -214,6 +215,8 @@ export default function Header({ locale = "en" }: { locale?: Locale }) {
             >
               {labels.contact}
             </Link>
+
+            {locale === "es" && <Link href="/es/blog" onClick={closeMobileMenu} className="py-3 text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]">Blog</Link>}
 
             <div className="py-3">
               <LanguageSwitcher locale={locale} onNavigate={closeMobileMenu} />

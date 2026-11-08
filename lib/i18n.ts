@@ -18,6 +18,10 @@ export const routeMap = [
   { en: "/blog/web-design-orlando", es: "/es/blog/diseno-web-orlando" },
   { en: "/blog/web-design-fort-lauderdale", es: "/es/blog/diseno-web-fort-lauderdale" },
   { en: "/blog/web-design-palm-beach", es: "/es/blog/diseno-web-palm-beach" },
+  { en: "/blog/how-much-does-a-website-cost", es: "/es/blog/cuanto-cuesta-una-pagina-web" },
+  { en: "/blog/how-do-ai-receptionists-work", es: "/es/blog/como-funciona-una-recepcionista-virtual-con-ia" },
+  { en: "/blog/ai-receptionist-vs-answering-service", es: "/es/blog/recepcionista-con-ia-vs-servicio-de-contestador" },
+  { en: "/blog", es: "/es/blog" },
 ] as const satisfies readonly Record<Locale, string>[]
 
 function normalizePath(path: string): string {

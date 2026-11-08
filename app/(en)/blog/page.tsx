@@ -1,3 +1,4 @@
+import { alternatesFor } from "@/lib/i18n"
 import type { Metadata } from "next"
 import Link from "next/link"
 import Header from "@/components/layout/Header"
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Insights on virtual assistants, remote work, and business efficiency from the Castlestone Technology team.",
   robots: { index: true, follow: true },
-  alternates: { canonical: "/blog" },
+  alternates: alternatesFor("/blog"),
   openGraph: {
     locale: "en_US",
     type: "website",
