@@ -1,3 +1,4 @@
+import WebDesignCityLinks from "@/components/shared/WebDesignCityLinks"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
@@ -91,7 +92,7 @@ export default function AiReceptionistView({ content, locale }: { content: AiRec
               <p className={paragraphClass}>{copy.bookingDescription}</p>
               <p className={paragraphClass}>
                 {copy.webDesignDescription}{" "}
-                <Link href={hrefForLocale("/blog/web-design-miami", locale)} className={linkClass}>{copy.webDesignLink}</Link>.
+                <WebDesignCityLinks locale={locale} className={linkClass} />.
               </p>
             </div>
           </Container>

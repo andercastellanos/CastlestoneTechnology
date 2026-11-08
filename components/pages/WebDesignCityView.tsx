@@ -1,3 +1,4 @@
+import { OtherWebDesignCities } from "@/components/shared/WebDesignCityLinks"
 import Link from "next/link"
 import { ArrowUpRight, Check, ChevronDown } from "lucide-react"
 import Header from "@/components/layout/Header"
@@ -148,6 +149,7 @@ export default function WebDesignCityView({ content: copy, locale }: { content: 
                   <li><Link href={hrefForLocale("/services/marketing-automation", locale)} className={linkClass}>{copy.related.marketing}</Link></li>
                 </ul>
               </aside>
+              <OtherWebDesignCities locale={locale} currentPath={copy.path} className={linkClass} />
             </div>
           </Container>
         </section>

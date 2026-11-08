@@ -1,3 +1,4 @@
+import WebDesignCityLinks from "@/components/shared/WebDesignCityLinks"
 import Footer from "@/components/layout/Footer"
 import Header from "@/components/layout/Header"
 import Container from "@/components/shared/Container"
@@ -72,7 +73,7 @@ export default function LocalSeoView({ content, locale }: { content: LocalSeoCon
             <p className="mt-6 leading-relaxed text-muted-foreground">{copy.reportingDescription}</p>
             <p className="mt-6 leading-relaxed text-muted-foreground">
               {copy.webDesignDescription}{" "}
-              <Link href={hrefForLocale("/blog/web-design-miami", locale)} className="font-semibold text-[#84633b] underline underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b69468]">{copy.webDesignLink}</Link>.
+              <WebDesignCityLinks locale={locale} className="font-semibold text-[#84633b] underline underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b69468]" />.
             </p>
           </Container>
         </section>
