@@ -29,7 +29,16 @@ export const metadata: Metadata = {
   },
 }
 
-const posts = [
+type BlogEntry = {
+  category: string
+  title: string
+  excerpt: string
+  date?: string
+  slug: string
+  linkLabel?: string
+}
+
+const posts: BlogEntry[] = [
   {
     category: "Virtual Assistants",
     title: "5 Tasks You Should Stop Doing Yourself Right Now",
@@ -69,6 +78,23 @@ const posts = [
       "Compare an AI answering service with a human answering service: how calls are handled, billing models, coverage, limitations, and the right fit for your business.",
     date: "November 4, 2026",
     slug: "/blog/ai-receptionist-vs-answering-service",
+  },
+  {
+    category: "Web Design",
+    title: "Web Design in Miami",
+    excerpt:
+      "Explore our team's Sky Travel J&M project, the industries we serve, and how a free consultation leads to a written fixed-scope website quote.",
+    slug: "/blog/web-design-miami",
+    linkLabel: "Explore web design in Miami →",
+  },
+  {
+    category: "Web Design",
+    title: "How Much Does a Website Cost in 2026?",
+    excerpt:
+      "Understand sourced market ranges, what drives a website's cost, and how to compare the scope of a design and build quote.",
+    date: "November 7, 2026",
+    slug: "/blog/how-much-does-a-website-cost",
+    linkLabel: "Read the website cost guide →",
   },
 ]
 
@@ -113,12 +139,12 @@ export default function BlogPage() {
                     {post.excerpt}
                   </p>
                   <div className="mt-5 flex items-center justify-between">
-                    <span className="text-xs text-[#9ca3af]">{post.date}</span>
+                    {post.date && <span className="text-xs text-[#9ca3af]">{post.date}</span>}
                     <Link
                       href={post.slug}
                       className="text-sm text-[#9ca3af] transition-colors hover:text-[#c8a97e]"
                     >
-                      Read More →
+                      {post.linkLabel ?? "Read More →"}
                     </Link>
                   </div>
                 </article>

@@ -25,6 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/services/local-seo`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/blog/how-do-ai-receptionists-work`, lastModified: "2026-11-04T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/ai-receptionist-vs-answering-service`, lastModified: "2026-11-04T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/blog/web-design-miami`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/blog/how-much-does-a-website-cost`, lastModified: "2026-11-07T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
   ]
 
   const spanishEntries: MetadataRoute.Sitemap = routeMap.map((pair) => {
