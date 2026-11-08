@@ -51,15 +51,6 @@ const baseMetadata: Metadata = {
   description: siteDescription,
   applicationName: siteName,
   referrer: "origin-when-cross-origin",
-  keywords: [
-    "Castlestone Technology",
-    "virtual assistants",
-    "AI receptionist",
-    "virtual front desk",
-    "Latin America staffing",
-    "remote staffing",
-    "business support",
-  ],
   authors: [{ name: siteName }],
   creator: siteName,
   publisher: siteName,
@@ -98,7 +89,6 @@ export function metadataFor(locale: Locale): Metadata {
   return {
     ...baseMetadata,
     description,
-    keywords: spanishSiteContent.keywords,
     openGraph: {
       ...baseMetadata.openGraph,
       locale: "es_US",
