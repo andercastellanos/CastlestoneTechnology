@@ -101,7 +101,7 @@ export default function Header({ locale = "en" }: { locale?: Locale }) {
           </div>
 
           <Link
-            href="/pricing"
+            href={localizedHref("/pricing")}
             className="text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]"
           >
             {labels.pricing}
@@ -123,7 +123,7 @@ export default function Header({ locale = "en" }: { locale?: Locale }) {
             {labels.clientLogin}
           </Link>
           <Link
-            href="/book-demo"
+            href={localizedHref("/book-demo")}
             className="inline-flex h-10 items-center justify-center rounded-sm bg-[#c8a97e] px-4 text-sm font-medium text-white transition-colors hover:bg-[#b69468]"
           >
             {labels.consultation}
@@ -201,7 +201,7 @@ export default function Header({ locale = "en" }: { locale?: Locale }) {
             ) : null}
 
             <Link
-              href="/pricing"
+              href={localizedHref("/pricing")}
               onClick={closeMobileMenu}
               className="py-3 text-sm font-medium tracking-wide text-[#222222] transition-colors hover:text-[#c8a97e]"
             >
@@ -230,7 +230,7 @@ export default function Header({ locale = "en" }: { locale?: Locale }) {
                 {labels.clientLogin}
               </Link>
               <Link
-                href="/book-demo"
+                href={localizedHref("/book-demo")}
                 onClick={closeMobileMenu}
                 className="inline-flex h-10 items-center justify-center rounded-sm bg-[#c8a97e] px-3 text-sm font-medium text-white transition-colors hover:bg-[#b69468]"
               >

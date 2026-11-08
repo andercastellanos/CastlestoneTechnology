@@ -35,7 +35,7 @@ export default function LocalSeoView({ content, locale }: { content: LocalSeoCon
               <h1 className="font-heading text-5xl font-bold leading-tight text-foreground sm:text-6xl">{copy.heroHeading}</h1>
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{copy.heroDescription}</p>
               <div className="mt-8 flex flex-wrap justify-center gap-4">
-                <Link href="/book-demo" className={buttonClass}>{copy.primaryCta}</Link>
+                <Link href={hrefForLocale("/book-demo", locale)} className={buttonClass}>{copy.primaryCta}</Link>
                 <Link href="#included" className="inline-flex min-h-11 items-center justify-center px-4 py-3 text-sm font-medium text-foreground underline decoration-[#c8a97e] underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b69468]">{copy.secondaryCta}</Link>
               </div>
             </div>
@@ -99,7 +99,7 @@ export default function LocalSeoView({ content, locale }: { content: LocalSeoCon
               <p className="font-heading mt-6 text-3xl font-bold text-[#84633b] sm:text-4xl">{copy.pricingRate}</p>
               <p className="mt-3 font-medium text-foreground">{copy.pricingMultipleLocations}</p>
               <p className="mt-5 leading-relaxed text-muted-foreground">{copy.pricingDescription}</p>
-              <Link href="/book-demo" className={`${buttonClass} mt-7`}>{copy.pricingCta}</Link>
+              <Link href={hrefForLocale("/book-demo", locale)} className={`${buttonClass} mt-7`}>{copy.pricingCta}</Link>
             </div>
           </Container>
         </section>
@@ -128,7 +128,7 @@ export default function LocalSeoView({ content, locale }: { content: LocalSeoCon
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="font-heading text-4xl font-bold text-white sm:text-5xl">{copy.ctaHeading}</h2>
               <p className="mt-5 leading-relaxed text-gray-300">{copy.ctaDescription}</p>
-              <Link href="/book-demo" className={`${buttonClass} mt-8`}>{copy.primaryCta}</Link>
+              <Link href={hrefForLocale("/book-demo", locale)} className={`${buttonClass} mt-8`}>{copy.primaryCta}</Link>
             </div>
           </Container>
         </section>

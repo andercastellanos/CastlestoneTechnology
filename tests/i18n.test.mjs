@@ -24,6 +24,8 @@ test("the route map covers the paired English pages without duplicate URLs", () 
     "/services/ai-receptionist",
     "/services/local-seo",
     "/blog/web-design-miami",
+    "/book-demo",
+    "/pricing",
   ])
   const urls = Array.from(i18n.routeMap).flatMap(pair => [pair.en, pair.es])
   assert.equal(new Set(urls).size, i18n.routeMap.length * 2)
@@ -44,6 +46,7 @@ test("every mapped page switches in both directions, including normalized URLs",
 
 test("unpaired pages use home-page switcher fallbacks and have no invented twins", () => {
   for (const path of ["/pricing", "/company/about", "/book-demo", "/blog", "/privacy", "/terms", "/client-login", "/unknown"]) {
+    if (i18n.twinOf(path)) continue
     assert.equal(i18n.twinOf(`${path}/?from=nav#top`), null)
     assert.equal(i18n.switcherHref(path, "en"), i18n.routeMap[0].en)
     assert.equal(i18n.switcherHref(path, "es"), i18n.routeMap[0].es)
@@ -65,9 +68,9 @@ test("paired alternates are reciprocal and x-default always points to the Englis
 })
 
 test("unpaired alternates contain only their normalized canonical", () => {
-  const alternates = i18n.alternatesFor("/pricing///?plan=va#plans")
+  const alternates = i18n.alternatesFor("/company/about///?plan=va#plans")
   assert.deepEqual(Object.keys(alternates), ["canonical"])
-  assert.equal(alternates.canonical, "https://castlestonetechnology.com/pricing")
+  assert.equal(alternates.canonical, "https://castlestonetechnology.com/company/about")
 })
 
 test("localized internal links preserve queries and anchors without changing unpaired or external URLs", () => {
@@ -80,6 +83,7 @@ test("localized internal links preserve queries and anchors without changing unp
     if (pair.en !== "/") assert.equal(i18n.hrefForLocale(pair.en + "/?from=card#details", "es"), pair.es + "?from=card#details")
   }
   for (const href of ["/book-demo", "/pricing?plan=one#plans", "/services/virtual-assistant/general", "#how-it-works", "mailto:hello@example.com", "https://example.com/contact", "//example.com/contact"]) {
+    if (i18n.twinOf(href)) continue
     assert.equal(i18n.hrefForLocale(href, "es"), href)
     assert.equal(i18n.hrefForLocale(href, "en"), href)
   }

@@ -37,7 +37,7 @@ export default function WebDesignCityView({ content: copy, locale }: { content: 
               <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-6xl">{copy.heading}</h1>
               <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">{copy.introduction}</p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
-                <Link href="/book-demo" className={buttonClass}>{copy.primaryCta}</Link>
+                <Link href={hrefForLocale("/book-demo", locale)} className={buttonClass}>{copy.primaryCta}</Link>
                 <a href="#featured-project" className={linkClass}>{copy.projectCta}</a>
               </div>
             </div>
@@ -94,7 +94,7 @@ export default function WebDesignCityView({ content: copy, locale }: { content: 
                 {copy.pricing.factors.map((factor) => <li key={factor} className="pl-1 leading-relaxed">{factor}</li>)}
               </ul>
               <p className={paragraphClass}>{copy.pricing.closing}</p>
-              <Link href="/book-demo" className={`${buttonClass} mt-7`}>{copy.primaryCta}</Link>
+              <Link href={hrefForLocale("/book-demo", locale)} className={`${buttonClass} mt-7`}>{copy.primaryCta}</Link>
             </div>
           </Container>
         </section>
@@ -137,7 +137,7 @@ export default function WebDesignCityView({ content: copy, locale }: { content: 
             <div className="mx-auto max-w-3xl text-center">
               <h2 className={headingClass}>{copy.final.heading}</h2>
               <p className={paragraphClass}>{copy.final.description}</p>
-              <Link href="/book-demo" className={`${buttonClass} mt-8`}>{copy.primaryCta}</Link>
+              <Link href={hrefForLocale("/book-demo", locale)} className={`${buttonClass} mt-8`}>{copy.primaryCta}</Link>
               <p className="mt-6"><Link href={hrefForLocale("/contact", locale)} className={linkClass}>{copy.final.contactLabel}</Link></p>
               <aside className="mt-12 border-t border-[#e6dbc9] pt-8">
                 <h3 className="font-heading text-2xl font-bold">{copy.related.heading}</h3>
