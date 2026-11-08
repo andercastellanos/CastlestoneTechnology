@@ -1,3 +1,7 @@
+import RelatedArticles from "@/components/shared/RelatedArticles"
+import { webDesignCities } from "@/lib/page-data/web-design-cities"
+import { blogNavigationContent as en } from "@/content/en/blog-navigation"
+import { blogNavigationContent as es } from "@/content/es/blog-navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { twinOf, type Locale } from "@/lib/i18n"
@@ -39,6 +43,8 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
   const address = formatContactAddress()
   const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
   return (
+    <>
+      <RelatedArticles locale={locale} />
     <footer className="border-t border-[#e6dbc9] bg-white">
       <div className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-10">
         <Link
@@ -76,7 +82,7 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
           </p>
         </section>
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {footerColumns.map((column) => (
             <div key={column.title}>
               <h3 className="text-xs uppercase tracking-[0.14em] text-[#555555]">
@@ -96,6 +102,12 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
               </ul>
             </div>
           ))}
+          <div data-city-footer>
+            <h3 className="text-xs uppercase tracking-[0.14em] text-[#555555]">{locale === "es" ? es.cityFooter : en.cityFooter}</h3>
+            <ul className="mt-4 space-y-3">
+              {webDesignCities.map((city) => <li key={city.path}><Link href={localizedHref(city.path)} className="text-sm text-[#222222] transition-colors hover:text-[#c8a97e]">{locale === "es" && "esCity" in city ? city.esCity : city.city}</Link></li>)}
+            </ul>
+          </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-[#e6dbc9] pt-6 text-sm text-[#555555] sm:flex-row sm:items-center sm:justify-between">
@@ -104,5 +116,6 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
         </div>
       </div>
     </footer>
+    </>
   )
 }
