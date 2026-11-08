@@ -26,6 +26,7 @@ test("the route map covers the paired English pages without duplicate URLs", () 
     "/blog/web-design-miami",
     "/book-demo",
     "/pricing",
+    "/services/online-presence-setup",
   ])
   const urls = Array.from(i18n.routeMap).flatMap(pair => [pair.en, pair.es])
   assert.equal(new Set(urls).size, i18n.routeMap.length * 2)

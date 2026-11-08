@@ -14,6 +14,7 @@ const footerColumns = [
       { label: "SMS & Email Marketing", esLabel: "Marketing por SMS y email", href: "/services/marketing-automation" },
       { label: "AI Receptionist", esLabel: "Recepcionista con IA", href: "/services/ai-receptionist" },
       { label: "Local SEO", esLabel: "SEO local", href: "/services/local-seo" },
+      { label: "Online Presence Setup", esLabel: "Presencia en línea", href: "/services/online-presence-setup" },
     ],
   },
   {

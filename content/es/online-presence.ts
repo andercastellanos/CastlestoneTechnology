@@ -1,0 +1,46 @@
+import type { OnlinePresenceContent } from "@/content/en/online-presence"
+
+export const onlinePresenceContent: OnlinePresenceContent = {
+  path: "/es/servicios/presencia-en-linea",
+  metadata_title: "Presencia en línea para su negocio",
+  metadata_description: "Presencia en línea para su negocio: redes sociales conectadas a su sitio web, presencia en Google y correo con dominio propio. Agende una consulta gratuita.",
+  eyebrow: "El punto de partida de su negocio en internet",
+  heading: "Presencia en línea para su negocio",
+  introduction: "La presencia en línea para su negocio comienza por conectar su sitio web, sus redes sociales, su presencia en Google y su correo empresarial. Si su empresa es nueva o está dando sus primeros pasos en internet, agende una consulta gratuita. Revisamos lo que ya tiene y le presentamos una cotización por escrito para la configuración que necesita.",
+  primaryCta: "Agende una consulta gratuita",
+  setupHeading: "Qué configuramos",
+  setupIntroduction: "Nos enfocamos en los elementos básicos que conectan su negocio con las personas que lo buscan en internet.",
+  setupItems: [
+    { title: "Redes sociales conectadas a su sitio web", description: "Conectamos las cuentas de redes sociales de su negocio con su sitio web para que sus visitantes puedan pasar del sitio a los perfiles de su empresa. Durante la consulta, revisamos sus cuentas actuales y las conexiones que necesita." },
+    { title: "La presencia de su negocio en Google", description: "Ayudamos a que las personas encuentren información clara sobre su negocio en Google y lleguen a su sitio web. Revisamos su situación actual y definimos la configuración en la cotización por escrito. La configuración no garantiza una posición en los resultados ni una cantidad de consultas." },
+    { title: "Correo profesional con su propio dominio", description: "Utilice una dirección de correo empresarial con el dominio de su negocio. Comparta la información de su sitio web, dominio y correo actual durante la consulta para definir lo que hace falta configurar." },
+  ],
+  processHeading: "Cómo trabajamos",
+  processSteps: [
+    { title: "Consulta inicial", description: "Conversamos sobre su negocio y revisamos el sitio web, las cuentas, el dominio y el correo que ya utiliza. Definimos qué elementos de su presencia en línea necesita configurar." },
+    { title: "Cotización por escrito", description: "Usted revisa una cotización basada en lo conversado durante la consulta gratuita. La cotización establece el trabajo antes de comenzar la configuración." },
+    { title: "Configuración", description: "Realizamos la configuración acordada para sus redes sociales y las conexiones con su sitio web, su presencia en Google y su correo empresarial." },
+    { title: "Entrega", description: "Revisamos con usted la configuración realizada y el acceso a las cuentas incluidas en la cotización. Su negocio mantiene el control del dominio y de sus cuentas." },
+  ],
+  ownershipHeading: "Su negocio mantiene el control",
+  ownershipDescription: "Su dominio y las cuentas de su negocio siguen siendo suyos. Durante la consulta, revisamos los accesos existentes y definimos qué incluye la entrega. La cotización por escrito establece la configuración acordada para que usted sepa qué recibirá.",
+  audienceHeading: "Para quién es este servicio",
+  audienceIntroduction: "Este servicio está pensado para pequeños negocios que están comenzando su presencia en internet o que necesitan conectar lo que ya tienen.",
+  audienceItems: [
+    "Negocios nuevos que preparan su sitio web, sus redes sociales y su correo empresarial",
+    "Empresas que ya operan y están dando sus primeros pasos en internet",
+    "Negocios con un sitio web que aún necesitan conectar sus redes sociales, preparar su presencia en Google o usar correo con dominio propio",
+  ],
+  faqHeading: "Preguntas para comenzar",
+  faqItems: [
+    { question: "¿Qué incluye la configuración de mi presencia en línea?", answer: "El servicio incluye cuentas de redes sociales conectadas a su sitio web, apoyo para que su negocio aparezca en Google y correo empresarial con su propio dominio. La consulta gratuita y la cotización por escrito definen la configuración para su negocio." },
+    { question: "¿Cuánto cuesta?", answer: "Comience con una consulta gratuita. Conversamos sobre lo que necesita su negocio y le presentamos una cotización por escrito para la configuración acordada." },
+    { question: "¿Sirve para una empresa que ya está operando?", answer: "Sí. Está dirigido a negocios nuevos y a empresas que están comenzando su presencia en internet. Durante la consulta, revisamos el sitio web, las cuentas, el dominio y el correo que ya tiene." },
+    { question: "¿A quién pertenecen el dominio y las cuentas del negocio?", answer: "Su dominio y las cuentas de su negocio siguen siendo suyos. Revisamos los accesos y definimos la configuración y la entrega en la cotización por escrito." },
+    { question: "¿Qué debo preparar para la consulta?", answer: "Comparta los datos de su negocio y la información de su sitio web, cuentas de redes sociales, dominio y correo actual. Esto nos permite preparar la cotización de la configuración." },
+  ],
+  finalHeading: "Conecte la presencia en línea de su negocio",
+  finalDescription: "Cuéntenos qué tiene hoy y qué necesita configurar. Comience con una consulta gratuita y una cotización por escrito.",
+  nextStepDescription: "Después de la configuración, puede conversar sobre la visibilidad local de su negocio con nuestros",
+  nextStepLabel: "servicios de SEO local",
+}
