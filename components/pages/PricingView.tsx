@@ -1,12 +1,14 @@
 import Link from "next/link"
 import Footer from "@/components/layout/Footer"
 import Header from "@/components/layout/Header"
+import { servicesHubContent as englishServicesHubContent } from "@/content/en/services-hub"
+import { servicesHubContent as spanishServicesHubContent } from "@/content/es/services-hub"
 import type { PricingContent } from "@/content/types/pricing"
 import { resolveContent } from "@/lib/content"
 import { hrefForLocale, type Locale } from "@/lib/i18n"
 import { getPricingPlans, pricingNumbers, type PricingPlan } from "@/lib/page-data/pricing"
 
-function PricingCard({ plan, copy, locale }: { plan: PricingPlan; copy: PricingContent; locale: Locale }) {
+function PricingCard({ plan, copy, locale, inDevelopment = false }: { plan: PricingPlan; copy: PricingContent; locale: Locale; inDevelopment?: boolean }) {
   const cardClasses = plan.popular
     ? "relative rounded-sm border border-[#c8a97e] bg-white p-8"
     : "relative rounded-sm border border-[#e6dbc9] bg-white p-8 transition-colors duration-200 hover:border-[#c8a97e]"
@@ -22,6 +24,11 @@ function PricingCard({ plan, copy, locale }: { plan: PricingPlan; copy: PricingC
       <h3 className="text-2xl text-[#222222] [font-family:var(--font-heading)]">
         {plan.name}
       </h3>
+      {inDevelopment && (
+        <p className="mt-4 inline-block rounded-sm border border-[#c8a97e] bg-[#f8f5ef] px-3 py-1 text-sm font-semibold text-[#80613a]">
+          {(locale === "es" ? spanishServicesHubContent : englishServicesHubContent).developmentLabel}
+        </p>
+      )}
       <p className="mt-2 text-3xl leading-none text-[#c8a97e] [font-family:var(--font-heading)]">
         {plan.price}
       </p>
@@ -68,7 +75,7 @@ export default function PricingView({ content, locale }: { content: PricingConte
           </h2>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {frontDeskPlans.map((plan) => (
-              <PricingCard key={plan.name} plan={plan} copy={copy} locale={locale} />
+              <PricingCard key={plan.name} plan={plan} copy={copy} locale={locale} inDevelopment />
             ))}
           </div>
         </section>
