@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
-import CalendlyEmbed from "@/components/shared/CalendlyEmbed"
+import GoogleBookingEmbed from "@/components/shared/GoogleBookingEmbed"
 
 export const metadata: Metadata = {
   title: "Book a Free Consultation",
@@ -49,7 +49,7 @@ export default function DemoPage() {
         {/* Booking Section */}
         <section className="bg-background py-20">
           <Container>
-            <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+            <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-start">
               {/* Left — What to expect */}
               <div className="rounded-lg border border-[#c8a97e]/30 bg-white p-8 shadow-sm">
                 <h2 className="font-heading text-2xl font-bold mb-6">What to Expect on the Call</h2>
@@ -70,9 +70,9 @@ export default function DemoPage() {
                 </div>
               </div>
 
-              {/* Right — Calendly embed */}
-              <div>
-                <CalendlyEmbed />
+              {/* Right — Appointment booking */}
+              <div className="min-w-0">
+                <GoogleBookingEmbed />
               </div>
             </div>
           </Container>

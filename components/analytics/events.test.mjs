@@ -61,13 +61,21 @@ test("event parameters are allowlisted and use the current path after navigation
   analytics.trackMarketingEvent({ name: "generate_lead", language: "es" })
   analytics.trackMarketingEvent({ name: "book_demo_click", link_text: "Agende una consulta gratis" })
   analytics.trackMarketingEvent({ name: "phone_click", phone: "private" })
-  window.location.pathname = "/book-demo"
-  analytics.trackMarketingEvent({ name: "calendly_scheduled", payload: { invitee: "private" } })
   assert.deepEqual(events, [
     ["event", "generate_lead", { page_path: "/contact", language: "en" }],
     ["event", "generate_lead", { page_path: "/es/contacto", language: "es" }],
     ["event", "book_demo_click", { page_path: "/es/contacto", link_text: "Agende una consulta gratis" }],
     ["event", "phone_click", { page_path: "/es/contacto" }],
-    ["event", "calendly_scheduled", { page_path: "/book-demo" }],
+  ])
+})
+
+test("booking interactions do not become leads or completed bookings", () => {
+  const { analytics, events } = load("G-TESTONLY", "/book-demo")
+  for (const name of ["booking_page_view", "booking_iframe_load", "booking_completed"]) {
+    analytics.trackMarketingEvent({ name })
+  }
+  analytics.trackMarketingEvent({ name: "book_demo_click", link_text: "Book a consultation" })
+  assert.deepEqual(events, [
+    ["event", "book_demo_click", { page_path: "/book-demo", link_text: "Book a consultation" }],
   ])
 })

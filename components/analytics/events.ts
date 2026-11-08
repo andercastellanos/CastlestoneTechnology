@@ -19,11 +19,13 @@ export function analyticsEnabled() {
 type AnalyticsEvent =
   | { name: "generate_lead"; language: Locale }
   | { name: "book_demo_click"; link_text: string }
-  | { name: "phone_click" | "calendly_scheduled" }
+  | { name: "phone_click" }
 
-// Accept only the explicit event fields; never pass form or Calendly payloads.
+// Clicks are interactions only. Leads are emitted by successful contact submissions;
+// embedded booking has no verified completion signal and emits no conversion event.
 export function trackMarketingEvent(event: AnalyticsEvent) {
   if (!analyticsEnabled() || typeof window === "undefined") return
+  if (!["generate_lead", "book_demo_click", "phone_click"].includes(event.name)) return
   const page_path = window.location.pathname
   if (!isMarketingPath(page_path)) return
 

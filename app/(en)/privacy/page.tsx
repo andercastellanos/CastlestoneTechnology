@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         <section className="bg-muted/50 py-12">
           <Container>
             <h1 className="font-heading text-4xl font-bold tracking-tight">Privacy Policy</h1>
-            <p className="mt-2 text-muted-foreground">Last updated: February 2026</p>
+            <p className="mt-2 text-muted-foreground">Last updated: November 7, 2026</p>
           </Container>
         </section>
 
@@ -60,8 +60,22 @@ export default function PrivacyPage() {
 
               <h2 className="font-heading text-xl font-bold mt-10 mb-3">Third-Party Services</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                We use the following third-party services that may process your data: Calendly
+                We use the following third-party services that may process your data: Google Calendar
                 (appointment booking), Google Analytics (site analytics), Resend (email delivery).
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                The appointment calendar on our booking page is provided by Google. When you load
+                or use it, your browser connects to Google, which may use cookies and process
+                booking information under its{" "}
+                <a
+                  href="https://policies.google.com/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-foreground underline underline-offset-4 hover:text-primary"
+                >
+                  Privacy Policy
+                </a>
+                . You can also open the booking page directly on Google Calendar.
               </p>
 
               <h2 className="font-heading text-xl font-bold mt-10 mb-3">Your Rights</h2>

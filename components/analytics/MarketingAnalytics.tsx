@@ -36,22 +36,9 @@ export default function MarketingAnalytics({ gaId }: { gaId: string }) {
       }
     }
 
-    function onMessage(event: MessageEvent) {
-      if (window.location.pathname !== "/book-demo" || event.origin !== "https://calendly.com") return
-      if (!event.data || event.data.event !== "calendly.event_scheduled") return
-
-      // Verify the sender is the actual Calendly frame; ignore all booking data.
-      const frames = document.querySelectorAll<HTMLIFrameElement>(".calendly-inline-widget iframe")
-      if (Array.from(frames).some((frame) => frame.contentWindow === event.source && new URL(frame.src).origin === event.origin)) {
-        trackMarketingEvent({ name: "calendly_scheduled" })
-      }
-    }
-
     document.addEventListener("click", onClick, true)
-    window.addEventListener("message", onMessage)
     return () => {
       document.removeEventListener("click", onClick, true)
-      window.removeEventListener("message", onMessage)
     }
   }, [enabled])
 
