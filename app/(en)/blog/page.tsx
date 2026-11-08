@@ -155,6 +155,13 @@ const posts: BlogEntry[] = [
     slug: "/blog/is-seo-worth-it-for-small-business",
     linkLabel: "Read the SEO value guide →",
   },
+  {
+    category: "Web Design",
+    title: "Web Design in Orlando",
+    excerpt: "Plan a website for your Orlando tourism, hospitality or home-services business. Explore a Miami client project and our written fixed-scope quote process.",
+    slug: "/blog/web-design-orlando",
+    linkLabel: "Explore web design in Orlando →",
+  },
 ]
 
 export default function BlogPage() {
