@@ -123,6 +123,38 @@ const posts: BlogEntry[] = [
     slug: "/blog/how-to-make-your-website-show-up-on-google",
     linkLabel: "Read the Google visibility guide →",
   },
+  {
+    category: "Email Marketing",
+    title: "Email Marketing for Small Business",
+    excerpt: "Plan consent-based list building, welcome emails, newsletters, automated follow-ups, sending frequency, and reports that connect email activity with sales.",
+    date: "November 8, 2026",
+    slug: "/blog/email-marketing-for-small-business",
+    linkLabel: "Read the email marketing guide →",
+  },
+  {
+    category: "AI Search",
+    title: "GEO vs. SEO: Generative Engine Optimization for ChatGPT",
+    excerpt: "Understand GEO and SEO, what a local business can improve for AI search, and why accurate information and useful pages matter more than visibility promises.",
+    date: "November 8, 2026",
+    slug: "/blog/geo-vs-seo",
+    linkLabel: "Read the GEO and SEO guide →",
+  },
+  {
+    category: "Web Design",
+    title: "Can AI Build a Website?",
+    excerpt: "Learn where AI website builders help, what to test before launch, and how custom features, integrations, content and ownership affect the decision.",
+    date: "November 8, 2026",
+    slug: "/blog/can-ai-build-a-website",
+    linkLabel: "Read the AI website guide →",
+  },
+  {
+    category: "Local SEO",
+    title: "Is SEO Worth It for Small Business?",
+    excerpt: "Decide whether SEO fits your business by comparing customer demand, timelines, local versus national reach, measurement, and the capacity to handle inquiries.",
+    date: "November 8, 2026",
+    slug: "/blog/is-seo-worth-it-for-small-business",
+    linkLabel: "Read the SEO value guide →",
+  },
 ]
 
 export default function BlogPage() {

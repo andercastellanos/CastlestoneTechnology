@@ -30,6 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog/sms-marketing-platforms-vs-done-for-you`, lastModified: "2026-11-07T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/wordpress-vs-wix-vs-custom-website`, lastModified: "2026-11-07T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/how-to-make-your-website-show-up-on-google`, lastModified: "2026-11-07T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/blog/email-marketing-for-small-business`, lastModified: "2026-11-08T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/blog/geo-vs-seo`, lastModified: "2026-11-08T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/blog/can-ai-build-a-website`, lastModified: "2026-11-08T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/blog/is-seo-worth-it-for-small-business`, lastModified: "2026-11-08T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
   ]
 
   const spanishEntries: MetadataRoute.Sitemap = routeMap.map((pair) => {
