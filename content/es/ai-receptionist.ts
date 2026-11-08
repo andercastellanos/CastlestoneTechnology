@@ -43,4 +43,6 @@ export const aiReceptionistContent: AiReceptionistContent = {
   faqFrontDeskAnswer: "No. El recepcionista virtual con IA contesta llamadas mediante IA. Virtual Front Desk es una propuesta distinta: una persona que recibe a sus visitantes por video. Aún está en desarrollo.",
   finalHeading: "Conversemos sobre las llamadas de su negocio",
   finalDescription: "Comparta ejemplos de llamadas, su herramienta de reservas y sus preguntas. La demostración le permitirá confirmar las funciones, el precio y los detalles que necesita para decidir.",
+  webDesignDescription: "Para el sitio web de su negocio, conozca nuestro servicio de",
+  webDesignLink: "diseño web en Miami",
 }

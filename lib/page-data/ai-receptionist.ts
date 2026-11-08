@@ -41,6 +41,8 @@ export type AiReceptionistContent = {
   faqFrontDeskAnswer: string
   finalHeading: string
   finalDescription: string
+  webDesignDescription: string
+  webDesignLink: string
 }
 
 export const aiReceptionistStudy = {

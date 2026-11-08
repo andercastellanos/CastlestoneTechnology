@@ -46,4 +46,6 @@ export const localSeoContent: LocalSeoContent = {
   faqPricingAnswer: "Desde ${0} al mes por ubicación. Varias ubicaciones: cotización a medida. Reunámonos para conversar sobre el trabajo que necesita su negocio.",
   ctaHeading: "Conversemos sobre la visibilidad de su negocio",
   ctaDescription: "Cuéntenos qué necesita de las búsquedas locales y las búsquedas con IA. Comencemos con una reunión para conocer su negocio.",
+  webDesignDescription: "Si su estrategia de búsqueda local también requiere un sitio nuevo, conozca nuestro servicio de",
+  webDesignLink: "diseño web en Miami",
 }

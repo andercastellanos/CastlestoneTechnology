@@ -46,4 +46,6 @@ export const localSeoContent: LocalSeoContent = {
   faqPricingAnswer: "From ${0}/month per location. Multiple locations: custom quote. Meet with us to discuss the work your business needs.",
   ctaHeading: "Let's talk about your local visibility",
   ctaDescription: "Tell us what you need from local search and AI search. Start with a meeting to discuss your business.",
+  webDesignDescription: "If your local search plans also call for a new website, explore our",
+  webDesignLink: "web design in Miami",
 }

@@ -89,6 +89,10 @@ export default function AiReceptionistView({ content, locale }: { content: AiRec
             <div className="mx-auto max-w-3xl">
               <h2 className={headingClass}>{copy.bookingHeading}</h2>
               <p className={paragraphClass}>{copy.bookingDescription}</p>
+              <p className={paragraphClass}>
+                {copy.webDesignDescription}{" "}
+                <Link href={hrefForLocale("/blog/web-design-miami", locale)} className={linkClass}>{copy.webDesignLink}</Link>.
+              </p>
             </div>
           </Container>
         </section>

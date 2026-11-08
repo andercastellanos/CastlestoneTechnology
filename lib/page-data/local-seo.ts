@@ -13,7 +13,8 @@ export type LocalSeoContent = Record<
   | "pricingCta" | "faqHeading" | "faqWorthQuestion" | "faqWorthAnswer"
   | "faqAiQuestion" | "faqAiAnswer" | "faqIncludedQuestion" | "faqIncludedAnswer"
   | "faqReportingQuestion" | "faqReportingAnswer" | "faqPricingQuestion" | "faqPricingAnswer"
-  | "ctaHeading" | "ctaDescription",
+  | "ctaHeading" | "ctaDescription"
+  | "webDesignDescription" | "webDesignLink",
   string
 >
 

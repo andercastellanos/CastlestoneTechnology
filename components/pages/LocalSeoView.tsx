@@ -12,6 +12,7 @@ import {
 } from "@/lib/page-data/local-seo"
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
+import { hrefForLocale } from "@/lib/i18n"
 
 const buttonClass = "inline-flex min-h-11 items-center justify-center rounded-sm bg-[#c8a97e] px-6 py-3 text-center text-sm font-medium text-[#222222] transition-colors hover:bg-[#b69468] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b69468]"
 
@@ -69,6 +70,10 @@ export default function LocalSeoView({ content, locale }: { content: LocalSeoCon
               ))}
             </div>
             <p className="mt-6 leading-relaxed text-muted-foreground">{copy.reportingDescription}</p>
+            <p className="mt-6 leading-relaxed text-muted-foreground">
+              {copy.webDesignDescription}{" "}
+              <Link href={hrefForLocale("/blog/web-design-miami", locale)} className="font-semibold text-[#84633b] underline underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b69468]">{copy.webDesignLink}</Link>.
+            </p>
           </Container>
         </section>
 

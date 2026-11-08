@@ -43,4 +43,6 @@ export const aiReceptionistContent: AiReceptionistContent = {
   faqFrontDeskAnswer: "No. An AI receptionist answers calls using AI. Virtual Front Desk is a separate concept for a live person greeting visitors on video; it is still in development.",
   finalHeading: "Talk through your call-answering needs",
   finalDescription: "Bring your call examples, booking tool and questions. Use the demo to confirm capabilities, pricing and the details that matter to your business.",
+  webDesignDescription: "For the website side of your business, explore our",
+  webDesignLink: "web design in Miami",
 }
