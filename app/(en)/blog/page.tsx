@@ -96,6 +96,33 @@ const posts: BlogEntry[] = [
     slug: "/blog/how-much-does-a-website-cost",
     linkLabel: "Read the website cost guide →",
   },
+  {
+    category: "SMS Marketing",
+    title: "SMS Marketing Platforms vs. Done-for-You SMS",
+    excerpt:
+      "Compare SMS marketing platforms with a managed service: setup, consent, opt-outs, sending hours, integrations, reporting, and the time your team needs.",
+    date: "November 7, 2026",
+    slug: "/blog/sms-marketing-platforms-vs-done-for-you",
+    linkLabel: "Read the SMS comparison →",
+  },
+  {
+    category: "Web Design",
+    title: "WordPress vs Wix vs. a Custom Website",
+    excerpt:
+      "Compare WordPress, Wix, and a custom website on control, ease of use, maintenance, speed, SEO, ownership, and moving your business site later.",
+    date: "November 7, 2026",
+    slug: "/blog/wordpress-vs-wix-vs-custom-website",
+    linkLabel: "Read the website platform comparison →",
+  },
+  {
+    category: "Local SEO",
+    title: "How to Make Your Website Show Up on Google",
+    excerpt:
+      "A practical guide to Search Console, sitemaps, indexing requests, page titles, business details, mobile usability, useful content, and relevant links.",
+    date: "November 7, 2026",
+    slug: "/blog/how-to-make-your-website-show-up-on-google",
+    linkLabel: "Read the Google visibility guide →",
+  },
 ]
 
 export default function BlogPage() {
