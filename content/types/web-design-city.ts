@@ -34,6 +34,7 @@ export type WebDesignCityContent = {
   }
   process: {
     heading: string
+    introduction: string
     steps: readonly { title: string; description: string }[]
   }
   faq: {

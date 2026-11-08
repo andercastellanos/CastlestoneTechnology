@@ -116,6 +116,7 @@ export default function WebDesignCityView({ content: copy, locale }: { content: 
         <section className="border-y border-[#e6dbc9] bg-[#f8f5ef] py-16 sm:py-20">
           <Container>
             <h2 className={headingClass}>{copy.process.heading}</h2>
+            <p className={`${paragraphClass} max-w-3xl`}>{copy.process.introduction}</p>
             <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {copy.process.steps.map((step, index) => (
                 <li key={step.title} className="border-t border-[#c8a97e] pt-6">
