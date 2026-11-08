@@ -5,7 +5,7 @@ import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 import { SITE_CONFIG, SOCIAL_IMAGES } from "@/lib/constants"
 
-const TITLE = "How to Make Your Website Show Up on Google"
+const TITLE = "How to Make My Website Show Up on Google"
 const DESCRIPTION = "A practical guide to Search Console, sitemaps, indexing requests, page titles, business details, mobile usability, useful content, and relevant links."
 const CANONICAL = "/blog/how-to-make-your-website-show-up-on-google"
 const PUBLISHED = "2026-11-07T08:00:00Z"

@@ -116,7 +116,7 @@ const posts: BlogEntry[] = [
   },
   {
     category: "Local SEO",
-    title: "How to Make Your Website Show Up on Google",
+    title: "How to Make My Website Show Up on Google",
     excerpt:
       "A practical guide to Search Console, sitemaps, indexing requests, page titles, business details, mobile usability, useful content, and relevant links.",
     date: "November 7, 2026",
