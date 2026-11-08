@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description,
   alternates: alternatesFor("/services/marketing-automation"),
   openGraph: {
+    locale: "en_US",
     title: copy.openGraphTitle,
     description,
     url: "/services/marketing-automation",

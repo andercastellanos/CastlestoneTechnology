@@ -19,6 +19,7 @@ const metadata: Metadata = {
   description,
   alternates: alternatesFor("/"),
   openGraph: {
+    locale: "en_US",
     type: "website",
     title,
     description,

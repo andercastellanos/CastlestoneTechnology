@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   ],
   alternates: alternatesFor("/services/virtual-assistant"),
   openGraph: {
+    locale: "en_US",
     title: copy.metadata_openGraph_title,
     description: copy.metadata_openGraph_description,
     url: "https://castlestonetechnology.com/services/virtual-assistant",

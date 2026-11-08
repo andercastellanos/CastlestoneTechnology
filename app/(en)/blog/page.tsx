@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   alternates: { canonical: "/blog" },
   openGraph: {
+    locale: "en_US",
     type: "website",
     title: "Blog & Resources | Castlestone Technology",
     description:
