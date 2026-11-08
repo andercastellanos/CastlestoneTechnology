@@ -12,19 +12,24 @@ export function breadcrumbFor(pathname: string) {
   const city = webDesignCities.find((entry) => entry.path === path || hrefForLocale(entry.path, "es") === path)
   const servicePath = routeMap.find((pair) => pair.es === path)?.en ?? path
   const serviceName = copy.serviceTitles[servicePath]
-  if (!post && !city && !serviceName) return null
+  const hubPath = locale === "es" ? "/es/servicios" : "/services"
+  const hub = path === hubPath
+  if (!post && !city && !serviceName && !hub) return null
 
   const canonical = alternatesFor(path).canonical
   const home = alternatesFor(locale === "es" ? "/es" : "/").canonical
   const trail = [{ name: copy.home, item: home }]
   let title: string
-  if (post) {
+  if (hub) {
+    title = copy.services
+  } else if (post) {
     trail.push({ name: copy.blog, item: alternatesFor(locale === "es" ? "/es/blog" : "/blog").canonical })
     title = post.title
   } else if (city) {
     const name = locale === "es" && "esCity" in city ? city.esCity : city.city
     title = `${copy.cityPrefix} ${name}`
   } else {
+    trail.push({ name: copy.services, item: alternatesFor(hubPath).canonical })
     title = serviceName
   }
   trail.push({ name: title, item: canonical })

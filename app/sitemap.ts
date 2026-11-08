@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog/web-design-orlando`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/blog/web-design-fort-lauderdale`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/blog/web-design-palm-beach`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/services`, changeFrequency: "monthly", priority: 0.9 },
   ]
 
   const spanishEntries: MetadataRoute.Sitemap = routeMap.map((pair) => {

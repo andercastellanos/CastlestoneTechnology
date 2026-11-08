@@ -28,8 +28,10 @@ test("breadcrumb trails use the correct hierarchy, locale and normalized canonic
     ["/es/blog/cuanto-cuesta-una-pagina-web", ["Inicio", "Blog"]],
     ["/blog/web-design-miami", ["Home"]],
     ["/es/blog/diseno-web-palm-beach", ["Inicio"]],
-    ["/services/local-seo", ["Home"]],
-    ["/es/servicios/seo-local", ["Inicio"]],
+    ["/services", ["Home"]],
+    ["/es/servicios", ["Inicio"]],
+    ["/services/local-seo", ["Home", "Services"]],
+    ["/es/servicios/seo-local", ["Inicio", "Servicios"]],
   ]) {
     const data = breadcrumbFor(path + "/?campaign=one#details")
     const items = Array.from(data.itemListElement)
@@ -40,8 +42,8 @@ test("breadcrumb trails use the correct hierarchy, locale and normalized canonic
   }
 })
 
-test("non-target pages receive no breadcrumb and service trails have two canonical levels", () => {
+test("non-target pages receive no breadcrumb and service trails use canonical service hubs", () => {
   for (const path of ["/", "/es", "/blog", "/es/blog", "/book-demo", "/pricing", "/privacy", "/unknown"]) assert.equal(breadcrumbFor(path), null)
-  assert.equal(breadcrumbFor("/services/ai-receptionist").itemListElement.length, 2)
-  assert.equal(breadcrumbFor("/es/servicios/recepcionista-virtual-ia").itemListElement.length, 2)
+  assert.equal(breadcrumbFor("/services/ai-receptionist").itemListElement.length, 3)
+  assert.equal(breadcrumbFor("/es/servicios/recepcionista-virtual-ia").itemListElement.length, 3)
 })

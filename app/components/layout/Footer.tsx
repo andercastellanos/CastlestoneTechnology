@@ -88,7 +88,7 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
           {footerColumns.map((column) => (
             <div key={column.title}>
               <h3 className="text-xs uppercase tracking-[0.14em] text-[#555555]">
-                {locale === "es" ? column.esTitle : column.title}
+                {column.title === "Services" ? <Link href={localizedHref("/services")} className="transition-colors hover:text-[#c8a97e]">{locale === "es" ? column.esTitle : column.title}</Link> : (locale === "es" ? column.esTitle : column.title)}
               </h3>
               <ul className="mt-4 space-y-3">
                 {column.links.map((link) => (
