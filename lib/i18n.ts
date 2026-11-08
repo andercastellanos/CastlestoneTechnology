@@ -16,6 +16,8 @@ export const routeMap = [
   { en: "/pricing", es: "/es/precios" },
   { en: "/services/online-presence-setup", es: "/es/servicios/presencia-en-linea" },
   { en: "/blog/web-design-orlando", es: "/es/blog/diseno-web-orlando" },
+  { en: "/blog/web-design-fort-lauderdale", es: "/es/blog/diseno-web-fort-lauderdale" },
+  { en: "/blog/web-design-palm-beach", es: "/es/blog/diseno-web-palm-beach" },
 ] as const satisfies readonly Record<Locale, string>[]
 
 function normalizePath(path: string): string {

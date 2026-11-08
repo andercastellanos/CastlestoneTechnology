@@ -2,6 +2,8 @@ export type WebDesignCityContent = {
   path: string
   city: string
   region: string
+  areasServed?: readonly { city: string; region: string }[]
+  citySections?: readonly { heading: string; description: string }[]
   metadata_title: string
   metadata_description: string
   eyebrow: string

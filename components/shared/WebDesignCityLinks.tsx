@@ -16,7 +16,7 @@ export default function WebDesignCityLinks({ locale, className, excludePath }: {
       {citiesExcept(locale, excludePath).map((city, index) => (
         <Fragment key={city.path}>
           {index > 0 ? ", " : null}
-          <Link href={hrefForLocale(city.path, locale)} className={className}>{copy.linkTemplate.replace("{city}", city.city)}</Link>
+          <Link href={hrefForLocale(city.path, locale)} className={className}>{copy.linkTemplate.replace("{city}", (locale === "es" && "esCity" in city ? city.esCity : city.city))}</Link>
         </Fragment>
       ))}
     </>

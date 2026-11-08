@@ -163,6 +163,20 @@ const posts: BlogEntry[] = [
     slug: "/blog/web-design-orlando",
     linkLabel: "Explore web design in Orlando →",
   },
+  {
+    category: "Web Design",
+    title: "Web Design in Fort Lauderdale",
+    excerpt: "Web design in Fort Lauderdale for marine businesses, home services and real estate. Miami-based agency, free consultation and written fixed-scope quote.",
+    slug: "/blog/web-design-fort-lauderdale",
+    linkLabel: "Explore web design in fort lauderdale →",
+  },
+  {
+    category: "Web Design",
+    title: "Web Design in West Palm Beach & Boca Raton",
+    excerpt: "Web design in West Palm Beach & Boca Raton for medical and aesthetic practices and wealth management. Free consultation and written fixed-scope quote.",
+    slug: "/blog/web-design-palm-beach",
+    linkLabel: "Explore web design in west palm beach & boca raton →",
+  },
 ]
 
 export default function BlogPage() {

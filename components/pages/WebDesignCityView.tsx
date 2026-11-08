@@ -22,7 +22,9 @@ export default function WebDesignCityView({ content: copy, locale }: { content: 
     description: copy.metadata_description,
     url: alternatesFor(copy.path).canonical,
     provider: { "@id": SITE_CONFIG.organizationId },
-    areaServed: { "@type": "City", name: `${copy.city}, ${copy.region}` },
+    areaServed: copy.areasServed
+      ? copy.areasServed.map((area) => ({ "@type": "City", name: `${area.city}, ${area.region}` }))
+      : { "@type": "City", name: `${copy.city}, ${copy.region}` },
   }
 
   return (
@@ -70,11 +72,22 @@ export default function WebDesignCityView({ content: copy, locale }: { content: 
           </Container>
         </section>
 
+        {copy.citySections?.map((city) => (
+          <section key={city.heading} className="border-t border-[#e6dbc9] py-16 sm:py-20">
+            <Container>
+              <div className="mx-auto max-w-3xl">
+                <h2 className={headingClass}>{city.heading}</h2>
+                <p className={paragraphClass}>{city.description}</p>
+              </div>
+            </Container>
+          </section>
+        ))}
+
         <section className="border-y border-[#e6dbc9] bg-[#f8f5ef] py-16 sm:py-20">
           <Container>
             <h2 className={headingClass}>{copy.industries.heading}</h2>
             <p className={`${paragraphClass} max-w-3xl`}>{copy.industries.introduction}</p>
-            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <div className={`mt-10 grid gap-6 ${copy.industries.items.length === 2 ? "lg:grid-cols-2" : "lg:grid-cols-3"}`}>
               {copy.industries.items.map((industry) => (
                 <article key={industry.title} className="rounded-lg border border-[#e6dbc9] bg-white p-6 sm:p-8">
                   <h3 className="font-heading text-2xl font-bold">{industry.title}</h3>
