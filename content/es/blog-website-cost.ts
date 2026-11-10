@@ -58,7 +58,7 @@ export const blogPostContent: SpanishBlogPostContent = {
       "heading": "Cómo prepara Castlestone una cotización",
       "paragraphs": [
         "En Castlestone comenzamos con una consulta gratuita y una cotización por escrito con alcance fijo antes de iniciar el trabajo. Revisamos las páginas, las funciones, las conexiones con otras herramientas, el contenido y el plazo. El proceso continúa con diseño, revisiones, desarrollo y publicación. La consulta sirve para definir el trabajo que su negocio necesita; las cifras externas de este artículo son referencias de mercado y no precios de Castlestone.",
-        "Puede revisar Sky Travel J&M, un cliente en Brickell, Miami, cuyo sitio diseñó y desarrolló nuestro equipo. El ejemplo permite conversar sobre páginas de destinos y viajes, filtros por año y opciones de contacto. No significa que su proyecto tendrá el mismo alcance. Prepare sus propias necesidades y compártalas durante la consulta. Una buena decisión empieza por entender qué recibirá, qué deberá aportar su negocio y cómo se revisará el resultado antes de publicarlo."
+        "Prepare sus propias necesidades y compártalas durante la consulta. Una buena decisión empieza por entender qué recibirá, qué deberá aportar su negocio y cómo se revisará el resultado antes de publicarlo."
       ]
     }
   ],

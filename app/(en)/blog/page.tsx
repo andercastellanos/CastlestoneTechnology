@@ -85,7 +85,7 @@ const posts: BlogEntry[] = [
     category: "Web Design",
     title: "Web Design in Miami",
     excerpt:
-      "Explore our team's Sky Travel J&M project, the industries we serve, and how a free consultation leads to a written fixed-scope website quote.",
+      "The industries we serve in Miami, what shapes a website quote, and how a free consultation leads to a written fixed-scope quote.",
     slug: "/blog/web-design-miami",
     linkLabel: "Explore web design in Miami →",
   },

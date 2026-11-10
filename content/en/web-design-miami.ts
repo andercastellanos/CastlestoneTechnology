@@ -1,6 +1,4 @@
 import type { WebDesignCityContent } from "@/content/types/web-design-city"
-import { skyTravelProject } from "@/lib/page-data/projects"
-import { skyTravelCopy } from "@/content/en/projects"
 
 export const webDesignMiamiContent: WebDesignCityContent = {
   path: "/blog/web-design-miami",
@@ -10,25 +8,8 @@ export const webDesignMiamiContent: WebDesignCityContent = {
   metadata_description: "Web design in Miami from a Miami-based agency serving U.S. businesses. Projects scoped in Miami and built by our nearshore engineering team.",
   eyebrow: "Websites for Miami businesses",
   heading: "Web Design in Miami",
-  introduction: "Web design in Miami starts with how your business serves visitors and local customers: trip details for a Brickell travel agency, menus for a restaurant, or a clear inquiry path for a professional service. Castlestone is a Miami-based agency working with businesses across the U.S. Projects are scoped in Miami and built by our nearshore engineering team.",
+  introduction: "Web design in Miami starts with how your business serves visitors and local customers: trip details for a travel business, menus for a restaurant, or a clear inquiry path for a professional service. Castlestone is a Miami-based agency working with businesses across the U.S. Projects are scoped in Miami and built by our nearshore engineering team.",
   primaryCta: "Book a free consultation",
-  projectCta: "Explore a project from our team",
-  project: {
-    url: skyTravelProject.url,
-    eyebrow: "A project from our team",
-    heading: skyTravelProject.name,
-    description: skyTravelCopy.description,
-    featuresHeading: "Explore the website",
-    features: [
-      "Destination and trip pages",
-      "Departures filtered by year",
-      "A testimonials page",
-      "A blog",
-      "WhatsApp contact",
-      "A layout that adapts to mobile screens",
-    ],
-    linkLabel: "Explore the Sky Travel J&M website",
-  },
   industries: {
     heading: "Websites for the businesses Miami serves",
     introduction: "We work with travel and hospitality, restaurants, and professional services. The starting point is your business, the information your visitors need, and the next step you want them to take.",

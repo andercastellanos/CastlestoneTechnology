@@ -1,6 +1,6 @@
 import { OtherWebDesignCities } from "@/components/shared/WebDesignCityLinks"
 import Link from "next/link"
-import { ArrowUpRight, Check, ChevronDown } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
@@ -41,32 +41,6 @@ export default function WebDesignCityView({ content: copy, locale }: { content: 
               <p className="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground">{copy.introduction}</p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
                 <Link href={hrefForLocale("/book-demo", locale)} className={buttonClass}>{copy.primaryCta}</Link>
-                <a href="#featured-project" className={linkClass}>{copy.projectCta}</a>
-              </div>
-            </div>
-          </Container>
-        </section>
-
-        <section id="featured-project" className="scroll-mt-24 py-16 sm:py-20">
-          <Container>
-            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-              <div>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-[#80613a]">{copy.project.eyebrow}</p>
-                <h2 className={headingClass}>{copy.project.heading}</h2>
-                <p className={paragraphClass}>{copy.project.description}</p>
-                <a href={copy.project.url} target="_blank" rel="noopener noreferrer" className={`${linkClass} mt-6 inline-flex items-center gap-2`}>
-                  {copy.project.linkLabel}<ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" />
-                </a>
-              </div>
-              <div className="rounded-xl border border-[#e6dbc9] bg-[#f8f5ef] p-6 sm:p-8">
-                <h3 className="font-heading text-2xl font-bold">{copy.project.featuresHeading}</h3>
-                <ul className="mt-6 space-y-4">
-                  {copy.project.features.map((feature) => (
-                    <li key={feature} className="flex gap-3 leading-relaxed text-muted-foreground">
-                      <Check className="mt-1 h-5 w-5 shrink-0 text-[#80613a]" aria-hidden="true" />{feature}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
           </Container>

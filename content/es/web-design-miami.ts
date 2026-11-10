@@ -1,6 +1,4 @@
 import type { WebDesignCityContent } from "@/content/types/web-design-city"
-import { skyTravelProject } from "@/lib/page-data/projects"
-import { skyTravelCopy } from "@/content/es/projects"
 
 export const webDesignMiamiContent: WebDesignCityContent = {
   path: "/es/blog/diseno-web-miami",
@@ -10,25 +8,8 @@ export const webDesignMiamiContent: WebDesignCityContent = {
   metadata_description: "Diseño web en Miami para negocios de todo EE. UU. Definimos los proyectos en Miami y los desarrolla nuestro equipo de ingeniería en Latinoamérica.",
   eyebrow: "Sitios web para negocios de Miami",
   heading: "Diseño web en Miami",
-  introduction: "El diseño web en Miami parte de cómo su negocio atiende a visitantes y clientes locales: los detalles de un viaje para una agencia de Brickell, el menú de un restaurante o una forma clara de consultar por un servicio profesional. Castlestone es una agencia con sede en Miami que trabaja con negocios de todo Estados Unidos. Definimos los proyectos en Miami y los desarrolla nuestro equipo de ingeniería en Latinoamérica.",
+  introduction: "El diseño web en Miami parte de cómo su negocio atiende a visitantes y clientes locales: los detalles de un viaje para una agencia de viajes, el menú de un restaurante o una forma clara de consultar por un servicio profesional. Castlestone es una agencia con sede en Miami que trabaja con negocios de todo Estados Unidos. Definimos los proyectos en Miami y los desarrolla nuestro equipo de ingeniería en Latinoamérica.",
   primaryCta: "Agende una consulta gratuita",
-  projectCta: "Conozca un proyecto de nuestro equipo",
-  project: {
-    url: skyTravelProject.url,
-    eyebrow: "Un proyecto de nuestro equipo",
-    heading: skyTravelProject.name,
-    description: skyTravelCopy.description,
-    featuresHeading: "Conozca el sitio web",
-    features: [
-      "Páginas de destinos y viajes",
-      "Salidas filtradas por año",
-      "Una página de testimonios",
-      "Un blog",
-      "Contacto por WhatsApp",
-      "Un diseño que se adapta a las pantallas de los teléfonos",
-    ],
-    linkLabel: "Visite el sitio web de Sky Travel J&M",
-  },
   industries: {
     heading: "Sitios web para los negocios de Miami",
     introduction: "Trabajamos con negocios de turismo y hospitalidad, restaurantes y servicios profesionales. Partimos de su negocio, de la información que buscan sus visitantes y del siguiente paso que usted quiere facilitarles.",

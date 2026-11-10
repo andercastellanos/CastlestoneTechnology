@@ -10,16 +10,6 @@ export type WebDesignCityContent = {
   heading: string
   introduction: string
   primaryCta: string
-  projectCta: string
-  project: {
-    url: string
-    eyebrow: string
-    heading: string
-    description: string
-    featuresHeading: string
-    features: readonly string[]
-    linkLabel: string
-  }
   industries: {
     heading: string
     introduction: string
