@@ -1,6 +1,6 @@
 export const blogNavigationContent = {
   related: "Related articles",
-  cityFooter: "Web design by city",
+  cityHeading: "Web design by city",
   home: "Home",
   blog: "Blog",
   services: "Services",

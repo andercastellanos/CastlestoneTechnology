@@ -5,6 +5,9 @@ import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 import { blogContent as copy, spanishBlogEntries } from "@/content/es/blog"
 import { spanishPageMetadata } from "@/lib/spanish-metadata"
+import { blogNavigationContent } from "@/content/es/blog-navigation"
+import { webDesignCities } from "@/lib/page-data/web-design-cities"
+import { hrefForLocale } from "@/lib/i18n"
 
 export function generateMetadata(_props: unknown, parent: ResolvingMetadata) {
   return spanishPageMetadata({ path: copy.path, title: copy.title, description: copy.description }, parent)
@@ -27,6 +30,22 @@ export default function SpanishBlogPage() {
             <Link href={post.path} className="mt-5 inline-block text-sm font-medium text-[#80613a] underline underline-offset-4">{post.kind === "city" ? copy.cityLabel : copy.readLabel}</Link>
           </article>)}
         </div></Container></section>
+        <section aria-labelledby="web-design-cities-heading" className="pb-20">
+          <Container>
+            <h2 id="web-design-cities-heading" className="font-heading text-3xl font-bold tracking-tight text-[#222222]">
+              {blogNavigationContent.cityHeading}
+            </h2>
+            <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {webDesignCities.map((city) => (
+                <li key={city.path}>
+                  <Link href={hrefForLocale(city.path, "es")} className="font-heading block h-full rounded-sm border border-[#e6dbc9] bg-white p-6 text-lg font-bold text-[#80613a] transition-colors hover:border-[#c8a97e] hover:text-[#c8a97e]">
+                    {"esCity" in city ? city.esCity : city.city}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Container>
+        </section>
       </main>
       <Footer locale="es" />
     </>

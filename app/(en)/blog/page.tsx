@@ -5,6 +5,8 @@ import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 import { SOCIAL_IMAGES } from "@/lib/constants"
+import { blogNavigationContent } from "@/content/en/blog-navigation"
+import { webDesignCities } from "@/lib/page-data/web-design-cities"
 
 export const metadata: Metadata = {
   title: "Blog & Resources",
@@ -232,6 +234,22 @@ export default function BlogPage() {
                 </article>
               ))}
             </div>
+          </Container>
+        </section>
+        <section aria-labelledby="web-design-cities-heading" className="pb-20">
+          <Container>
+            <h2 id="web-design-cities-heading" className="font-heading text-3xl font-bold tracking-tight text-[#222222]">
+              {blogNavigationContent.cityHeading}
+            </h2>
+            <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {webDesignCities.map((city) => (
+                <li key={city.path}>
+                  <Link href={city.path} className="font-heading block h-full rounded-lg border border-[#e6dbc9] bg-white p-6 text-lg font-bold text-[#80613a] shadow-sm transition-colors hover:border-[#c8a97e] hover:text-[#c8a97e]">
+                    {city.city}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </Container>
         </section>
       </main>
