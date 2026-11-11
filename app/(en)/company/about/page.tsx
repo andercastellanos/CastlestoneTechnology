@@ -1,182 +1,82 @@
 import type { Metadata } from "next"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
-import Container from "@/components/shared/Container"
-import Button from "@/components/shared/Button"
-import { SITE_CONFIG } from "@/lib/constants"
-import Link from "next/link"
+import AboutView from "@/components/pages/AboutView"
+import { aboutContent as copy } from "@/content/en/about"
+import { SITE_CONFIG, SOCIAL_IMAGES } from "@/lib/constants"
+import { alternatesFor } from "@/lib/i18n"
+
+const canonical = new URL(copy.path, SITE_CONFIG.url).href
 
 export const metadata: Metadata = {
-  title: `About Our ${SITE_CONFIG.contact.address.city} Team`,
-  description:
-    `Learn how Castlestone Technology connects US businesses with elite talent from Latin America. Founded in ${SITE_CONFIG.contact.address.city}, ${SITE_CONFIG.contact.address.region} in 2023.`,
-  alternates: {
-    canonical: "/company/about",
+  title: copy.title,
+  description: copy.description,
+  alternates: alternatesFor(copy.path),
+  openGraph: {
+    locale: "en_US",
+    type: "website",
+    title: `${copy.title} | ${SITE_CONFIG.name}`,
+    description: copy.description,
+    url: canonical,
+    siteName: SITE_CONFIG.name,
+    images: SOCIAL_IMAGES.openGraph,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: SOCIAL_IMAGES.twitter,
+    title: `${copy.title} | ${SITE_CONFIG.name}`,
+    description: copy.description,
   },
 }
 
-const missionStats = [
-  { value: "2023", label: "Founded" },
-  { value: `${SITE_CONFIG.contact.address.city}, ${SITE_CONFIG.contact.address.region}`, label: "Headquarters" },
-  { value: "100+", label: "Clients Served" },
-  { value: "4.9/5", label: "Avg Client Rating" },
-]
-
-const values = [
-  {
-    emoji: "🤝",
-    title: "People First",
-    description:
-      "We invest in our team's growth, wellbeing, and long-term careers. Happy VAs deliver better results.",
-  },
-  {
-    emoji: "💡",
-    title: "Radical Transparency",
-    description:
-      "Clear pricing, no hidden fees, no long-term lock-ins. You always know exactly what you're paying for.",
-  },
-  {
-    emoji: "⭐",
-    title: "Excellence Always",
-    description:
-      "We accept only the top 5% of applicants. Every VA is rigorously vetted before they ever speak to a client.",
-  },
-]
-
-const latinAmericaStats = [
-  { value: "GMT-5", label: "Time Zone Alignment" },
-  { value: "70%", label: "Average Cost Savings" },
-  { value: "2 Weeks", label: "Average Placement Time" },
-]
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": SITE_CONFIG.organizationId,
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.url,
+      description: copy.description,
+      logo: new URL("/logo.png", SITE_CONFIG.url).href,
+      email: SITE_CONFIG.contact.email,
+      telephone: SITE_CONFIG.contact.phone.e164,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: `${SITE_CONFIG.contact.address.street} ${SITE_CONFIG.contact.address.suite}`,
+        addressLocality: SITE_CONFIG.contact.address.city,
+        addressRegion: SITE_CONFIG.contact.address.region,
+        postalCode: SITE_CONFIG.contact.address.postalCode,
+        addressCountry: SITE_CONFIG.contact.address.country,
+      },
+      areaServed: [
+        ...["Miami", "Fort Lauderdale", "West Palm Beach", "Boca Raton", "Orlando"].map((name) => ({ "@type": "City", name })),
+        { "@type": "Country", name: "United States" },
+      ],
+      knowsAbout: ["Web design", "Local SEO", "AI receptionists", "Marketing automation", "Custom software development"],
+      // TODO: Add verified Google Business Profile, Clutch and other profile URLs.
+      sameAs: [SITE_CONFIG.links.linkedin],
+    },
+    {
+      "@type": "AboutPage",
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: copy.title,
+      description: copy.description,
+      inLanguage: "en-US",
+      isPartOf: { "@id": `${new URL("/", SITE_CONFIG.url).href}#website` },
+      mainEntity: { "@id": SITE_CONFIG.organizationId },
+      about: { "@id": SITE_CONFIG.organizationId },
+    },
+  ],
+}
 
 export default function AboutPage() {
   return (
     <>
       <Header />
-      <main>
-        <section className="bg-gradient-to-b from-blue-50 to-background py-20">
-          <Container className="text-center">
-            <h1 className="font-heading text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              We&apos;re Building the Future of Work
-            </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              {SITE_CONFIG.name} connects US businesses with elite
-              professionals from Latin America - delivering the same quality as
-              in-house staff at 60% less cost.
-            </p>
-          </Container>
-        </section>
-
-        <section className="bg-background py-20">
-          <Container>
-            <div className="grid items-start gap-12 lg:grid-cols-2">
-              <div>
-                <h2 className="font-heading text-3xl font-bold text-foreground">
-                  Our Story
-                </h2>
-                <p className="mt-4 text-muted-foreground">
-                  Castlestone Technology was founded in {SITE_CONFIG.contact.address.city} in 2023 after our
-                  founders saw a clear gap in the market - small and mid-sized
-                  businesses were spending $50,000+ per year on in-house
-                  receptionists and administrative staff, yet getting
-                  inconsistent results.
-                </p>
-                <p className="mt-4 text-muted-foreground">
-                  We built a technology-enabled staffing model that sources,
-                  vets, and places professionals from Colombia and
-                  across Latin America into remote roles for US companies. Our
-                  clients get dedicated, full-time support at a fraction of the
-                  traditional cost.
-                </p>
-                <p className="mt-4 text-muted-foreground">
-                  Today we serve 100+ clients across healthcare, legal, real
-                  estate, and professional services - and we&apos;re just getting
-                  started.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6 rounded-xl bg-muted/50 p-8">
-                {missionStats.map((stat) => (
-                  <div key={stat.label}>
-                    <p className="text-3xl font-bold text-primary">{stat.value}</p>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </Container>
-        </section>
-
-        <section className="bg-muted/50 py-20">
-          <Container>
-            <h2 className="text-center font-heading text-3xl font-bold text-foreground">
-              What We Stand For
-            </h2>
-            <div className="mt-12 grid gap-8 md:grid-cols-3">
-              {values.map((value) => (
-                <article
-                  key={value.title}
-                  className="rounded-xl border border-border bg-background p-8"
-                >
-                  <div className="mb-4 text-4xl">{value.emoji}</div>
-                  <h3 className="mb-2 text-lg font-semibold text-foreground">
-                    {value.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {value.description}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </Container>
-        </section>
-
-        <section className="bg-muted/50 py-20">
-          <Container className="text-center">
-            <h2 className="font-heading text-3xl font-bold text-foreground">
-              Why Latin America?
-            </h2>
-            <p className="mx-auto mt-4 max-w-3xl text-muted-foreground">
-              Latin America offers something rare - a highly educated
-              workforce in US-compatible time zones, with deep
-              cultural alignment and a strong work ethic. Our talent pool is
-              drawn primarily from Colombia&apos;s top universities and
-              professional networks.
-            </p>
-            <div className="mt-12 grid gap-8 text-center sm:grid-cols-3">
-              {latinAmericaStats.map((item) => (
-                <div key={item.label}>
-                  <p className="text-4xl font-bold text-primary">{item.value}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{item.label}</p>
-                </div>
-              ))}
-            </div>
-          </Container>
-        </section>
-
-        <section className="bg-primary py-20 text-primary-foreground">
-          <Container className="text-center">
-            <h2 className="font-heading text-3xl font-bold sm:text-4xl">
-              Join 100+ Companies Already Saving
-            </h2>
-            <p className="mt-4 text-lg opacity-90">
-              Book a free consultation. No commitment required.
-            </p>
-            <div className="mt-8">
-              <Link href="/book-demo">
-                <Button variant="secondary" size="lg">
-                  Book a Free Consultation
-                </Button>
-              </Link>
-            </div>
-            <p className="mt-4 text-sm opacity-75">
-              ✓ No credit card required  •  ✓ Cancel anytime
-            </p>
-          </Container>
-        </section>
-      </main>
+      <AboutView locale="en" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <Footer />
     </>
   )

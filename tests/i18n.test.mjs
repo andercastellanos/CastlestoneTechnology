@@ -35,6 +35,7 @@ test("the route map covers the paired English pages without duplicate URLs", () 
     "/blog/ai-receptionist-vs-answering-service",
     "/blog",
     "/services",
+    "/company/about",
   ])
   const urls = Array.from(i18n.routeMap).flatMap(pair => [pair.en, pair.es])
   assert.equal(new Set(urls).size, i18n.routeMap.length * 2)
@@ -54,7 +55,7 @@ test("every mapped page switches in both directions, including normalized URLs",
 })
 
 test("unpaired pages use home-page switcher fallbacks and have no invented twins", () => {
-  for (const path of ["/pricing", "/company/about", "/book-demo", "/blog", "/privacy", "/terms", "/client-login", "/unknown"]) {
+  for (const path of ["/pricing", "/book-demo", "/blog", "/privacy", "/terms", "/client-login", "/unknown"]) {
     if (i18n.twinOf(path)) continue
     assert.equal(i18n.twinOf(`${path}/?from=nav#top`), null)
     assert.equal(i18n.switcherHref(path, "en"), i18n.routeMap[0].en)
@@ -77,9 +78,9 @@ test("paired alternates are reciprocal and x-default always points to the Englis
 })
 
 test("unpaired alternates contain only their normalized canonical", () => {
-  const alternates = i18n.alternatesFor("/company/about///?plan=va#plans")
+  const alternates = i18n.alternatesFor("/privacy///?plan=va#plans")
   assert.deepEqual(Object.keys(alternates), ["canonical"])
-  assert.equal(alternates.canonical, "https://castlestonetechnology.com/company/about")
+  assert.equal(alternates.canonical, "https://castlestonetechnology.com/privacy")
 })
 
 test("localized internal links preserve queries and anchors without changing unpaired or external URLs", () => {
@@ -95,5 +96,30 @@ test("localized internal links preserve queries and anchors without changing unp
     if (i18n.twinOf(href)) continue
     assert.equal(i18n.hrefForLocale(href, "es"), href)
     assert.equal(i18n.hrefForLocale(href, "en"), href)
+  }
+})
+
+test("the sitemap includes both About pages with reciprocal alternates and monthly priority 0.7", () => {
+  const sitemap = {}
+  vm.runInNewContext(ts.transpileModule(readFileSync(new URL("../app/sitemap.ts", import.meta.url), "utf8"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS },
+  }).outputText, {
+    exports: sitemap,
+    require(name) {
+      if (name === "@/lib/constants") return { SITE_CONFIG: { url: "https://castlestonetechnology.com" } }
+      assert.equal(name, "@/lib/i18n")
+      return i18n
+    },
+    URL,
+  })
+  const entries = Array.from(sitemap.default()).filter(entry => ["/company/about", "/es/nosotros"].includes(new URL(entry.url).pathname))
+  assert.equal(entries.length, 2)
+  for (const path of ["/company/about", "/es/nosotros"]) {
+    const entry = entries.find(entry => new URL(entry.url).pathname === path)
+    assert.equal(entry.changeFrequency, "monthly")
+    assert.equal(entry.priority, 0.7)
+    assert.equal(entry.alternates.languages["en-US"], "https://castlestonetechnology.com/company/about")
+    assert.equal(entry.alternates.languages["es-US"], "https://castlestonetechnology.com/es/nosotros")
+    assert.equal(entry.alternates.languages["x-default"], "https://castlestonetechnology.com/company/about")
   }
 })

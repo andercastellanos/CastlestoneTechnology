@@ -47,3 +47,25 @@ test("non-target pages receive no breadcrumb and service trails use canonical se
   assert.equal(breadcrumbFor("/services/ai-receptionist").itemListElement.length, 3)
   assert.equal(breadcrumbFor("/es/servicios/recepcionista-virtual-ia").itemListElement.length, 3)
 })
+
+test("About routes share a Home to About trail with the canonical About URL", () => {
+  for (const path of ["/company/about", "/about", "/company/about/?campaign=one#details"]) {
+    const data = breadcrumbFor(path)
+    assert.equal(data["@id"], "https://castlestonetechnology.com/company/about#breadcrumb")
+    assert.deepEqual(Array.from(data.itemListElement, item => ({ name: item.name, item: item.item, position: item.position })), [
+      { name: "Home", item: "https://castlestonetechnology.com", position: 1 },
+      { name: "About", item: "https://castlestonetechnology.com/company/about", position: 2 },
+    ])
+  }
+})
+
+test("the Spanish About page has a localized trail and canonical URL", () => {
+  for (const path of ["/es/nosotros", "/es/nosotros/?campaign=one#details"]) {
+    const data = breadcrumbFor(path)
+    assert.equal(data["@id"], "https://castlestonetechnology.com/es/nosotros#breadcrumb")
+    assert.deepEqual(Array.from(data.itemListElement, item => ({ name: item.name, item: item.item, position: item.position })), [
+      { name: "Inicio", item: "https://castlestonetechnology.com/es", position: 1 },
+      { name: "Nosotros", item: "https://castlestonetechnology.com/es/nosotros", position: 2 },
+    ])
+  }
+})

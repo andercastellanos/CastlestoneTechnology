@@ -23,6 +23,7 @@ export const routeMap = [
   { en: "/blog/ai-receptionist-vs-answering-service", es: "/es/blog/recepcionista-con-ia-vs-servicio-de-contestador" },
   { en: "/blog", es: "/es/blog" },
   { en: "/services", es: "/es/servicios" },
+  { en: "/company/about", es: "/es/nosotros" },
 ] as const satisfies readonly Record<Locale, string>[]
 
 function normalizePath(path: string): string {
