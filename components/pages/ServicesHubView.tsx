@@ -35,7 +35,7 @@ export default function ServicesHubView({ content: copy, locale }: { content: Se
               </article>)}
             </div>
           </section>)}
-          <p className="border-t border-[#e6dbc9] pt-8 leading-relaxed text-muted-foreground"><span className="font-semibold text-[#222222]">{copy.cityHeading}:</span>{" "}<WebDesignCityLinks locale={locale} className="font-medium text-[#80613a] underline underline-offset-4 hover:text-foreground" />.</p>
+          <p className="border-t border-[#e6dbc9] pt-8 leading-relaxed text-muted-foreground"><Link href={hrefForLocale("/services/web-design", locale)} className="font-medium text-[#80613a] underline underline-offset-4 hover:text-foreground">{copy.cityServiceLabel}</Link>{copy.cityIntroduction}<WebDesignCityLinks locale={locale} className="font-medium text-[#80613a] underline underline-offset-4 hover:text-foreground" />.</p>
         </div></Container></div>
         <section className="border-t border-[#e6dbc9] bg-[#f8f5ef] py-16"><Container><div className="mx-auto max-w-3xl text-center">
           <h2 className="font-heading text-3xl font-bold text-[#222222] sm:text-4xl">{copy.ctaHeading}</h2>

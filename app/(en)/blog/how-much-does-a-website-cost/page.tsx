@@ -213,13 +213,10 @@ export default function WebsiteCostPost() {
                   <p className="text-xs font-semibold uppercase tracking-widest text-[#9ca3af] mb-4">
                     Related Services
                   </p>
+                  <p className="mb-4 leading-relaxed">
+                    For the pages, features and launch work behind a quote, explore our <Link href="/services/web-design" className="text-[#80613a] underline underline-offset-4 hover:text-foreground">web design services</Link>.
+                  </p>
                   <div className="flex flex-wrap gap-4">
-                    <Link
-                      href="/services/technology-solutions"
-                      className="text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468]"
-                    >
-                      Explore websites and landing pages →
-                    </Link>
                     <Link
                       href="/contact"
                       className="text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468]"

@@ -3,6 +3,23 @@ export type RelatedPost = { path: string; title: string; related: readonly strin
 // Article routes only; city landing pages have their own city navigation.
 export const relatedPosts: readonly RelatedPost[] = [
   {
+    path: "/es/blog/como-abrir-un-negocio-en-florida",
+    title: "Cómo abrir un negocio en Florida: de la LLC a tu presencia en línea",
+    related: [
+      "/es/blog/cuanto-cuesta-una-pagina-web",
+      "/es/blog/como-funciona-una-recepcionista-virtual-con-ia",
+    ],
+  },
+  {
+    path: "/blog/how-to-start-a-business-in-florida",
+    title: "How to Start a Business in Florida: From LLC to Online",
+    related: [
+      "/blog/how-much-does-a-website-cost",
+      "/blog/how-to-make-your-website-show-up-on-google",
+      "/blog/is-seo-worth-it-for-small-business",
+    ],
+  },
+  {
     "path": "/blog/5-tasks-to-delegate-to-your-va",
     "title": "5 Tasks You Should Stop Doing Yourself Right Now",
     "related": [
@@ -47,6 +64,7 @@ export const relatedPosts: readonly RelatedPost[] = [
     "path": "/blog/how-much-does-a-website-cost",
     "title": "How Much Does a Website Cost in 2026?",
     "related": [
+      "/blog/how-to-start-a-business-in-florida",
       "/blog/can-ai-build-a-website",
       "/blog/wordpress-vs-wix-vs-custom-website"
     ]
@@ -95,6 +113,7 @@ export const relatedPosts: readonly RelatedPost[] = [
     "path": "/blog/how-to-make-your-website-show-up-on-google",
     "title": "How to Make My Website Show Up on Google",
     "related": [
+      "/blog/how-to-start-a-business-in-florida",
       "/blog/is-seo-worth-it-for-small-business",
       "/blog/geo-vs-seo"
     ]

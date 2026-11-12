@@ -1,3 +1,4 @@
+import { webDesignContent } from "@/content/es/web-design"
 import type { ServicesHubContent } from "@/content/en/services-hub"
 import { homeContent } from "@/content/es/home"
 
@@ -9,7 +10,9 @@ export const servicesHubContent: ServicesHubContent = {
   introduction: "Conozca nuestros servicios web, de IA y marketing, y las opciones de apoyo remoto para su negocio. Revise el alcance de cada servicio y prepare sus preguntas para una consulta.",
   groups: { software: "Software y sitios web", ai: "IA", marketing: "Marketing", staffing: "Personal remoto" },
   developmentLabel: homeContent.supportCards_2_status,
-  cityHeading: "Diseño web por ciudad",
+  webDesignDescription: webDesignContent.metadata_description,
+  cityServiceLabel: "Servicios de diseño web",
+  cityIntroduction: " — conozca lo que desarrollamos o explore por ciudad: ",
   ctaHeading: "Defina por dónde comenzar con su negocio",
   ctaDescription: "Cuéntenos qué necesita y qué herramientas utiliza. Comience con una consulta con nuestro equipo.",
   ctaLabel: "Agende una consulta sobre su proyecto",

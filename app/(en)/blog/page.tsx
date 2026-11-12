@@ -44,6 +44,13 @@ type BlogEntry = {
 
 const posts: BlogEntry[] = [
   {
+    category: "Business Setup",
+    title: "How to Start a Business in Florida: From LLC to Online",
+    excerpt: "A practical checklist from Florida LLC paperwork and an EIN to your domain, business email, social profiles, Google presence and website.",
+    date: "November 11, 2026",
+    slug: "/blog/how-to-start-a-business-in-florida",
+  },
+  {
     category: "Virtual Assistants",
     title: "5 Tasks You Should Stop Doing Yourself Right Now",
     excerpt:

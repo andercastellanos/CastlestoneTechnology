@@ -65,6 +65,7 @@ export const blogPostContent: SpanishBlogPostContent = {
   "ctaHeading": "Conversemos sobre lo que necesita su negocio",
   "ctaDescription": "Comparta su proceso actual, las herramientas que utiliza y las preguntas que necesita resolver. Comience con una consulta con nuestro equipo.",
   "ctaLabel": "Agende una consulta con nuestro equipo",
-  "servicePath": "/services/technology-solutions",
-  "serviceLabel": "Sitios web y páginas de destino"
+  "servicePath": "/es/servicios/diseno-web",
+  "serviceLabel": "servicios de diseño web",
+  "serviceIntroduction": "Para conocer las páginas, funciones y el proceso que puede incluir su proyecto, explore nuestros"
 }

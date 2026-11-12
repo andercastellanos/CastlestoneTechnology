@@ -36,6 +36,7 @@ export default function OnlinePresenceView({ content: copy, locale }: { content:
               <span className="mb-4 block text-xs font-semibold uppercase tracking-[0.16em] text-[#80613a]">{copy.eyebrow}</span>
               <h1 className="font-heading text-4xl font-bold leading-tight text-foreground sm:text-6xl">{copy.heading}</h1>
               <p className={`${paragraphClass} mx-auto max-w-3xl`}>{copy.introduction}</p>
+              {copy.gettingStartedGuide && <p className="mx-auto mt-5 max-w-3xl text-sm leading-relaxed"><Link href={hrefForLocale(copy.gettingStartedGuide.href, locale)} className="font-semibold text-[#80613a] underline decoration-[#c8a97e] underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#80613a]">{copy.gettingStartedGuide.label}</Link></p>}
               <Link href={bookingHref} className={`${buttonClass} mt-8`}>{copy.primaryCta}</Link>
             </div>
           </Container>

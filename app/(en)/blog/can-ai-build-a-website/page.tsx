@@ -147,6 +147,9 @@ export default function BlogPost() {
                     Bring the same brief to every conversation. Include your pages, visitor actions, existing tools, access requirements, and handover questions. To discuss a scoped project with Castlestone, explore <Link className="text-[#80613a] underline underline-offset-4 hover:text-foreground" href="/blog/web-design-miami">web design in Miami</Link>. A useful decision comes from matching the approach to the work your business needs, with an agreed process for review, launch, and maintenance. The generated homepage is only the beginning of that assessment.
                   </p>
                 </div>
+                <p>
+                  For a custom build with clear responsibilities from design through launch, review our <Link className="text-[#80613a] underline underline-offset-4 hover:text-foreground" href="/services/web-design">web design services</Link>.
+                </p>
                 <div className="rounded-xl bg-[#c8a97e] p-8 text-center">
                   <h2 className="font-heading mb-2 text-2xl font-bold text-white">Define the website your business needs</h2>
                   <p className="mb-6 text-white/90">Bring your business goals, current tools, and questions to a consultation with the Castlestone team.</p>

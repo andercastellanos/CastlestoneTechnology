@@ -4,6 +4,8 @@ import { resolveContent } from "@/lib/content"
 import { virtualFrontDeskNumbers } from "@/lib/page-data/virtual-front-desk"
 import { blogNavigationContent as labelsEn } from "@/content/en/blog-navigation"
 import { blogNavigationContent as labelsEs } from "@/content/es/blog-navigation"
+import { servicesHubContent as hubEn } from "@/content/en/services-hub"
+import { servicesHubContent as hubEs } from "@/content/es/services-hub"
 import { technologySolutionsContent as technologySolutionsContenten } from "@/content/en/technology-solutions"
 import { technologySolutionsContent as technologySolutionsContentes } from "@/content/es/technology-solutions"
 import { aiReceptionistContent as aiReceptionistContenten } from "@/content/en/ai-receptionist"
@@ -20,6 +22,7 @@ import { virtualFrontDeskContent as virtualFrontDeskContenten } from "@/content/
 import { virtualFrontDeskContent as virtualFrontDeskContentes } from "@/content/es/virtual-front-desk"
 
 export const serviceCatalog = [
+  { path: "/services/web-design", group: "software", inDevelopment: false, descriptions: { en: hubEn.webDesignDescription, es: hubEs.webDesignDescription } },
   { path: "/services/technology-solutions", group: "software", inDevelopment: false, descriptions: { en: technologySolutionsContenten.metadata_description, es: technologySolutionsContentes.metadata_description } },
   { path: "/services/ai-receptionist", group: "ai", inDevelopment: false, descriptions: { en: aiReceptionistContenten.description, es: aiReceptionistContentes.description } },
   { path: "/services/marketing-automation", group: "marketing", inDevelopment: false, descriptions: { en: marketingAutomationContenten.description, es: marketingAutomationContentes.description } },

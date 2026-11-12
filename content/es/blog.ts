@@ -1,4 +1,5 @@
 import { blogPostContent as websiteCost } from "@/content/es/blog-website-cost"
+import { blogPostContent as businessFlorida } from "@/content/es/blog-business-florida"
 import { blogPostContent as aiWork } from "@/content/es/blog-ai-work"
 import { blogPostContent as aiComparison } from "@/content/es/blog-ai-comparison"
 import { webDesignMiamiContent } from "@/content/es/web-design-miami"
@@ -24,6 +25,6 @@ export const blogContent = {
 }
 
 export const spanishBlogEntries = [
-  ...[websiteCost, aiWork, aiComparison].map((post) => ({ path: post.path, title: post.title, description: post.description, category: post.category, kind: "article" as const })),
+  ...[businessFlorida, websiteCost, aiWork, aiComparison].map((post) => ({ path: post.path, title: post.title, description: post.description, category: post.category, kind: "article" as const })),
   ...[webDesignMiamiContent, webDesignOrlandoContent, webDesignFortLauderdaleContent, webDesignPalmBeachContent].map((city) => ({ path: city.path, title: city.heading, description: city.metadata_description, category: blogContent.cityCategory, kind: "city" as const })),
 ]

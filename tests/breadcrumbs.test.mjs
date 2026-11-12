@@ -25,13 +25,17 @@ const { breadcrumbFor } = load("lib/page-data/breadcrumbs.ts")
 test("breadcrumb trails use the correct hierarchy, locale and normalized canonical", () => {
   for (const [path, names] of [
     ["/blog/geo-vs-seo", ["Home", "Blog"]],
+    ["/blog/how-to-start-a-business-in-florida", ["Home", "Blog"]],
+    ["/es/blog/como-abrir-un-negocio-en-florida", ["Inicio", "Blog"]],
     ["/es/blog/cuanto-cuesta-una-pagina-web", ["Inicio", "Blog"]],
-    ["/blog/web-design-miami", ["Home"]],
-    ["/es/blog/diseno-web-palm-beach", ["Inicio"]],
+    ["/blog/web-design-miami", ["Home", "Services", "Web Design"]],
+    ["/es/blog/diseno-web-palm-beach", ["Inicio", "Servicios", "Diseño web"]],
     ["/services", ["Home"]],
     ["/es/servicios", ["Inicio"]],
     ["/services/local-seo", ["Home", "Services"]],
     ["/es/servicios/seo-local", ["Inicio", "Servicios"]],
+    ["/services/web-design", ["Home", "Services"]],
+    ["/es/servicios/diseno-web", ["Inicio", "Servicios"]],
   ]) {
     const data = breadcrumbFor(path + "/?campaign=one#details")
     const items = Array.from(data.itemListElement)
@@ -39,6 +43,28 @@ test("breadcrumb trails use the correct hierarchy, locale and normalized canonic
     assert.equal(items.at(-1).item, "https://castlestonetechnology.com" + path)
     assert.deepEqual(items.map(item => item.position), items.map((_, index) => index + 1))
     if (path.startsWith("/es/")) assert(items.every(item => item.item.startsWith("https://castlestonetechnology.com/es")))
+  }
+})
+
+test("every city trail uses the localized web design parent and service hub", () => {
+  const { webDesignCities } = load("lib/page-data/web-design-cities.ts")
+  const { hrefForLocale } = load("lib/i18n.ts")
+  for (const locale of ["en", "es"]) {
+    for (const city of webDesignCities) {
+      const path = hrefForLocale(city.path, locale)
+      const name = locale === "es" && "esCity" in city ? city.esCity : city.city
+      const items = Array.from(breadcrumbFor(path).itemListElement)
+      assert.deepEqual(items.map(item => item.name), locale === "es"
+        ? ["Inicio", "Servicios", "Diseño web", `Diseño web en ${name}`]
+        : ["Home", "Services", "Web Design", `Web Design in ${name}`])
+      assert.deepEqual(items.map(item => item.item), [
+        locale === "es" ? "https://castlestonetechnology.com/es" : "https://castlestonetechnology.com",
+        locale === "es" ? "https://castlestonetechnology.com/es/servicios" : "https://castlestonetechnology.com/services",
+        locale === "es" ? "https://castlestonetechnology.com/es/servicios/diseno-web" : "https://castlestonetechnology.com/services/web-design",
+        `https://castlestonetechnology.com${path}`,
+      ])
+      assert.deepEqual(items.map(item => item.position), [1, 2, 3, 4])
+    }
   }
 })
 

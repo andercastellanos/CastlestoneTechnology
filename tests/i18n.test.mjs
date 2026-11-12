@@ -36,6 +36,8 @@ test("the route map covers the paired English pages without duplicate URLs", () 
     "/blog",
     "/services",
     "/company/about",
+    "/services/web-design",
+    "/blog/how-to-start-a-business-in-florida",
   ])
   const urls = Array.from(i18n.routeMap).flatMap(pair => [pair.en, pair.es])
   assert.equal(new Set(urls).size, i18n.routeMap.length * 2)
@@ -99,7 +101,7 @@ test("localized internal links preserve queries and anchors without changing unp
   }
 })
 
-test("the sitemap includes both About pages with reciprocal alternates and monthly priority 0.7", () => {
+test("the sitemap includes paired About, web design and Florida guide pages with reciprocal alternates and monthly priorities", () => {
   const sitemap = {}
   vm.runInNewContext(ts.transpileModule(readFileSync(new URL("../app/sitemap.ts", import.meta.url), "utf8"), {
     compilerOptions: { module: ts.ModuleKind.CommonJS },
@@ -112,14 +114,20 @@ test("the sitemap includes both About pages with reciprocal alternates and month
     },
     URL,
   })
-  const entries = Array.from(sitemap.default()).filter(entry => ["/company/about", "/es/nosotros"].includes(new URL(entry.url).pathname))
-  assert.equal(entries.length, 2)
-  for (const path of ["/company/about", "/es/nosotros"]) {
-    const entry = entries.find(entry => new URL(entry.url).pathname === path)
-    assert.equal(entry.changeFrequency, "monthly")
-    assert.equal(entry.priority, 0.7)
-    assert.equal(entry.alternates.languages["en-US"], "https://castlestonetechnology.com/company/about")
-    assert.equal(entry.alternates.languages["es-US"], "https://castlestonetechnology.com/es/nosotros")
-    assert.equal(entry.alternates.languages["x-default"], "https://castlestonetechnology.com/company/about")
+  for (const { paths, priority } of [
+    { paths: ["/company/about", "/es/nosotros"], priority: 0.7 },
+    { paths: ["/services/web-design", "/es/servicios/diseno-web"], priority: 0.9 },
+    { paths: ["/blog/how-to-start-a-business-in-florida", "/es/blog/como-abrir-un-negocio-en-florida"], priority: 0.7 },
+  ]) {
+    const entries = Array.from(sitemap.default()).filter(entry => paths.includes(new URL(entry.url).pathname))
+    assert.equal(entries.length, 2)
+    for (const path of paths) {
+      const entry = entries.find(entry => new URL(entry.url).pathname === path)
+      assert.equal(entry.changeFrequency, "monthly")
+      assert.equal(entry.priority, priority)
+      assert.equal(entry.alternates.languages["en-US"], `https://castlestonetechnology.com${paths[0]}`)
+      assert.equal(entry.alternates.languages["es-US"], `https://castlestonetechnology.com${paths[1]}`)
+      assert.equal(entry.alternates.languages["x-default"], `https://castlestonetechnology.com${paths[0]}`)
+    }
   }
 })

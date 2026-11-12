@@ -48,6 +48,7 @@ export function getHomeData(copy: HomeContent) {
       icon: Globe,
       title: copy.techSolutions_4_title,
       description: copy.techSolutions_4_description,
+      href: "/services/web-design",
     },
     {
       icon: MapPin,

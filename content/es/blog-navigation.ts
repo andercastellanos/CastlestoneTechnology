@@ -6,6 +6,7 @@ export const blogNavigationContent = {
   services: "Servicios",
   cityPrefix: "Diseño web en",
   serviceTitles: {
+  "/services/web-design": "Diseño web",
   "/services/virtual-front-desk": "Recepción virtual",
   "/services/virtual-assistant": "Asistentes virtuales",
   "/services/technology-solutions": "Desarrollo de software",

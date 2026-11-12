@@ -173,6 +173,9 @@ export default function BlogPost() {
                   </p>
                 </div>
 
+                <p>
+                  If your visibility work starts with a new site or redesign, explore our <Link className="text-[#80613a] underline underline-offset-4 hover:text-foreground" href="/services/web-design">web design services</Link>.
+                </p>
                 <div className="rounded-xl bg-[#c8a97e] p-8 text-center">
                   <h2 className="font-heading mb-2 text-2xl font-bold text-white">
                     Turn your website checks into a practical plan

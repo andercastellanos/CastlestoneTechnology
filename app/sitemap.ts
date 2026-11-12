@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const entries: MetadataRoute.Sitemap = [
     { url: baseUrl, changeFrequency: "weekly", priority: 1 },
+    { url: `${baseUrl}/services/web-design`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/services/virtual-front-desk`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/services/virtual-assistant`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/services/technology-solutions`, changeFrequency: "weekly", priority: 0.9 },
@@ -18,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/privacy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${baseUrl}/terms`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${baseUrl}/blog`, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${baseUrl}/blog/how-to-start-a-business-in-florida`, lastModified: "2026-11-11T08:00:00Z", changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/blog/5-tasks-to-delegate-to-your-va`, lastModified: "2026-01-15T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/how-to-onboard-a-virtual-team-member`, lastModified: "2026-01-28T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/the-real-cost-of-missed-calls`, lastModified: "2026-02-10T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },

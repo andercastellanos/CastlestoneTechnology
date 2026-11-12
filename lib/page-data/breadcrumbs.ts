@@ -32,6 +32,8 @@ export function breadcrumbFor(pathname: string) {
     trail.push({ name: copy.blog, item: alternatesFor(locale === "es" ? "/es/blog" : "/blog").canonical })
     title = post.title
   } else if (city) {
+    trail.push({ name: copy.services, item: alternatesFor(hubPath).canonical })
+    trail.push({ name: copy.serviceTitles["/services/web-design"], item: alternatesFor(hrefForLocale("/services/web-design", locale)).canonical })
     const name = locale === "es" && "esCity" in city ? city.esCity : city.city
     title = `${copy.cityPrefix} ${name}`
   } else {

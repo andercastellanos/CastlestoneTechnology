@@ -167,7 +167,7 @@ export default function BlogPost() {
                     Consider Wix when your required workflow fits its available tools and your team is comfortable operating within a hosted platform. Consider WordPress when flexible publishing and an extensible setup matter, and you can assign maintenance. Consider a custom build when specific requirements justify tailored work and you have a plan for support and future changes.
                   </p>
                   <p>
-                    Compare each option against the same brief: your pages, customer actions, integrations, editing tasks, and handover requirements. For a local planning discussion, explore <Link className="text-[#80613a] underline underline-offset-4 hover:text-foreground" href="/blog/web-design-miami">web design in Miami</Link>. To discuss a tailored scope, review our <Link className="text-[#80613a] underline underline-offset-4 hover:text-foreground" href="/services/technology-solutions">custom websites</Link>. Bring the workflow your business needs so the conversation ends with clear responsibilities and deliverables.
+                    Compare each option against the same brief: your pages, customer actions, integrations, editing tasks, and handover requirements. For a local planning discussion, explore <Link className="text-[#80613a] underline underline-offset-4 hover:text-foreground" href="/blog/web-design-miami">web design in Miami</Link>. To discuss a tailored scope, review our <Link className="text-[#80613a] underline underline-offset-4 hover:text-foreground" href="/services/web-design">web design services</Link>. Bring the workflow your business needs so the conversation ends with clear responsibilities and deliverables.
                   </p>
                 </div>
 

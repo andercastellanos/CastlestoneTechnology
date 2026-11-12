@@ -10,6 +10,7 @@ const footerColumns = [
     title: "Services",
     esTitle: "Servicios",
     links: [
+      { label: "Web Design", esLabel: "Diseño web", href: "/services/web-design" },
       { label: "Virtual Front Desk", esLabel: "Recepción virtual", href: "/services/virtual-front-desk" },
       { label: "Virtual Assistants", esLabel: "Asistentes virtuales", href: "/services/virtual-assistant" },
       { label: "Technology Solutions", esLabel: "Desarrollo de software", href: "/services/technology-solutions" },

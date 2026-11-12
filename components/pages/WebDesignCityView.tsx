@@ -5,6 +5,8 @@ import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 import type { WebDesignCityContent } from "@/content/types/web-design-city"
+import { webDesignCityLinksContent as en } from "@/content/en/web-design-cities"
+import { webDesignCityLinksContent as es } from "@/content/es/web-design-cities"
 import { SITE_CONFIG } from "@/lib/constants"
 import { alternatesFor, hrefForLocale, type Locale } from "@/lib/i18n"
 
@@ -14,6 +16,7 @@ const buttonClass = "inline-flex min-h-12 items-center justify-center rounded-sm
 const linkClass = "font-semibold text-[#80613a] underline decoration-[#c8a97e] underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#80613a]"
 
 export default function WebDesignCityView({ content: copy, locale }: { content: WebDesignCityContent; locale: Locale }) {
+  const cityLinksCopy = locale === "es" ? es : en
   const service = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -42,6 +45,7 @@ export default function WebDesignCityView({ content: copy, locale }: { content: 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
                 <Link href={hrefForLocale("/book-demo", locale)} className={buttonClass}>{copy.primaryCta}</Link>
               </div>
+              <p className="mt-5 text-sm text-muted-foreground">{cityLinksCopy.parentPrefix}{" "}<Link href={hrefForLocale("/services/web-design", locale)} className={linkClass}>{cityLinksCopy.parentLinkLabel}</Link></p>
             </div>
           </Container>
         </section>

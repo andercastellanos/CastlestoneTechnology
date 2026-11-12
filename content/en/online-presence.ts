@@ -5,6 +5,7 @@ export type OnlinePresenceContent = {
   eyebrow: string
   heading: string
   introduction: string
+  gettingStartedGuide?: { href: string; label: string }
   primaryCta: string
   setupHeading: string
   setupIntroduction: string
@@ -31,6 +32,10 @@ export const onlinePresenceContent: OnlinePresenceContent = {
   eyebrow: "A starting point for your business online",
   heading: "Online Presence Setup",
   introduction: "Online presence setup helps new or newly online small businesses bring their website, social accounts, Google presence, and business email together. Start with a free consultation so we can understand what you already have and provide a written quote for the setup you need.",
+  gettingStartedGuide: {
+    href: "/blog/how-to-start-a-business-in-florida",
+    label: "Just getting started? Read our step-by-step guide to starting a business in Florida.",
+  },
   primaryCta: "Book a free setup consultation",
   setupHeading: "What we set up",
   setupIntroduction: "The service focuses on the essentials that connect your business with people looking for it online.",
