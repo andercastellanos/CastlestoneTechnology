@@ -30,7 +30,6 @@ export default function ServicesHubView({ content: copy, locale }: { content: Se
             <div className="mt-7 grid gap-6 lg:grid-cols-3">
               {services.filter((service) => service.group === group).map((service) => <article key={service.path} data-service-card className="rounded-lg border border-[#e6dbc9] bg-white p-6 sm:p-8">
                 <h3 className="font-heading text-2xl font-bold"><Link href={service.href} className="text-[#80613a] underline underline-offset-4 hover:text-foreground">{service.name}</Link></h3>
-                {service.inDevelopment && <p className="mt-4 inline-block rounded-sm border border-[#c8a97e] bg-[#f8f5ef] px-3 py-1 text-sm font-semibold text-[#80613a]">{copy.developmentLabel}</p>}
                 <p className="mt-4 leading-relaxed text-muted-foreground">{service.description}</p>
               </article>)}
             </div>

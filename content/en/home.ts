@@ -42,7 +42,6 @@ export const homeContent: HomeContent = {
   "supportCards_2_chips_2": "Call Routing",
   "supportCards_2_chips_3": "Visitor Logging",
   "supportCards_2_chips_4": "Message Taking",
-  "supportCards_2_status": "In development",
   "heroEyebrow": "Software & AI Engineering",
   "heroHeading": "Custom software and AI, built for your business.",
   "heroDescription": "Web apps, AI agents, automations, and integrations — scoped in Florida and built by our nearshore engineering team, working in U.S. time zones.",

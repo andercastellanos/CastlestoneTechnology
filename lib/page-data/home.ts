@@ -92,7 +92,6 @@ export function getHomeData(copy: HomeContent) {
     description: string
     href: string
     chips: string[]
-    status?: string
   }[] = [
     {
       title: copy.supportCards_1_title,
@@ -105,7 +104,6 @@ export function getHomeData(copy: HomeContent) {
       description: copy.supportCards_2_description,
       href: "/services/virtual-front-desk",
       chips: [copy.supportCards_2_chips_1, copy.supportCards_2_chips_2, copy.supportCards_2_chips_3, copy.supportCards_2_chips_4],
-      status: copy.supportCards_2_status,
     },
   ]
   return { heroCommitments, techSolutions, specialistRoles, supportCards }

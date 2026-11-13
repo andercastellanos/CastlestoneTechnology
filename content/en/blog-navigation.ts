@@ -12,6 +12,7 @@ export const blogNavigationContent = {
   "/services/technology-solutions": "Technology Solutions",
   "/services/marketing-automation": "SMS & Email Marketing",
   "/services/ai-receptionist": "AI Receptionist",
+  "/services/ai-outbound-calling": "AI Outbound Calling",
   "/services/local-seo": "Local SEO",
   "/services/online-presence-setup": "Online Presence Setup"
 } as Record<string, string>,

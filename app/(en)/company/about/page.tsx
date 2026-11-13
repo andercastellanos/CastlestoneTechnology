@@ -33,31 +33,6 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "ProfessionalService",
-      "@id": SITE_CONFIG.organizationId,
-      name: SITE_CONFIG.name,
-      url: SITE_CONFIG.url,
-      description: copy.description,
-      logo: new URL("/logo.png", SITE_CONFIG.url).href,
-      email: SITE_CONFIG.contact.email,
-      telephone: SITE_CONFIG.contact.phone.e164,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: `${SITE_CONFIG.contact.address.street} ${SITE_CONFIG.contact.address.suite}`,
-        addressLocality: SITE_CONFIG.contact.address.city,
-        addressRegion: SITE_CONFIG.contact.address.region,
-        postalCode: SITE_CONFIG.contact.address.postalCode,
-        addressCountry: SITE_CONFIG.contact.address.country,
-      },
-      areaServed: [
-        ...["Miami", "Fort Lauderdale", "West Palm Beach", "Boca Raton", "Orlando"].map((name) => ({ "@type": "City", name })),
-        { "@type": "Country", name: "United States" },
-      ],
-      knowsAbout: ["Web design", "Local SEO", "AI receptionists", "Marketing automation", "Custom software development"],
-      // TODO: Add verified Google Business Profile, Clutch and other profile URLs.
-      sameAs: [SITE_CONFIG.links.linkedin],
-    },
-    {
       "@type": "AboutPage",
       "@id": `${canonical}#webpage`,
       url: canonical,

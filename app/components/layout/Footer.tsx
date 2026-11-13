@@ -16,6 +16,7 @@ const footerColumns = [
       { label: "Technology Solutions", esLabel: "Desarrollo de software", href: "/services/technology-solutions" },
       { label: "SMS & Email Marketing", esLabel: "Marketing por SMS y email", href: "/services/marketing-automation" },
       { label: "AI Receptionist", esLabel: "Recepcionista con IA", href: "/services/ai-receptionist" },
+      { label: "AI Outbound Calling", esLabel: "Llamadas salientes con IA", href: "/services/ai-outbound-calling" },
       { label: "Local SEO", esLabel: "SEO local", href: "/services/local-seo" },
       { label: "Online Presence Setup", esLabel: "Presencia en línea", href: "/services/online-presence-setup" },
     ],
@@ -106,6 +107,10 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
 
         <div className="mt-12 flex flex-col gap-3 border-t border-[#e6dbc9] pt-6 text-sm text-[#555555] sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {SITE_CONFIG.name}. {locale === "es" ? "Todos los derechos reservados." : "All rights reserved."}</p>
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link href="/privacy" className="transition-colors hover:text-[#c8a97e]">{locale === "es" ? "Política de privacidad" : "Privacy Policy"}</Link>
+            <Link href="/terms" className="transition-colors hover:text-[#c8a97e]">{locale === "es" ? "Términos del servicio" : "Terms of Service"}</Link>
+          </nav>
           <p>{locale === "es" ? "Hecho en" : "Made in"} {SITE_CONFIG.contact.address.city}, {SITE_CONFIG.contact.address.region}</p>
         </div>
       </div>

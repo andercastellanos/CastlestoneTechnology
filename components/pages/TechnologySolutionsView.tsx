@@ -75,7 +75,7 @@ export default function TechnologySolutionsView({ content, locale }: { content: 
             <h2 className="font-heading text-4xl font-bold text-center text-foreground mb-12">
               {copy.capabilitiesHeading}
             </h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:[&>:last-child:nth-child(3n+1)]:col-start-2">
               {capabilities.map((cap) => (
                 <div
                   key={cap.title}

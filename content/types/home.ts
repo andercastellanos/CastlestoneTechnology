@@ -40,7 +40,6 @@ export type HomeContent = {
   supportCards_2_chips_2: string
   supportCards_2_chips_3: string
   supportCards_2_chips_4: string
-  supportCards_2_status: string
   heroEyebrow: string
   heroHeading: string
   heroDescription: string

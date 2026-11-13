@@ -7,7 +7,8 @@ export const relatedPosts: readonly RelatedPost[] = [
     title: "Cómo abrir un negocio en Florida: de la LLC a tu presencia en línea",
     related: [
       "/es/blog/cuanto-cuesta-una-pagina-web",
-      "/es/blog/como-funciona-una-recepcionista-virtual-con-ia",
+      "/es/blog/como-hacer-que-mi-pagina-web-aparezca-en-google",
+      "/es/blog/vale-la-pena-el-seo-para-pequenas-empresas",
     ],
   },
   {
@@ -149,5 +150,62 @@ export const relatedPosts: readonly RelatedPost[] = [
       "/es/blog/cuanto-cuesta-una-pagina-web",
       "/es/blog/como-funciona-una-recepcionista-virtual-con-ia"
     ]
+  },
+  {
+    path: "/es/blog/marketing-por-sms-plataforma-o-servicio-gestionado",
+    title: "Marketing por SMS: plataforma o servicio gestionado",
+    related: [
+      "/es/blog/email-marketing-para-pequenas-empresas",
+      "/es/blog/como-funciona-una-recepcionista-virtual-con-ia",
+    ],
+  },
+  {
+    path: "/es/blog/wordpress-vs-wix-vs-pagina-web-a-medida",
+    title: "WordPress vs. Wix vs. una página web a medida",
+    related: [
+      "/es/blog/cuanto-cuesta-una-pagina-web",
+      "/es/blog/puede-la-ia-crear-una-pagina-web",
+    ],
+  },
+  {
+    path: "/es/blog/como-hacer-que-mi-pagina-web-aparezca-en-google",
+    title: "Cómo hacer que mi página web aparezca en Google",
+    related: [
+      "/es/blog/como-abrir-un-negocio-en-florida",
+      "/es/blog/vale-la-pena-el-seo-para-pequenas-empresas",
+      "/es/blog/geo-vs-seo",
+    ],
+  },
+  {
+    path: "/es/blog/email-marketing-para-pequenas-empresas",
+    title: "Email marketing para pequeñas empresas",
+    related: [
+      "/es/blog/marketing-por-sms-plataforma-o-servicio-gestionado",
+      "/es/blog/como-funciona-una-recepcionista-virtual-con-ia",
+    ],
+  },
+  {
+    path: "/es/blog/geo-vs-seo",
+    title: "GEO vs. SEO: optimización para búsquedas con IA",
+    related: [
+      "/es/blog/como-hacer-que-mi-pagina-web-aparezca-en-google",
+      "/es/blog/vale-la-pena-el-seo-para-pequenas-empresas",
+    ],
+  },
+  {
+    path: "/es/blog/puede-la-ia-crear-una-pagina-web",
+    title: "¿Puede la IA crear una página web?",
+    related: [
+      "/es/blog/wordpress-vs-wix-vs-pagina-web-a-medida",
+      "/es/blog/cuanto-cuesta-una-pagina-web",
+    ],
+  },
+  {
+    path: "/es/blog/vale-la-pena-el-seo-para-pequenas-empresas",
+    title: "¿Vale la pena el SEO para una pequeña empresa?",
+    related: [
+      "/es/blog/como-hacer-que-mi-pagina-web-aparezca-en-google",
+      "/es/blog/geo-vs-seo",
+    ],
   }
 ]

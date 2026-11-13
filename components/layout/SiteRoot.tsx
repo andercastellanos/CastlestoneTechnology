@@ -5,6 +5,7 @@ import { SITE_CONFIG } from "@/lib/constants"
 import type { Locale } from "@/lib/i18n"
 import { spanishSiteContent } from "@/content/es/site"
 import MarketingAnalytics from "@/components/analytics/MarketingAnalytics"
+import { organizationJsonLd } from "@/lib/page-data/organization"
 
 const headingFont = Cormorant_Garamond({
   subsets: ["latin"],
@@ -143,6 +144,7 @@ export function SiteRoot({
     <ClerkProvider>
       <html lang={locale}>
         <body className={`${bodyFont.variable} ${headingFont.variable} antialiased`}>
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd(locale)).replace(/</g, "\\u003c") }} />
           {children}
           {gaId ? <MarketingAnalytics gaId={gaId} /> : null}
         </body>

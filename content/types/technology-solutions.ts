@@ -39,6 +39,8 @@ export type TechnologySolutionsContent = {
   capabilities_14_description: string
   capabilities_15_title: string
   capabilities_15_description: string
+  capabilities_16_title: string
+  capabilities_16_description: string
   engagementModels_1_label: string
   engagementModels_1_price: string
   engagementModels_1_bestFor: string

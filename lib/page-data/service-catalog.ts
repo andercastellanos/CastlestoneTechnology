@@ -20,16 +20,20 @@ import { virtualAssistantContent as virtualAssistantContenten } from "@/content/
 import { virtualAssistantContent as virtualAssistantContentes } from "@/content/es/virtual-assistant"
 import { virtualFrontDeskContent as virtualFrontDeskContenten } from "@/content/en/virtual-front-desk"
 import { virtualFrontDeskContent as virtualFrontDeskContentes } from "@/content/es/virtual-front-desk"
+import { aiOutboundCallingContent as aiOutboundCallingContenten } from "@/content/en/ai-outbound-calling"
+import { aiOutboundCallingContent as aiOutboundCallingContentes } from "@/content/es/ai-outbound-calling"
+import { aiOutboundCallingNumbers } from "@/lib/page-data/ai-outbound-calling"
 
 export const serviceCatalog = [
-  { path: "/services/web-design", group: "software", inDevelopment: false, descriptions: { en: hubEn.webDesignDescription, es: hubEs.webDesignDescription } },
-  { path: "/services/technology-solutions", group: "software", inDevelopment: false, descriptions: { en: technologySolutionsContenten.metadata_description, es: technologySolutionsContentes.metadata_description } },
-  { path: "/services/ai-receptionist", group: "ai", inDevelopment: false, descriptions: { en: aiReceptionistContenten.description, es: aiReceptionistContentes.description } },
-  { path: "/services/marketing-automation", group: "marketing", inDevelopment: false, descriptions: { en: marketingAutomationContenten.description, es: marketingAutomationContentes.description } },
-  { path: "/services/local-seo", group: "marketing", inDevelopment: false, descriptions: { en: localSeoContenten.description, es: localSeoContentes.description } },
-  { path: "/services/online-presence-setup", group: "marketing", inDevelopment: false, descriptions: { en: onlinePresenceContenten.metadata_description, es: onlinePresenceContentes.metadata_description } },
-  { path: "/services/virtual-assistant", group: "staffing", inDevelopment: false, descriptions: { en: virtualAssistantContenten.metadata_description, es: virtualAssistantContentes.metadata_description } },
-  { path: "/services/virtual-front-desk", group: "staffing", inDevelopment: true, descriptions: { en: resolveContent(virtualFrontDeskContenten, virtualFrontDeskNumbers).metadata_description.split(". ").slice(0, 2).join(". ") + ".", es: resolveContent(virtualFrontDeskContentes, virtualFrontDeskNumbers).metadata_description } },
+  { path: "/services/web-design", group: "software", descriptions: { en: hubEn.webDesignDescription, es: hubEs.webDesignDescription } },
+  { path: "/services/technology-solutions", group: "software", descriptions: { en: technologySolutionsContenten.metadata_description, es: technologySolutionsContentes.metadata_description } },
+  { path: "/services/ai-receptionist", group: "ai", descriptions: { en: aiReceptionistContenten.description, es: aiReceptionistContentes.description } },
+  { path: "/services/ai-outbound-calling", group: "ai", descriptions: { en: resolveContent(aiOutboundCallingContenten, aiOutboundCallingNumbers).description, es: resolveContent(aiOutboundCallingContentes, aiOutboundCallingNumbers).description } },
+  { path: "/services/marketing-automation", group: "marketing", descriptions: { en: marketingAutomationContenten.description, es: marketingAutomationContentes.description } },
+  { path: "/services/local-seo", group: "marketing", descriptions: { en: localSeoContenten.description, es: localSeoContentes.description } },
+  { path: "/services/online-presence-setup", group: "marketing", descriptions: { en: onlinePresenceContenten.metadata_description, es: onlinePresenceContentes.metadata_description } },
+  { path: "/services/virtual-assistant", group: "staffing", descriptions: { en: virtualAssistantContenten.metadata_description, es: virtualAssistantContentes.metadata_description } },
+  { path: "/services/virtual-front-desk", group: "staffing", descriptions: { en: resolveContent(virtualFrontDeskContenten, virtualFrontDeskNumbers).metadata_description.split(". ").slice(0, 2).join(". ") + ".", es: resolveContent(virtualFrontDeskContentes, virtualFrontDeskNumbers).metadata_description } },
 ] as const
 
 export function servicesFor(locale: Locale) {

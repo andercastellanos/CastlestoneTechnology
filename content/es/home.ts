@@ -42,7 +42,6 @@ export const homeContent: HomeContent = {
   supportCards_2_chips_2: "Derivación de llamadas",
   supportCards_2_chips_3: "Registro de visitantes",
   supportCards_2_chips_4: "Toma de mensajes",
-  supportCards_2_status: "En desarrollo",
   heroEyebrow: "Ingeniería de software e IA",
   heroHeading: "Desarrollo de software e IA para su negocio.",
   heroDescription: "Aplicaciones web, agentes de IA, automatizaciones e integraciones. Definimos el alcance en Florida y desarrollamos con nuestro equipo de ingeniería en Latinoamérica, en horarios de EE. UU.",

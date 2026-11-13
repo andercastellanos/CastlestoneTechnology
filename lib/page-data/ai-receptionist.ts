@@ -39,6 +39,9 @@ export type AiReceptionistContent = {
   faqPricingAnswer: string
   faqFrontDeskQuestion: string
   faqFrontDeskAnswer: string
+  faqOutboundQuestion: string
+  faqOutboundAnswer: string
+  faqOutboundLink: string
   finalHeading: string
   finalDescription: string
   webDesignDescription: string
@@ -66,6 +69,7 @@ export const aiReceptionistLinks = {
   demo: "/book-demo",
   missedCalls: "/blog/the-real-cost-of-missed-calls",
   frontDesk: "/services/virtual-front-desk",
+  outbound: "/services/ai-outbound-calling",
 } as const
 
 export function getAiReceptionistData(copy: AiReceptionistContent) {
@@ -80,6 +84,7 @@ export function getAiReceptionistData(copy: AiReceptionistContent) {
       { question: copy.faqBookingQuestion, answer: copy.faqBookingAnswer },
       { question: copy.faqPricingQuestion, answer: copy.faqPricingAnswer },
       { question: copy.faqFrontDeskQuestion, answer: copy.faqFrontDeskAnswer },
+      { question: copy.faqOutboundQuestion, answer: copy.faqOutboundAnswer, link: { label: copy.faqOutboundLink, href: aiReceptionistLinks.outbound } },
     ],
   }
 }

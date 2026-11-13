@@ -140,11 +140,6 @@ export default function HomeView({ content, locale }: { content: HomeContent; lo
               >
                 <div className="flex flex-wrap items-center gap-3">
                   <h3 className="font-heading text-2xl font-bold text-[#222222]">{card.title}</h3>
-                  {card.status && (
-                    <span className="rounded-full bg-[#222222] px-2.5 py-0.5 text-xs font-medium text-white">
-                      {card.status}
-                    </span>
-                  )}
                 </div>
                 <p className="mt-3 flex-1 text-sm leading-relaxed text-[#6b7280]">
                   {card.description}

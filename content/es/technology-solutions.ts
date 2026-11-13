@@ -41,6 +41,8 @@ export const technologySolutionsContent: TechnologySolutionsContent = {
   capabilities_14_description: "Añada funciones a su producto rápidamente, sin contratar personal adicional",
   capabilities_15_title: "Dirección de tecnología como servicio",
   capabilities_15_description: "Estrategia tecnológica, decisiones de arquitectura y liderazgo de ingeniería",
+  capabilities_16_title: "Llamadas salientes con IA",
+  capabilities_16_description: "Un agente de voz con IA que llama a sus prospectos, los califica y transfiere a su equipo las llamadas listas.",
   engagementModels_1_label: "Bloques de horas",
   engagementModels_1_price: "Desde ${0}/h",
   engagementModels_1_bestFor: "Mantenimiento, funciones pequeñas y consultoría técnica",

@@ -1,5 +1,4 @@
 import { webDesignContent } from "@/content/en/web-design"
-import { homeContent } from "@/content/en/home"
 
 export type ServicesHubContent = {
   path: string
@@ -8,7 +7,6 @@ export type ServicesHubContent = {
   heading: string
   introduction: string
   groups: Record<"software" | "ai" | "marketing" | "staffing", string>
-  developmentLabel: string
   webDesignDescription: string
   cityServiceLabel: string
   cityIntroduction: string
@@ -24,7 +22,6 @@ export const servicesHubContent: ServicesHubContent = {
   heading: "Web, AI & Marketing Services",
   introduction: "Explore our web, AI & marketing services, along with remote staffing options for your business. Review each service’s scope and bring your needs to a consultation.",
   groups: { software: "Software & websites", ai: "AI", marketing: "Marketing", staffing: "Staffing" },
-  developmentLabel: homeContent.supportCards_2_status,
   webDesignDescription: webDesignContent.metadata_description,
   cityServiceLabel: "Web design services",
   cityIntroduction: " — see what we build or browse by city: ",

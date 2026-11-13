@@ -26,6 +26,14 @@ export const routeMap = [
   { en: "/company/about", es: "/es/nosotros" },
   { en: "/services/web-design", es: "/es/servicios/diseno-web" },
   { en: "/blog/how-to-start-a-business-in-florida", es: "/es/blog/como-abrir-un-negocio-en-florida" },
+  { en: "/services/ai-outbound-calling", es: "/es/servicios/llamadas-salientes-con-ia" },
+  { en: "/blog/sms-marketing-platforms-vs-done-for-you", es: "/es/blog/marketing-por-sms-plataforma-o-servicio-gestionado" },
+  { en: "/blog/wordpress-vs-wix-vs-custom-website", es: "/es/blog/wordpress-vs-wix-vs-pagina-web-a-medida" },
+  { en: "/blog/how-to-make-your-website-show-up-on-google", es: "/es/blog/como-hacer-que-mi-pagina-web-aparezca-en-google" },
+  { en: "/blog/email-marketing-for-small-business", es: "/es/blog/email-marketing-para-pequenas-empresas" },
+  { en: "/blog/geo-vs-seo", es: "/es/blog/geo-vs-seo" },
+  { en: "/blog/can-ai-build-a-website", es: "/es/blog/puede-la-ia-crear-una-pagina-web" },
+  { en: "/blog/is-seo-worth-it-for-small-business", es: "/es/blog/vale-la-pena-el-seo-para-pequenas-empresas" },
 ] as const satisfies readonly Record<Locale, string>[]
 
 function normalizePath(path: string): string {

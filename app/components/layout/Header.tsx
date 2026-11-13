@@ -11,6 +11,12 @@ const services = [
   { name: "Virtual Assistants", esName: "Asistentes virtuales", href: "/services/virtual-assistant" },
   { name: "Technology Solutions", esName: "Desarrollo de software", href: "/services/technology-solutions" },
   { name: "SMS & Email Marketing", esName: "Marketing por SMS y email", href: "/services/marketing-automation" },
+  { name: "Web Design", esName: "Diseño web", href: "/services/web-design" },
+  { name: "AI Receptionist", esName: "Recepcionista con IA", href: "/services/ai-receptionist" },
+  { name: "AI Outbound Calling", esName: "Llamadas salientes con IA", href: "/services/ai-outbound-calling" },
+  { name: "Local SEO", esName: "SEO local", href: "/services/local-seo" },
+  { name: "Online Presence Setup", esName: "Presencia en línea", href: "/services/online-presence-setup" },
+  { name: "All services", esName: "Todos los servicios", href: "/services" },
 ]
 
 const navigationLabels = {

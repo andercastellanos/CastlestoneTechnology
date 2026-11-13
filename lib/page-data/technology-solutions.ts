@@ -46,6 +46,12 @@ export function getTechnologySolutionsData(copy: TechnologySolutionsContent) {
       href: "/services/ai-receptionist",
     },
     {
+      icon: "📲",
+      title: copy.capabilities_16_title,
+      description: copy.capabilities_16_description,
+      href: "/services/ai-outbound-calling",
+    },
+    {
       icon: "💬",
       title: copy.capabilities_2_title,
       description: copy.capabilities_2_description,

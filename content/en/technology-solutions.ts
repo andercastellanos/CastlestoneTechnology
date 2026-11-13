@@ -41,6 +41,8 @@ export const technologySolutionsContent: TechnologySolutionsContent = {
   "capabilities_14_description": "Add features to your existing product fast, without hiring",
   "capabilities_15_title": "CTO-as-a-Service",
   "capabilities_15_description": "Tech strategy, architecture decisions, and engineering leadership",
+  "capabilities_16_title": "AI Outbound Calling",
+  "capabilities_16_description": "An AI voice agent that calls your leads, qualifies them and transfers hot calls to your team.",
   "engagementModels_1_label": "Hourly Blocks",
   "engagementModels_1_price": "From ${0}/hr",
   "engagementModels_1_bestFor": "Maintenance, small features, technical consulting",

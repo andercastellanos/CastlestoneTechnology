@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/blog/the-real-cost-of-missed-calls`, lastModified: "2026-02-10T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/services/ai-receptionist`, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/services/local-seo`, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/services/ai-outbound-calling`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/blog/how-do-ai-receptionists-work`, lastModified: "2026-11-04T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/ai-receptionist-vs-answering-service`, lastModified: "2026-11-04T08:00:00Z", changeFrequency: "monthly", priority: 0.6 },
     { url: `${baseUrl}/blog/web-design-miami`, changeFrequency: "monthly", priority: 0.8 },

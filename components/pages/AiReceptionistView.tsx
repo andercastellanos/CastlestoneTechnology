@@ -130,12 +130,15 @@ export default function AiReceptionistView({ content, locale }: { content: AiRec
             <div className="mx-auto max-w-3xl">
               <h2 className={`${headingClass} mb-8`}>{copy.faqHeading}</h2>
               <div className="space-y-4">
-                {faqs.map(({ question, answer }) => (
+                {faqs.map(({ question, answer, link }) => (
                   <details key={question} className="group rounded-lg border border-[#e6dbc9] bg-white">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-lg p-6 font-semibold text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#80613a] [&::-webkit-details-marker]:hidden">
                       {question}<ChevronDown className="h-5 w-5 shrink-0 text-[#80613a] transition-transform group-open:rotate-180 motion-reduce:transition-none" aria-hidden="true" />
                     </summary>
-                    <p className="px-6 pb-6 leading-relaxed text-muted-foreground">{answer}</p>
+                    <p className="px-6 pb-6 leading-relaxed text-muted-foreground">
+                      {answer}
+                      {link ? <>{" "}<Link href={hrefForLocale(link.href, locale)} className={linkClass}>{link.label}</Link></> : null}
+                    </p>
                   </details>
                 ))}
               </div>
