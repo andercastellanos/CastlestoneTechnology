@@ -34,7 +34,7 @@ export const blogPostContent: SpanishBlogPostContent = {
       heading: "Facilidad de uso: pruebe las tareas que su personal repetirá",
       paragraphs: [
         "Pida una demostración de edición con su propio material. ¿Puede un empleado cambiar el horario, agregar un servicio, reemplazar una fotografía y corregir un enlace roto? Revise el resultado en el celular después de hacer esos cambios. Una demostración pulida de la página de inicio dice poco sobre el trabajo diario de publicar y aprobar.",
-        "En WordPress, revise el editor, el tema y los permisos exactos que usaría su equipo. En Wix, pruebe el editor elegido y las aplicaciones relevantes. En una página web a medida, confirme qué contenido se puede editar y qué cambios requieren desarrollo. Pida capacitación e instrucciones por escrito, y que la persona que mantendrá el contenido pruebe el proceso.",
+        "En WordPress, revise el editor, el tema y los permisos exactos que usaría su equipo. En Wix, pruebe el editor elegido y las aplicaciones relevantes. En una página web a medida, verifique qué contenido se puede editar y qué cambios necesitan a un desarrollador. Pida capacitación e instrucciones por escrito, y que la persona que mantendrá el contenido pruebe el proceso.",
       ],
     },
     {

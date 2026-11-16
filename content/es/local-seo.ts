@@ -1,7 +1,7 @@
 import type { LocalSeoContent } from "@/lib/page-data/local-seo"
 
 export const localSeoContent: LocalSeoContent = {
-  title: "Servicios de SEO local y visibilidad en búsquedas con IA",
+  title: "SEO local y visibilidad en búsquedas con IA",
   description: "Servicios de SEO local: sitio web, Perfil de Empresa en Google, directorios, reseñas y visibilidad en ChatGPT y el Modo IA de Google. Consulte precios.",
   heroEyebrow: "Búsquedas locales y búsquedas con IA",
   heroHeading: "Servicios de SEO local",

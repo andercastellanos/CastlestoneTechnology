@@ -48,7 +48,6 @@ const baseMetadata: Metadata = {
     card: "summary_large_image",
     title: siteName,
     description: siteDescription,
-    creator: "@castlestonetech",
   },
   robots: {
     index: true,

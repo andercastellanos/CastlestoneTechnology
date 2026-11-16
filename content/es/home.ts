@@ -2,7 +2,7 @@ import type { HomeContent } from "@/content/types/home"
 
 export const homeContent: HomeContent = {
   title: "Desarrollo de software e IA",
-  description: "Desarrollo de software e IA para su negocio: aplicaciones web, agentes, automatizaciones e integraciones. Ingeniería desde Latinoamérica en horarios de EE. UU. También ofrecemos equipos de apoyo virtual.",
+  description: "Software, IA, automatizaciones y sitios web con un equipo en Florida e ingenieros de Latinoamérica en horarios de EE. UU. También ofrecemos apoyo virtual.",
   metadata_openGraph_siteName: "Castlestone Technology",
   heroCommitments_1_value: "Alcance definido",
   heroCommitments_1_label: "Cotización por escrito antes de empezar",

@@ -46,6 +46,11 @@ test("the route map covers the paired English pages without duplicate URLs", () 
     "/blog/geo-vs-seo",
     "/blog/can-ai-build-a-website",
     "/blog/is-seo-worth-it-for-small-business",
+    "/blog/5-tasks-to-delegate-to-your-va",
+    "/blog/how-to-onboard-a-virtual-team-member",
+    "/blog/the-real-cost-of-missed-calls",
+    "/privacy",
+    "/terms",
   ])
   const urls = Array.from(i18n.routeMap).flatMap(pair => [pair.en, pair.es])
   assert.equal(new Set(urls).size, i18n.routeMap.length * 2)
@@ -88,9 +93,9 @@ test("paired alternates are reciprocal and x-default always points to the Englis
 })
 
 test("unpaired alternates contain only their normalized canonical", () => {
-  const alternates = i18n.alternatesFor("/privacy///?plan=va#plans")
+  const alternates = i18n.alternatesFor("/client-login///?plan=va#plans")
   assert.deepEqual(Object.keys(alternates), ["canonical"])
-  assert.equal(alternates.canonical, "https://castlestonetechnology.com/privacy")
+  assert.equal(alternates.canonical, "https://castlestonetechnology.com/client-login")
 })
 
 test("localized internal links preserve queries and anchors without changing unpaired or external URLs", () => {

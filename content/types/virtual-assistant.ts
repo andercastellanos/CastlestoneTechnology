@@ -97,30 +97,4 @@ export type VirtualAssistantContent = {
   roles_6_skills_4: string
   roles_6_skills_5: string
   roles_6_skills_6: string
-  pricing_1_name: string
-  pricing_1_price: string
-  pricing_1_hours: string
-  pricing_1_features_1: string
-  pricing_1_features_2: string
-  pricing_1_features_3: string
-  pricing_1_features_4: string
-  pricing_1_features_5: string
-  pricing_2_name: string
-  pricing_2_price: string
-  pricing_2_hours: string
-  pricing_2_features_1: string
-  pricing_2_features_2: string
-  pricing_2_features_3: string
-  pricing_2_features_4: string
-  pricing_2_features_5: string
-  pricing_2_features_6: string
-  pricing_3_name: string
-  pricing_3_price: string
-  pricing_3_hours: string
-  pricing_3_features_1: string
-  pricing_3_features_2: string
-  pricing_3_features_3: string
-  pricing_3_features_4: string
-  pricing_3_features_5: string
-  pricing_3_features_6: string
 }

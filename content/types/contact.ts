@@ -5,6 +5,7 @@ export type ContactContent = {
   metadata_description: string
   heading: string
   introduction: string
+  messageGuidance: string
   emailLabel: string
   emailAddress: string
   phoneLabel: string

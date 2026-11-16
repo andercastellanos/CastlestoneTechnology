@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
 
   const { CallSid, From, To } = params
 
-  // 2 — Validate Twilio signature (bypassed in development for easier testing)
+  // 2 — Validate Twilio signature (production only, for easier local testing)
   if (process.env.NODE_ENV === "production") {
     if (!validateTwilioSignature(req, params)) {
       return new Response("Forbidden", { status: 403 })

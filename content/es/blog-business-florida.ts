@@ -2,7 +2,8 @@ import type { SpanishBlogPostContent } from "@/content/types/blog-post"
 
 export const blogPostContent: SpanishBlogPostContent = {
   path: "/es/blog/como-abrir-un-negocio-en-florida",
-  title: "Cómo abrir un negocio en Florida: de la LLC a tu presencia en línea",
+  title: "Cómo abrir un negocio en Florida: de la LLC a la web",
+  omitBrandInTitle: true,
   description: "Guía paso a paso para abrir un negocio en Florida: constituya su LLC, obtenga un EIN, abra una cuenta bancaria y configure su dominio, correo empresarial, redes sociales, perfil de Google y sitio web.",
   keyword: "cómo abrir un negocio en Florida",
   category: "Inicio de negocios",
@@ -47,7 +48,7 @@ export const blogPostContent: SpanishBlogPostContent = {
     {
       heading: "4. Abra una cuenta bancaria para el negocio",
       paragraphs: [
-        "Los bancos suelen pedir los Articles of Organization y el EIN. Consulte con el banco que piensa utilizar y confirme qué necesita para su cuenta antes de comenzar. Lleve los documentos guardados y organizados, en lugar de depender de capturas de pantalla dispersas en su teléfono.",
+        "Los bancos suelen pedir los Articles of Organization y el EIN. Consulte con el banco que piensa utilizar y verifique qué necesita para su cuenta antes de comenzar. Lleve los documentos guardados y organizados, en lugar de depender de capturas de pantalla dispersas en su teléfono.",
         "Mantener separado el dinero personal del dinero del negocio ayuda a proteger la LLC. Defina qué cuenta recibirá los pagos de clientes y cubrirá los gastos empresariales. Tener esas operaciones juntas también facilita revisar los registros con su contador, sin reconstruir después las compras hechas desde una cuenta personal.",
       ],
       checkpoint: "Antes de continuar: tenga una cuenta empresarial, acceso a ella y una forma clara de manejar por separado el dinero del negocio.",

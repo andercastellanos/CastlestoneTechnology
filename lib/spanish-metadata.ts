@@ -19,6 +19,8 @@ type SpanishPageMetadata = {
   openGraphDescription?: string
   keywords?: string[]
   explicitOpenGraphImage?: boolean
+  /** Use the title alone, without " | Castlestone Technology", so long titles fit in search results. */
+  omitBrandInTitle?: boolean
 }
 
 function imagesInSpanish(images: SocialImage[]) {
@@ -39,7 +41,7 @@ export async function spanishPageMetadata(
 ): Promise<Metadata> {
   const inherited = await parent
   const alternates = alternatesFor(options.path)
-  const title = `${options.title} | ${SITE_CONFIG.name}`
+  const title = options.omitBrandInTitle ? options.title : `${options.title} | ${SITE_CONFIG.name}`
   // Preserve the nearest file-based images, including their generated route and cache key.
   const openGraphImages = inherited.openGraph?.images ?? SOCIAL_IMAGES.openGraph
 
@@ -59,7 +61,6 @@ export async function spanishPageMetadata(
     },
     twitter: {
       card: "summary_large_image",
-      creator: "@castlestonetech",
       title,
       description: options.description,
       images: imagesInSpanish(inherited.twitter?.images ?? SOCIAL_IMAGES.twitter),

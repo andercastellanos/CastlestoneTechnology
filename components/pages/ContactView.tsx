@@ -20,6 +20,9 @@ export default function ContactView({ content, locale }: { content: ContactConte
             <p className="mt-5 max-w-md text-base leading-relaxed text-[#6b7280]">
               {copy.introduction}
             </p>
+            <p className="mt-4 max-w-md text-base leading-relaxed text-[#6b7280]">
+              {copy.messageGuidance}
+            </p>
 
             <div className="mt-10 space-y-6">
               <div>

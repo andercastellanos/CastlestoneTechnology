@@ -136,7 +136,7 @@ export default function BlogPost() {
                     Ask whose account holds the domain, hosting subscription, business email, and connected tools. Read the provider’s terms for generated assets, commercial use, code access, and cancellation. These arrangements vary, so do not assume that paying for a site gives you a portable copy of every feature. Request a handover plan and an explanation of what moving elsewhere would require. Keep recovery contacts under your business’s control.
                   </p>
                   <p>
-                    Distinguish editing access from the ability to export or redeploy the site. A business may be able to change text while still depending on a particular platform or developer for important functions. Confirm which assets and records can be transferred, and which licenses or services require separate arrangements. Put those answers in writing before the website becomes essential to your daily operations. Ownership questions are easier to settle before a deadline.
+                    Distinguish editing access from the ability to export or redeploy the site. A business may be able to change text while still depending on a particular platform or developer for important functions. Check which assets and records can be transferred, and which licenses or services require separate arrangements. Put those answers in writing before the website becomes essential to your daily operations. Ownership questions are easier to settle before a deadline.
                   </p>
                 </div>
                 <div className="space-y-4">

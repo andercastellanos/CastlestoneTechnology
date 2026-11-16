@@ -2,7 +2,8 @@ import type { SpanishBlogPostContent } from "@/content/types/blog-post"
 
 export const blogPostContent: SpanishBlogPostContent = {
   "path": "/es/blog/recepcionista-con-ia-vs-servicio-de-contestador",
-  "title": "Recepcionista virtual y servicio de contestador con IA: cómo elegir",
+  "title": "Recepcionista con IA vs. servicio de contestador",
+  "omitBrandInTitle": true,
   "description": "Compare un servicio de contestador con IA con la atención de llamadas por personas: funcionamiento, cobro, disponibilidad, límites y preguntas para elegir.",
   "keyword": "servicio de contestador con IA",
   "category": "Recepción con IA",

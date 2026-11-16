@@ -4,7 +4,7 @@ export type RelatedPost = { path: string; title: string; related: readonly strin
 export const relatedPosts: readonly RelatedPost[] = [
   {
     path: "/es/blog/como-abrir-un-negocio-en-florida",
-    title: "Cómo abrir un negocio en Florida: de la LLC a tu presencia en línea",
+    title: "Cómo abrir un negocio en Florida: de la LLC a la web",
     related: [
       "/es/blog/cuanto-cuesta-una-pagina-web",
       "/es/blog/como-hacer-que-mi-pagina-web-aparezca-en-google",
@@ -47,7 +47,7 @@ export const relatedPosts: readonly RelatedPost[] = [
   },
   {
     "path": "/blog/ai-receptionist-vs-answering-service",
-    "title": "AI Receptionist vs. Answering Service: An AI Answering Service Guide",
+    "title": "AI Receptionist vs. Answering Service: A Guide",
     "related": [
       "/blog/how-do-ai-receptionists-work",
       "/blog/the-real-cost-of-missed-calls"
@@ -145,7 +145,7 @@ export const relatedPosts: readonly RelatedPost[] = [
   },
   {
     "path": "/es/blog/recepcionista-con-ia-vs-servicio-de-contestador",
-    "title": "Recepcionista virtual y servicio de contestador con IA: cómo elegir",
+    "title": "Recepcionista con IA vs. servicio de contestador",
     "related": [
       "/es/blog/cuanto-cuesta-una-pagina-web",
       "/es/blog/como-funciona-una-recepcionista-virtual-con-ia"
@@ -206,6 +206,30 @@ export const relatedPosts: readonly RelatedPost[] = [
     related: [
       "/es/blog/como-hacer-que-mi-pagina-web-aparezca-en-google",
       "/es/blog/geo-vs-seo",
+    ],
+  },
+  {
+    path: "/es/blog/5-tareas-para-delegar-a-su-asistente-virtual",
+    title: "5 tareas que debería dejar de hacer usted mismo",
+    related: [
+      "/es/blog/como-incorporar-a-un-miembro-virtual-del-equipo",
+      "/es/blog/el-costo-real-de-las-llamadas-perdidas",
+    ],
+  },
+  {
+    path: "/es/blog/como-incorporar-a-un-miembro-virtual-del-equipo",
+    title: "Cómo incorporar a un miembro virtual del equipo",
+    related: [
+      "/es/blog/5-tareas-para-delegar-a-su-asistente-virtual",
+      "/es/blog/como-funciona-una-recepcionista-virtual-con-ia",
+    ],
+  },
+  {
+    path: "/es/blog/el-costo-real-de-las-llamadas-perdidas",
+    title: "El costo real de las llamadas perdidas",
+    related: [
+      "/es/blog/como-funciona-una-recepcionista-virtual-con-ia",
+      "/es/blog/recepcionista-con-ia-vs-servicio-de-contestador",
     ],
   }
 ]

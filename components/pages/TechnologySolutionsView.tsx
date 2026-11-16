@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/Footer"
 import Header from "@/components/layout/Header"
+import ServiceStructuredData from "@/components/shared/ServiceStructuredData"
 import Container from "@/components/shared/Container"
 import type { TechnologySolutionsContent } from "@/content/types/technology-solutions"
 import { resolveContent } from "@/lib/content"
@@ -13,6 +14,7 @@ export default function TechnologySolutionsView({ content, locale }: { content: 
   return (
     <>
       <Header locale={locale} />
+      <ServiceStructuredData path="/services/technology-solutions" locale={locale} />
       <main>
         {/* Hero */}
         <section className="py-20 bg-background">
@@ -21,7 +23,7 @@ export default function TechnologySolutionsView({ content, locale }: { content: 
               <h1 className="font-heading">
                 <span className="block text-2xl font-normal text-muted-foreground tracking-wide mb-3">
                   {copy.heroEyebrow}
-                </span>
+                </span>{" "}
                 <span className="block text-5xl font-bold text-foreground leading-tight sm:text-6xl">
                   {copy.heroHeadingFirstLine}{" "}
                   <span className="block sm:inline">{copy.heroHeadingSecondLine}</span>

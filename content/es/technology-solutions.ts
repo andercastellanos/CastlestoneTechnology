@@ -2,7 +2,7 @@ import type { TechnologySolutionsContent } from "@/content/types/technology-solu
 
 export const technologySolutionsContent: TechnologySolutionsContent = {
   metadata_title: "Desarrollo de software a medida",
-  metadata_description: "Desarrollo de software, aplicaciones web, agentes de IA y automatizaciones con ingenieros de Latinoamérica. Defina su próximo proyecto con Castlestone.",
+  metadata_description: "Software a medida, aplicaciones web, agentes de IA y automatizaciones con un equipo en Florida e ingenieros de Latinoamérica. Defina su proyecto con nosotros.",
   stats_1_value: "{0}%",
   stats_1_label: "Menos que las tarifas de desarrollo en EE. UU.",
   stats_2_value: "{0}% superior",

@@ -25,7 +25,7 @@ export function getHomeData(copy: HomeContent) {
     icon: LucideIcon
     title: string
     description: string
-    href?: string
+    href: string
   }[] = [
     {
       icon: PhoneCall,
@@ -37,6 +37,7 @@ export function getHomeData(copy: HomeContent) {
       icon: Bot,
       title: copy.techSolutions_2_title,
       description: copy.techSolutions_2_description,
+      href: "/services/technology-solutions",
     },
     {
       icon: MessageSquareText,
@@ -60,21 +61,25 @@ export function getHomeData(copy: HomeContent) {
       icon: CalendarCheck,
       title: copy.techSolutions_6_title,
       description: copy.techSolutions_6_description,
+      href: "/services/technology-solutions",
     },
     {
       icon: LayoutDashboard,
       title: copy.techSolutions_7_title,
       description: copy.techSolutions_7_description,
+      href: "/services/technology-solutions",
     },
     {
       icon: Smartphone,
       title: copy.techSolutions_8_title,
       description: copy.techSolutions_8_description,
+      href: "/services/technology-solutions",
     },
     {
       icon: ShoppingCart,
       title: copy.techSolutions_9_title,
       description: copy.techSolutions_9_description,
+      href: "/services/technology-solutions",
     },
   ]
 

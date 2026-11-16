@@ -6,6 +6,7 @@ import { contactFormStrings } from "@/content/en/contact-form"
 import type { ContactFormStrings } from "@/content/types/contact-form"
 import type { Locale } from "@/lib/i18n"
 import { contactFormLimits } from "@/lib/page-data/contact"
+import { contactServiceKeys } from "@/lib/contact-services"
 import { contactFormError } from "@/lib/contact-form-messages"
 import { trackMarketingEvent } from "@/components/analytics/events"
 
@@ -13,6 +14,8 @@ type ContactFormValues = {
   name: string
   email: string
   company: string
+  phone: string
+  service: string
   message: string
   website: string
 }
@@ -26,6 +29,8 @@ const initialForm: ContactFormValues = {
   name: "",
   email: "",
   company: "",
+  phone: "",
+  service: "",
   message: "",
   website: "",
 }
@@ -38,7 +43,7 @@ export default function ContactForm({
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [status, setStatus] = useState<SubmissionStatus>(null)
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target
     setForm((current) => ({ ...current, [name]: value }))
   }
@@ -149,6 +154,47 @@ export default function ContactForm({
             disabled={isSubmitting}
             className="mt-2 block h-11 w-full rounded-sm border border-[#e6dbc9] px-3 text-sm text-[#222222] outline-none transition-colors focus:border-[#c8a97e]"
           />
+        </div>
+
+        <div>
+          <label htmlFor="phone" className="text-sm font-medium text-[#222222]">
+            {strings.phoneLabel}
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autoComplete="tel"
+            value={form.phone}
+            onChange={handleChange}
+            maxLength={contactFormLimits.phone}
+            disabled={isSubmitting}
+            className="mt-2 block h-11 w-full rounded-sm border border-[#e6dbc9] px-3 text-sm text-[#222222] outline-none transition-colors focus:border-[#c8a97e]"
+          />
+        </div>
+
+        <div>
+          <label htmlFor="service" className="text-sm font-medium text-[#222222]">
+            {strings.serviceLabel}
+          </label>
+          <select
+            id="service"
+            name="service"
+            value={form.service}
+            onChange={handleChange}
+            required
+            disabled={isSubmitting}
+            className="mt-2 block h-11 w-full rounded-sm border border-[#e6dbc9] bg-white px-3 text-sm text-[#222222] outline-none transition-colors focus:border-[#c8a97e]"
+          >
+            <option value="" disabled>
+              {strings.servicePlaceholder}
+            </option>
+            {contactServiceKeys.map((key) => (
+              <option key={key} value={key}>
+                {strings.serviceOptions[key]}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>

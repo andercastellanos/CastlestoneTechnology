@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
 import { createServerSupabaseClient } from "@/lib/supabase/server"
+import { contactServiceKeys, contactServices } from "@/lib/contact-services"
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required.").max(120, "Name must be 120 characters or fewer."),
   email: z.string().trim().min(1, "Email is required.").max(254, "Email must be 254 characters or fewer.").email("Enter a valid email address."),
   company: z.string().trim().max(200, "Company must be 200 characters or fewer.").optional(),
+  phone: z.string().trim().max(40, "Phone must be 40 characters or fewer.").regex(/^[0-9+().\-\s]*$/, "Enter a valid phone number.").optional(),
+  service: z.union([z.enum(contactServiceKeys, { message: "Select a valid service." }), z.literal("")]).optional(),
   message: z.string().trim().min(1, "Message is required.").max(10000, "Message must be 10,000 characters or fewer."),
   source_page: z.string().trim().max(2048).regex(/^\/(?!\/)[^\s?#]*$/, "Invalid source page.").optional(),
   website: z.string().max(0, "Unable to submit this form.").optional(),
@@ -37,6 +40,8 @@ async function notifyContact(submission: ContactSubmission, id: string) {
           `Name: ${submission.name}`,
           `Email: ${submission.email}`,
           `Company: ${submission.company || "Not provided"}`,
+          `Phone: ${submission.phone || "Not provided"}`,
+          `Needs help with: ${submission.service ? contactServices[submission.service] : "Not provided"}`,
           `Source page: ${submission.source_page || "Not provided"}`,
           "",
           "Message:",
@@ -73,7 +78,7 @@ export async function POST(request: Request) {
     )
   }
 
-  const { name, email, company, message, source_page } = parsed.data
+  const { name, email, company, phone, service, message, source_page } = parsed.data
   let submissionId: string
   try {
     const supabase = createServerSupabaseClient()
@@ -105,7 +110,8 @@ export async function POST(request: Request) {
     )
   }
 
-  await notifyContact({ name, email, company, message, source_page }, submissionId)
+  // Phone and service go in the notification email only; the contact_submissions table has no columns for them yet.
+  await notifyContact({ name, email, company, phone, service: service || undefined, message, source_page }, submissionId)
 
   return NextResponse.json(
     {

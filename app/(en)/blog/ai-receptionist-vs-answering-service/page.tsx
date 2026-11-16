@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer"
 import Container from "@/components/shared/Container"
 import { SITE_CONFIG, SOCIAL_IMAGES } from "@/lib/constants"
 
-const TITLE = "AI Receptionist vs. Answering Service: An AI Answering Service Guide"
+const TITLE = "AI Receptionist vs. Answering Service: A Guide"
 const DESCRIPTION =
   "Compare an AI answering service with a human answering service: how calls are handled, billing models, coverage, limitations, and the right fit for your business."
 const CANONICAL = "/blog/ai-receptionist-vs-answering-service"
@@ -18,7 +18,7 @@ const KEYWORDS = [
 ]
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   keywords: KEYWORDS,
   authors: [{ name: "Castlestone Technology", url: "https://castlestonetechnology.com" }],

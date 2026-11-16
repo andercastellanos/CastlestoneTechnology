@@ -13,6 +13,16 @@ const valid = {
   source_page: "/book-demo",
   website: "",
 }
+function loadContactServices() {
+  const exports = {}
+  const { outputText } = ts.transpileModule(readFileSync(new URL("../lib/contact-services.ts", import.meta.url), "utf8"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 },
+  })
+  vm.runInNewContext(outputText, { exports })
+  return exports
+}
+const contactServicesModule = loadContactServices()
+
 const emailConfig = {
   RESEND_API_KEY: "test-key",
   CONTACT_NOTIFY_EMAIL: "team@example.test",
@@ -34,6 +44,7 @@ function fixture(options = {}) {
   const exports = {}
   const dependencies = {
     "zod": { z },
+    "@/lib/contact-services": contactServicesModule,
     "next/server": { NextResponse: { json: (data, init) => Response.json(data, init) } },
     "@/lib/supabase/server": {
       createServerSupabaseClient() {
@@ -234,3 +245,23 @@ for (const [label, options] of [["provider rejection", { emailStatus: 503 }], ["
     assert.equal(f.logs.length, 1)
   })
 }
+
+test("phone and service are optional, validated and included in the notification email", async () => {
+  const f = fixture({ env: emailConfig })
+  assert.equal((await f.post({ ...valid, phone: " (305) 555-0100 ", service: "ai-receptionist" })).status, 201)
+  assert.match(f.notifications[0].body.text, /Phone: \(305\) 555-0100/)
+  assert.match(f.notifications[0].body.text, /Needs help with: AI Receptionist/)
+  assert.equal(Object.hasOwn(f.writes[0], "phone"), false)
+  assert.equal(Object.hasOwn(f.writes[0], "service"), false)
+
+  const blank = fixture({ env: emailConfig })
+  assert.equal((await blank.post({ ...valid, phone: "", service: "" })).status, 201)
+  assert.match(blank.notifications[0].body.text, /Phone: Not provided/)
+  assert.match(blank.notifications[0].body.text, /Needs help with: Not provided/)
+
+  for (const body of [{ ...valid, phone: "call me maybe" }, { ...valid, phone: "1".repeat(41) }, { ...valid, service: "unknown" }]) {
+    const rejected = fixture({ env: emailConfig })
+    assert.equal((await rejected.post(body)).status, 400)
+    assert.equal(rejected.writes.length, 0)
+  }
+})

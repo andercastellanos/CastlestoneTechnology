@@ -81,6 +81,11 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
               {SITE_CONFIG.contact.email}
             </a>
           </p>
+          <p>
+            <a href={SITE_CONFIG.links.linkedin} target="_blank" rel="noopener" className="transition-colors hover:text-[#c8a97e]">
+              LinkedIn
+            </a>
+          </p>
         </section>
 
         <div className="mt-10 grid gap-8 sm:grid-cols-3">
@@ -108,8 +113,8 @@ export default function Footer({ locale = "en" }: { locale?: Locale }) {
         <div className="mt-12 flex flex-col gap-3 border-t border-[#e6dbc9] pt-6 text-sm text-[#555555] sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} {SITE_CONFIG.name}. {locale === "es" ? "Todos los derechos reservados." : "All rights reserved."}</p>
           <nav aria-label="Legal" className="flex flex-wrap gap-x-5 gap-y-2">
-            <Link href="/privacy" className="transition-colors hover:text-[#c8a97e]">{locale === "es" ? "Política de privacidad" : "Privacy Policy"}</Link>
-            <Link href="/terms" className="transition-colors hover:text-[#c8a97e]">{locale === "es" ? "Términos del servicio" : "Terms of Service"}</Link>
+            <Link href={localizedHref("/privacy")} className="transition-colors hover:text-[#c8a97e]">{locale === "es" ? "Política de privacidad" : "Privacy Policy"}</Link>
+            <Link href={localizedHref("/terms")} className="transition-colors hover:text-[#c8a97e]">{locale === "es" ? "Términos del servicio" : "Terms of Service"}</Link>
           </nav>
           <p>{locale === "es" ? "Hecho en" : "Made in"} {SITE_CONFIG.contact.address.city}, {SITE_CONFIG.contact.address.region}</p>
         </div>

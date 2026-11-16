@@ -4,6 +4,6 @@ import { spanishPageMetadata } from "@/lib/spanish-metadata"
 import { spanishBlogPublished } from "@/lib/page-data/spanish-blog"
 
 export async function spanishBlogMetadata(copy: SpanishBlogPostContent, parent: ResolvingMetadata) {
-  const metadata = await spanishPageMetadata({ path: copy.path, title: copy.title, description: copy.description, keywords: [copy.keyword] }, parent)
+  const metadata = await spanishPageMetadata({ path: copy.path, title: copy.title, description: copy.description, keywords: [copy.keyword], omitBrandInTitle: copy.omitBrandInTitle }, parent)
   return { ...metadata, openGraph: { ...metadata.openGraph, type: "article" as const, publishedTime: copy.published ?? spanishBlogPublished, authors: ["Castlestone Team"] } }
 }

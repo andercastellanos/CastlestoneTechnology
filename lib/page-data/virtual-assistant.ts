@@ -1,6 +1,5 @@
 import type { VirtualAssistantContent } from "@/content/types/virtual-assistant"
-import { VIRTUAL_ASSISTANT_PRICING, VIRTUAL_ASSISTANT_ROLES } from "@/lib/constants"
-import { numericParts } from "@/lib/content"
+import { VIRTUAL_ASSISTANT_ROLES } from "@/lib/constants"
 import {
 Cpu,
 Globe,
@@ -47,18 +46,6 @@ export const virtualAssistantNumbers = {
     "15",
     "48"
   ],
-  pricing_1_price: numericParts(VIRTUAL_ASSISTANT_PRICING[0].price),
-  pricing_1_hours: numericParts(VIRTUAL_ASSISTANT_PRICING[0].hours),
-  pricing_1_features_1: numericParts(VIRTUAL_ASSISTANT_PRICING[0].features[0]),
-  pricing_1_features_2: numericParts(VIRTUAL_ASSISTANT_PRICING[0].features[1]),
-  pricing_2_price: numericParts(VIRTUAL_ASSISTANT_PRICING[1].price),
-  pricing_2_hours: numericParts(VIRTUAL_ASSISTANT_PRICING[1].hours),
-  pricing_2_features_1: numericParts(VIRTUAL_ASSISTANT_PRICING[1].features[0]),
-  pricing_2_features_2: numericParts(VIRTUAL_ASSISTANT_PRICING[1].features[1]),
-  pricing_3_price: numericParts(VIRTUAL_ASSISTANT_PRICING[2].price),
-  pricing_3_hours: numericParts(VIRTUAL_ASSISTANT_PRICING[2].hours),
-  pricing_3_features_1: numericParts(VIRTUAL_ASSISTANT_PRICING[2].features[0]),
-  pricing_3_features_2: numericParts(VIRTUAL_ASSISTANT_PRICING[2].features[1]),
 } as const
 
 export function getVirtualAssistantData(copy: VirtualAssistantContent) {
@@ -150,25 +137,5 @@ export function getVirtualAssistantData(copy: VirtualAssistantContent) {
       skills: [copy.roles_6_skills_1, copy.roles_6_skills_2, copy.roles_6_skills_3, copy.roles_6_skills_4, copy.roles_6_skills_5, copy.roles_6_skills_6],
     }
   ]
-  const pricing = [
-    { ...VIRTUAL_ASSISTANT_PRICING[0],
-      name: copy.pricing_1_name,
-      price: copy.pricing_1_price,
-      hours: copy.pricing_1_hours,
-      features: [copy.pricing_1_features_1, copy.pricing_1_features_2, copy.pricing_1_features_3, copy.pricing_1_features_4, copy.pricing_1_features_5],
-    },
-    { ...VIRTUAL_ASSISTANT_PRICING[1],
-      name: copy.pricing_2_name,
-      price: copy.pricing_2_price,
-      hours: copy.pricing_2_hours,
-      features: [copy.pricing_2_features_1, copy.pricing_2_features_2, copy.pricing_2_features_3, copy.pricing_2_features_4, copy.pricing_2_features_5, copy.pricing_2_features_6],
-    },
-    { ...VIRTUAL_ASSISTANT_PRICING[2],
-      name: copy.pricing_3_name,
-      price: copy.pricing_3_price,
-      hours: copy.pricing_3_hours,
-      features: [copy.pricing_3_features_1, copy.pricing_3_features_2, copy.pricing_3_features_3, copy.pricing_3_features_4, copy.pricing_3_features_5, copy.pricing_3_features_6],
-    }
-  ]
-  return { iconMap, heroStats, steps, whyLatAm, roles, pricing }
+  return { iconMap, heroStats, steps, whyLatAm, roles }
 }

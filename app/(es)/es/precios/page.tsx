@@ -12,6 +12,7 @@ export function generateMetadata(_props: unknown, parent: ResolvingMetadata) {
     path: "/es/precios",
     title: copy.metadata_title,
     description: copy.metadata_description,
+    omitBrandInTitle: true,
   }, parent)
 }
 

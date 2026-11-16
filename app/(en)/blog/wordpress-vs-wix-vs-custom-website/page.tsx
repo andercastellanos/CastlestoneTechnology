@@ -118,7 +118,7 @@ export default function BlogPost() {
                     Ask for an editing demonstration using your own material. Can a staff member change business hours, add a service, replace a photograph, and fix a broken link? Look at the mobile result after making those changes. A polished homepage demonstration tells you little about everyday publishing and approval work.
                   </p>
                   <p>
-                    For WordPress, review the exact editor, theme, and permissions your team would use. For Wix, test the selected editor and relevant apps. For a custom website, confirm which content is editable and which changes require development. Request training and written instructions, then have the person who will maintain the content try the process.
+                    For WordPress, review the exact editor, theme, and permissions your team would use. For Wix, test the selected editor and relevant apps. For a custom website, check which content is editable and which changes require development. Request training and written instructions, then have the person who will maintain the content try the process.
                   </p>
                 </div>
                 <div className="space-y-4">

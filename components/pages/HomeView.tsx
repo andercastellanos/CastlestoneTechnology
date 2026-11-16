@@ -98,14 +98,12 @@ export default function HomeView({ content, locale }: { content: HomeContent; lo
                   </div>
                   <h3 className="font-semibold text-[#222222]">{title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-[#6b7280]">{description}</p>
-                  {href && (
-                    <Link
-                      href={hrefForLocale(href, locale)}
-                      className="mt-4 inline-block text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c8a97e]"
-                    >
-                      {copy.serviceLearnMore}
-                    </Link>
-                  )}
+                  <Link
+                    href={hrefForLocale(href, locale)}
+                    className="mt-4 inline-block text-sm font-medium text-[#c8a97e] transition-colors hover:text-[#b69468] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#c8a97e]"
+                  >
+                    {copy.serviceLearnMore}
+                  </Link>
                 </div>
               ))}
             </div>

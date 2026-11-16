@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/Footer"
 import Header from "@/components/layout/Header"
+import ServiceStructuredData from "@/components/shared/ServiceStructuredData"
 import Container from "@/components/shared/Container"
 import type { MarketingAutomationContent } from "@/content/types/marketing-automation"
 import { resolveContent } from "@/lib/content"
@@ -16,6 +17,7 @@ export default function MarketingAutomationView({ content, locale }: { content: 
   return (
     <>
       <Header locale={locale} />
+      <ServiceStructuredData path="/services/marketing-automation" locale={locale} />
       <main className="font-sans">
         {/* Hero */}
         <section className="bg-background py-20">

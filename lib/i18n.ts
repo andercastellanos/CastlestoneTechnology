@@ -34,6 +34,11 @@ export const routeMap = [
   { en: "/blog/geo-vs-seo", es: "/es/blog/geo-vs-seo" },
   { en: "/blog/can-ai-build-a-website", es: "/es/blog/puede-la-ia-crear-una-pagina-web" },
   { en: "/blog/is-seo-worth-it-for-small-business", es: "/es/blog/vale-la-pena-el-seo-para-pequenas-empresas" },
+  { en: "/blog/5-tasks-to-delegate-to-your-va", es: "/es/blog/5-tareas-para-delegar-a-su-asistente-virtual" },
+  { en: "/blog/how-to-onboard-a-virtual-team-member", es: "/es/blog/como-incorporar-a-un-miembro-virtual-del-equipo" },
+  { en: "/blog/the-real-cost-of-missed-calls", es: "/es/blog/el-costo-real-de-las-llamadas-perdidas" },
+  { en: "/privacy", es: "/es/privacidad" },
+  { en: "/terms", es: "/es/terminos" },
 ] as const satisfies readonly Record<Locale, string>[]
 
 function normalizePath(path: string): string {

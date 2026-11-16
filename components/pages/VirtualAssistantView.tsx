@@ -1,18 +1,22 @@
 import Footer from "@/components/layout/Footer"
 import Header from "@/components/layout/Header"
+import ServiceStructuredData from "@/components/shared/ServiceStructuredData"
 import Container from "@/components/shared/Container"
 import type { VirtualAssistantContent } from "@/content/types/virtual-assistant"
 import { resolveContent } from "@/lib/content"
 import { hrefForLocale, type Locale } from "@/lib/i18n"
+import { getVirtualAssistantPlans } from "@/lib/page-data/pricing"
 import { getVirtualAssistantData, virtualAssistantNumbers } from "@/lib/page-data/virtual-assistant"
 import Link from "next/link"
 
 export default function VirtualAssistantView({ content, locale }: { content: VirtualAssistantContent; locale: Locale }) {
   const copy = resolveContent(content, virtualAssistantNumbers)
-  const { iconMap, heroStats, steps, whyLatAm, roles, pricing } = getVirtualAssistantData(copy)
+  const { iconMap, heroStats, steps, whyLatAm, roles } = getVirtualAssistantData(copy)
+  const pricing = getVirtualAssistantPlans(locale)
   return (
     <>
       <Header locale={locale} />
+      <ServiceStructuredData path="/services/virtual-assistant" locale={locale} />
       <main>
 
         {/* ── Section 1: Hero ───────────────────────────────── */}

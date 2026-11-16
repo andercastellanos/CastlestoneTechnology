@@ -1,5 +1,6 @@
 import Footer from "@/components/layout/Footer"
 import Header from "@/components/layout/Header"
+import ServiceStructuredData from "@/components/shared/ServiceStructuredData"
 import type { VirtualFrontDeskContent } from "@/content/types/virtual-front-desk"
 import { resolveContent } from "@/lib/content"
 import { hrefForLocale, type Locale } from "@/lib/i18n"
@@ -12,6 +13,7 @@ export default function VirtualFrontDeskView({ content, locale }: { content: Vir
   return (
     <div className="min-h-screen bg-white">
       <Header locale={locale} />
+      <ServiceStructuredData path="/services/virtual-front-desk" locale={locale} />
 
       <main>
         <section className="mx-auto w-full max-w-6xl px-6 pb-24 pt-24 text-center lg:px-10">

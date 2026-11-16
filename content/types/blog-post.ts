@@ -1,6 +1,8 @@
 export type SpanishBlogPostContent = {
   path: string
   title: string
+  /** Use the title alone in the browser tab and search results, without the brand suffix. */
+  omitBrandInTitle?: boolean
   description: string
   keyword: string
   category: string

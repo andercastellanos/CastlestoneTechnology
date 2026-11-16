@@ -9,6 +9,7 @@ export function generateMetadata(_props: unknown, parent: ResolvingMetadata) {
     title: localSeoContent.title,
     description: localSeoContent.description,
     explicitOpenGraphImage: true,
+    omitBrandInTitle: true,
   }, parent)
 }
 

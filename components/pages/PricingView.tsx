@@ -25,6 +25,7 @@ function PricingCard({ plan, copy, locale }: { plan: PricingPlan; copy: PricingC
       <p className="mt-2 text-3xl leading-none text-[#c8a97e] [font-family:var(--font-heading)]">
         {plan.price}
       </p>
+      {plan.hours ? <p className="mt-2 text-sm text-[#6b7280]">{plan.hours}</p> : null}
 
       <ul className="mt-6 space-y-3">
         {plan.features.map((feature) => (
@@ -64,6 +65,27 @@ export default function PricingView({ content, locale }: { content: PricingConte
 
         <section className="mx-auto w-full max-w-6xl px-6 py-10 lg:px-10">
           <h2 className="text-center text-4xl text-[#222222] [font-family:var(--font-heading)] sm:text-5xl">
+            {copy.softwareHeading}
+          </h2>
+          <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-relaxed text-[#6b7280]">
+            {copy.softwareIntroduction}
+          </p>
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {[copy.softwareHourly, copy.softwareProject, copy.softwareDedicated].map((summary) => (
+              <article key={summary} className="rounded-sm border border-[#e6dbc9] bg-white p-8">
+                <h3 className="text-2xl leading-relaxed text-[#222222] [font-family:var(--font-heading)]">{summary}</h3>
+              </article>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Link href={hrefForLocale("/book-demo", locale)} className="inline-flex min-h-12 items-center justify-center rounded-sm bg-[#80613a] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#634927]">
+              {copy.softwareCta}
+            </Link>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-6xl px-6 py-10 lg:px-10">
+          <h2 className="text-center text-4xl text-[#222222] [font-family:var(--font-heading)] sm:text-5xl">
             {copy.frontDeskHeading}
           </h2>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
@@ -88,9 +110,6 @@ export default function PricingView({ content, locale }: { content: PricingConte
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-center gap-4 px-6 py-10 text-center sm:flex-row sm:gap-8 lg:px-10">
             <p className="text-sm text-[#6b7280]">
               <span className="text-[#c8a97e]">✓</span> {copy.trustCard}
-            </p>
-            <p className="text-sm text-[#6b7280]">
-              <span className="text-[#c8a97e]">✓</span> {copy.trustGuarantee}
             </p>
             <p className="text-sm text-[#6b7280]">
               <span className="text-[#c8a97e]">✓</span> {copy.trustCancellation}

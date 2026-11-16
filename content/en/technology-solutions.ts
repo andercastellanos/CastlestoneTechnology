@@ -1,8 +1,8 @@
 import type { TechnologySolutionsContent } from "@/content/types/technology-solutions"
 
 export const technologySolutionsContent: TechnologySolutionsContent = {
-  "metadata_title": "Software & AI Engineering",
-  "metadata_description": "Custom software, web apps, AI agents, and automations built by nearshore engineers in Latin America. Scope your next project with Castlestone.",
+  "metadata_title": "Custom Software Development & AI Engineering",
+  "metadata_description": "Custom software development, web apps, AI agents and automations from a Florida-based team with nearshore engineers. Scope your project with Castlestone.",
   "stats_1_value": "{0}%",
   "stats_1_label": "Less than U.S. dev rates",
   "stats_2_value": "Top {0}%",

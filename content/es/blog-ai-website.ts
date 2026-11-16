@@ -34,7 +34,7 @@ export const blogPostContent: SpanishBlogPostContent = {
       heading: "Las conexiones con otras herramientas requieren más que un botón",
       paragraphs: [
         "Haga una lista de los sistemas que su negocio usa para citas, contactos, pagos y correo. Describa qué información debe pasar entre ellos y qué sistema tiene el registro oficial. Pregunte quién configura cada conexión e investiga las fallas. Ver el nombre de una integración no explica si se manejan bien una cita cancelada, un correo electrónico que cambió o un contacto duplicado. Pida al proveedor que muestre el comportamiento del que depende su personal.",
-        "Use datos de prueba y el modo de prueba del proveedor cuando exista. Confirme qué pasa cuando falla una conexión, cuando vence un permiso de una cuenta o cuando alguien ingresa un valor no válido. Guarde las credenciales en los controles de cuenta adecuados, no en el contenido de las páginas ni en documentos compartidos. Documente quién es responsable del soporte. Si su equipo no puede reconocer un proceso que falló, un lanzamiento aparentemente exitoso puede dejar consultas sin atender.",
+        "Use datos de prueba y el modo de prueba del proveedor cuando exista. Verifique qué pasa cuando falla una conexión, cuando vence un permiso de una cuenta o cuando alguien ingresa un valor no válido. Guarde las credenciales en los controles de cuenta adecuados, no en el contenido de las páginas ni en documentos compartidos. Documente quién es responsable del soporte. Si su equipo no puede reconocer un proceso que falló, un lanzamiento aparentemente exitoso puede dejar consultas sin atender.",
       ],
     },
     {
@@ -51,7 +51,7 @@ export const blogPostContent: SpanishBlogPostContent = {
       heading: "Aclare la propiedad antes de comprometerse con una plataforma",
       paragraphs: [
         "Pregunte a nombre de quién están el dominio, la suscripción de alojamiento, el correo del negocio y las herramientas conectadas. Lea las condiciones del proveedor sobre los recursos generados, el uso comercial, el acceso al código y la cancelación. Estas condiciones varían, así que no suponga que pagar por un sitio le da una copia portátil de cada función. Pida un plan de entrega y una explicación de lo que exigiría trasladarse a otro lugar. Mantenga los contactos de recuperación bajo el control de su negocio.",
-        "Distinga entre el acceso para editar y la capacidad de exportar o volver a publicar el sitio. Un negocio puede cambiar textos y aun así depender de una plataforma o de un desarrollador para funciones importantes. Confirme qué recursos y registros se pueden transferir y qué licencias o servicios requieren acuerdos aparte. Ponga esas respuestas por escrito antes de que el sitio sea esencial para su operación diaria. Es más fácil resolver la propiedad antes de una fecha límite.",
+        "Distinga entre el acceso para editar y la capacidad de exportar o volver a publicar el sitio. Un negocio puede cambiar textos y aun así depender de una plataforma o de un desarrollador para funciones importantes. Verifique qué recursos y registros se pueden transferir y qué licencias o servicios requieren acuerdos aparte. Ponga esas respuestas por escrito antes de que el sitio sea esencial para su operación diaria. Es más fácil resolver la propiedad antes de una fecha límite.",
       ],
     },
     {

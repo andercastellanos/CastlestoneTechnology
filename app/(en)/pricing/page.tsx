@@ -8,7 +8,7 @@ import { pricingNumbers } from "@/lib/page-data/pricing"
 const copy = resolveContent(pricingContent, pricingNumbers)
 
 export const metadata: Metadata = {
-  title: copy.metadata_title,
+  title: { absolute: copy.metadata_title },
   description: copy.metadata_description,
   alternates: alternatesFor("/pricing"),
 }

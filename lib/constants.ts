@@ -6,7 +6,6 @@ export const SITE_CONFIG = {
   ogImage: "/opengraph-image",
   twitterImage: "/twitter-image",
   links: {
-    twitter: "https://twitter.com/castlestonetech",
     linkedin: "https://linkedin.com/company/castlestone-technology",
   },
   contact: {
@@ -61,6 +60,11 @@ export const BRAND = {
   gray: "#555555",
 }
 
+export const LEGAL_ENTITY = {
+  en: "Investment and Ideas LLC, doing business as Castlestone Technology",
+  es: "Investment and Ideas LLC, que opera como Castlestone Technology",
+} as const
+
 export const PRICING = {
   frontDesk: {
     basic: {
@@ -105,37 +109,16 @@ export const PRICING = {
       name: "Personal",
       price: 1500,
       hours: 80,
-      features: [
-        "80 hours/month",
-        "Calendar management",
-        "Email management",
-        "Personal errands",
-        "Travel booking",
-      ],
     },
     business: {
       name: "Business",
       price: 2000,
       hours: 120,
-      features: [
-        "120 hours/month",
-        "All Personal features",
-        "Client communications",
-        "CRM management",
-        "Meeting coordination",
-      ],
     },
     specialized: {
       name: "Specialized",
       price: 2500,
       hours: 160,
-      features: [
-        "160 hours/month",
-        "All Business features",
-        "Bookkeeping",
-        "Social media management",
-        "Sales support",
-      ],
     },
   },
 }
@@ -232,50 +215,6 @@ export const VIRTUAL_ASSISTANT_ROLES = [
     ],
   },
 ] as const
-
-export const VIRTUAL_ASSISTANT_PRICING = [
-  {
-    name: "Starter",
-    price: "$1,200/mo",
-    hours: "40 hrs/month",
-    popular: false,
-    features: [
-      "40 hours per month",
-      "1 specialist role",
-      "Weekly check-ins",
-      "Email support",
-      "Weekly status updates",
-    ],
-  },
-  {
-    name: "Professional",
-    price: "$1,800/mo",
-    hours: "80 hrs/month",
-    popular: true,
-    features: [
-      "80 hours per month",
-      "1 specialist role",
-      "Weekly check-ins",
-      "Priority support",
-      "Weekly reporting",
-      "Dedicated account contact",
-    ],
-  },
-  {
-    name: "Executive",
-    price: "$2,500/mo",
-    hours: "160 hrs/month",
-    popular: false,
-    features: [
-      "160 hours per month",
-      "Up to 2 specialist roles",
-      "Weekly check-ins",
-      "Dedicated manager",
-      "Slack channel access",
-      "SLA guarantee",
-    ],
-  },
-]
 
 export const NAVIGATION = {
   main: [

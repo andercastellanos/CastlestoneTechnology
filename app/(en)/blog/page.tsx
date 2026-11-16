@@ -84,7 +84,7 @@ const posts: BlogEntry[] = [
   },
   {
     category: "AI Receptionists",
-    title: "AI Receptionist vs. Answering Service: An AI Answering Service Guide",
+    title: "AI Receptionist vs. Answering Service: A Guide",
     excerpt:
       "Compare an AI answering service with a human answering service: how calls are handled, billing models, coverage, limitations, and the right fit for your business.",
     date: "November 4, 2026",
